@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:my_weather_reader/Widgets/error_state_widget.dart';
+import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/get_weather_icon.dart';
 import 'package:my_weather_reader/Widgets/my_container.dart';
@@ -130,27 +131,32 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
                 //if the state is loading gif will be displayed
                 if (weatherState.isLoading)
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Image.asset(
-                        'assets/animations/LoadingState.gif',
-                        fit: BoxFit.fitWidth, // Use your desired BoxFit option
-                        width: 400, // Adjust width as per your requirement
-                        height: 400,
+                  FadeInWidget(
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Image.asset(
+                          'assets/animations/LoadingState.gif',
+                          fit:
+                              BoxFit.fitWidth, // Use your desired BoxFit option
+                          width: 400, // Adjust width as per your requirement
+                          height: 400,
+                        ),
                       ),
                     ),
                   )
 
                 //if error occured then this state
                 else if (weatherState.error.isNotEmpty)
-                  const ErrorStateWidget()
+                  const FadeInWidget(child: ErrorStateWidget())
 
                 //if data is found this is the final state
                 else if (weatherState.weather != null)
-                  _AllWeatherData(weatherState, sunRiseTime, sunSetTime),
-                poweredByOpenWeather()
+                  FadeInWidget(
+                      child: _AllWeatherData(
+                          weatherState, sunRiseTime, sunSetTime)),
+                FadeInWidget(child: poweredByOpenWeather())
               ],
             ),
           ),
@@ -194,163 +200,169 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
   //all the weather data is displayed through this
 
-  Column _AllWeatherData(
+  FadeInWidget _AllWeatherData(
       WeatherState weatherState, String sunRiseTime, String sunSetTime) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Icon(
-                  Icons.location_on,
-                  color: Colors.red,
-                  size: 48,
+    return FadeInWidget(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.red,
+                    size: 48,
+                  ),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  Text(
+                    weatherState.weather!.cityName,
+                    style: TextStyle(
+                        fontFamily: Fonts.font1,
+                        color: Colors.white,
+                        fontSize: 28),
+                  ),
+                  Row(
+                    children: [
+                      getWeatherIcon(
+                        weatherState
+                            .weather!.description, // Weather description
+                        isDaytime(
+                          weatherState
+                              .weather!.currentTime, // Current time (dt)
+                          weatherState
+                              .weather!.sunrise, // Sunrise time (sys.sunrise)
+                          weatherState
+                              .weather!.sunset, // Sunset time (sys.sunset)
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        weatherState.weather!.description,
+                        style: TextStyle(
+                          fontFamily: Fonts.font1,
+                          color: Colors.white,
+                          fontSize: 28,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  textAlign: TextAlign.start,
+                  '${weatherState.weather!.temperature.toString()} °C',
+                  style: TextStyle(
+                      textBaseline: TextBaseline.alphabetic,
+                      fontFamily: Fonts.font1,
+                      color: Colors.white,
+                      fontSize: 36),
                 ),
-                const SizedBox(
-                  width: 6,
-                ),
-                Text(
-                  weatherState.weather!.cityName,
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Container(
+            child: getWeatherAnimation(
+              weatherState.weather!.description, // Weather description
+              isDaytime(
+                weatherState.weather!.currentTime, // Current time (dt)
+                weatherState.weather!.sunrise, // Sunrise time (sys.sunrise)
+                weatherState.weather!.sunset, // Sunset time (sys.sunset)
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: ExpansionTile(
+                collapsedIconColor: Colors.white,
+                iconColor: Colors.white,
+                backgroundColor: Colors.transparent,
+                collapsedBackgroundColor: AppColors.darkBlue.withOpacity(0.5),
+                title: Text(
+                  'Weather Details',
                   style: TextStyle(
                       fontFamily: Fonts.font1,
                       color: Colors.white,
-                      fontSize: 28),
+                      fontSize: 24),
                 ),
-                Row(
-                  children: [
-                    getWeatherIcon(
-                      weatherState.weather!.description, // Weather description
-                      isDaytime(
-                        weatherState.weather!.currentTime, // Current time (dt)
-                        weatherState
-                            .weather!.sunrise, // Sunrise time (sys.sunrise)
-                        weatherState
-                            .weather!.sunset, // Sunset time (sys.sunset)
-                      ),
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(4.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 8,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            myContainer('Humidity',
+                                '${weatherState.weather!.humidity}%'),
+                            myContainer('Pressure',
+                                '${weatherState.weather!.pressure} hPa'),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            myContainer('Min. Temp.',
+                                '${weatherState.weather!.tempMin}°C'),
+                            myContainer('Max. Temp.',
+                                '${weatherState.weather!.tempMax}°C'),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            myContainer('Wind Speed',
+                                '${weatherState.weather!.windSpeed} m/s'),
+                            myContainer('Wind Deg.',
+                                '${weatherState.weather!.windDeg}°'),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            myContainer('Sunrise', sunRiseTime),
+                            myContainer('Sunset', sunSetTime),
+                          ],
+                        ),
+                      ],
                     ),
-                    Text(
-                      weatherState.weather!.description,
-                      style: TextStyle(
-                        fontFamily: Fonts.font1,
-                        color: Colors.white,
-                        fontSize: 28,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Text(
-                textAlign: TextAlign.start,
-                '${weatherState.weather!.temperature.toString()} °C',
-                style: TextStyle(
-                    textBaseline: TextBaseline.alphabetic,
-                    fontFamily: Fonts.font1,
-                    color: Colors.white,
-                    fontSize: 36),
-              ),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Container(
-          child: getWeatherAnimation(
-            weatherState.weather!.description, // Weather description
-            isDaytime(
-              weatherState.weather!.currentTime, // Current time (dt)
-              weatherState.weather!.sunrise, // Sunrise time (sys.sunrise)
-              weatherState.weather!.sunset, // Sunset time (sys.sunset)
-            ),
+                  ),
+                ]),
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: ExpansionTile(
-              collapsedIconColor: Colors.white,
-              iconColor: Colors.white,
-              backgroundColor: Colors.transparent,
-              collapsedBackgroundColor: AppColors.darkBlue.withOpacity(0.5),
-              title: Text(
-                'Weather Details',
-                style: TextStyle(
-                    fontFamily: Fonts.font1, color: Colors.white, fontSize: 24),
-              ),
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(4.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 8,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          myContainer(
-                              'Humidity', '${weatherState.weather!.humidity}%'),
-                          myContainer('Pressure',
-                              '${weatherState.weather!.pressure} hPa'),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          myContainer('Min. Temp.',
-                              '${weatherState.weather!.tempMin}°C'),
-                          myContainer('Max. Temp.',
-                              '${weatherState.weather!.tempMax}°C'),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          myContainer('Wind Speed',
-                              '${weatherState.weather!.windSpeed} m/s'),
-                          myContainer(
-                              'Wind Deg.', '${weatherState.weather!.windDeg}°'),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          myContainer('Sunrise', sunRiseTime),
-                          myContainer('Sunset', sunSetTime),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-        ),
-        const SizedBox(
-          height: 60,
-        )
-      ],
+          const SizedBox(
+            height: 60,
+          )
+        ],
+      ),
     );
   }
 

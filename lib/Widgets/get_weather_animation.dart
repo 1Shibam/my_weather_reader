@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
 
 Widget getWeatherAnimation(String description, bool isDaytime) {
   String gifAssetPath;
@@ -106,14 +107,16 @@ Widget getWeatherAnimation(String description, bool isDaytime) {
           'assets/animations/snofall(night).gif'; // Default animation
   }
 
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
-    child: Image.asset(
-      filterQuality: FilterQuality.none,
-      gifAssetPath,
-      fit: BoxFit.fitWidth, // Use your desired BoxFit option
-      width: 400, // Adjust width as per your requirement
-      height: 300, // Adjust height as per your requirement
+  return FadeInWidget(
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
+      child: Image.asset(
+        filterQuality: FilterQuality.none,
+        gifAssetPath,
+        fit: BoxFit.fitWidth, // Use your desired BoxFit option
+        width: 400, // Adjust width as per your requirement
+        height: 300, // Adjust height as per your requirement
+      ),
     ),
   );
 }
