@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_declarations
 
 import 'package:http/http.dart' as http;
-import 'package:my_weather_reader/apikey.dart';
+import 'package:my_weather_reader/providers/apikey.dart';
 import 'package:riverpod/riverpod.dart';
 import 'dart:convert';
 import '../models/weather_data.dart';
@@ -24,7 +24,7 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
   Future<void> fetchWeatherByCoordinates(double lat, double lon) async {
     state = WeatherState(isLoading: true);
     try {
-      final apiKey = myApiKey;
+      final apiKey = apikey;
       final url =
           'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric';
       final response = await http.get(Uri.parse(url));
@@ -44,7 +44,7 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
   Future<void> fetchWeatherByCity(String city) async {
     state = WeatherState(isLoading: true);
     try {
-      final apiKey = myApiKey; // Replace with your API key
+      final apiKey = apikey; // Replace with your API key
       final url =
           'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric';
       final response = await http.get(Uri.parse(url));

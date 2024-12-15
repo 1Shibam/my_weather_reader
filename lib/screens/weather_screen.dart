@@ -46,13 +46,15 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
   // Handle search by city name
   void _searchByCity() {
-    ref.read(weatherProvider.notifier).fetchWeatherByCity(_cityController.text);
+    ref
+        .read(weatherProvider.notifier)
+        .fetchWeatherByCity(_cityController.text.trim());
   }
 
   // Handle search by coordinates
   void _searchByCoordinates() {
-    final lat = double.tryParse(_latController.text);
-    final lon = double.tryParse(_lonController.text);
+    final lat = double.tryParse(_latController.text.trim());
+    final lon = double.tryParse(_lonController.text.trim());
     if (lat != null && lon != null) {
       ref.read(weatherProvider.notifier).fetchWeatherByCoordinates(lat, lon);
     } else {
@@ -154,7 +156,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
                 //if data is found this is the final state
                 else if (weatherState.weather != null)
                   FadeInWidget(
-                      child: _AllWeatherData(
+                      child: _allWeatherData(
                           weatherState, sunRiseTime, sunSetTime)),
                 FadeInWidget(child: poweredByOpenWeather())
               ],
@@ -200,7 +202,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
   //all the weather data is displayed through this
 
-  FadeInWidget _AllWeatherData(
+  FadeInWidget _allWeatherData(
       WeatherState weatherState, String sunRiseTime, String sunSetTime) {
     return FadeInWidget(
       child: Column(

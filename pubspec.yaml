@@ -40,7 +40,7 @@ dependencies:
   http: ^1.2.2
   riverpod: ^2.6.1
   flutter_riverpod: ^2.6.1
-  url_launcher: ^6.3.1
+  
   flutter_launcher_icons: ^0.14.2
 
 dev_dependencies:
