@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_declarations
+// ignore_for_file: prefer_const_declarations, no_leading_underscores_for_local_identifiers
 
 import 'package:http/http.dart' as http;
 import 'package:my_weather_reader/providers/apikey.dart';
@@ -30,8 +30,8 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final weather = WeatherData.fromJson(json.decode(response.body));
-        state = WeatherState(weather: weather, isLoading: false);
+        final _weather = WeatherData.fromJson(json.decode(response.body));
+        state = WeatherState(weather: _weather, isLoading: false);
       } else {
         state = WeatherState(
             error: 'Failed to load weather data', isLoading: false);
@@ -52,7 +52,7 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
       if (response.statusCode == 200) {
         final weather = WeatherData.fromJson(json.decode(response.body));
         state = WeatherState(weather: weather, isLoading: false);
-      } else {
+      } else { 
         state = WeatherState(
             error: 'Failed to load weather data', isLoading: false);
       }

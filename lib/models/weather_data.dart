@@ -9,10 +9,10 @@ class WeatherData {
   final String description;
   final int cloudCoverage;
   final int pressure;
-  final int sunrise; // Unix timestamp for sunrise
-  final int sunset; // Unix timestamp for sunset
-  final int currentTime; // Current time (Unix timestamp)
-  final int timezone; // Timezone offset
+  final int sunrise; 
+  final int sunset; 
+  final int currentTime; 
+  final int timezone; 
 
   WeatherData({
     required this.cityName,
@@ -44,7 +44,7 @@ class WeatherData {
 
     final sunrise = json['sys']['sunrise'];
     final sunset = json['sys']['sunset'];
-    final currentTime = json['dt']; // Current time (Unix timestamp)
+    final currentTime = json['dt']; 
 
     return WeatherData(
       cityName: json['name'],
