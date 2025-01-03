@@ -19,10 +19,19 @@ class WeatherScreen extends ConsumerStatefulWidget {
 }
 
 class _WeatherScreenState extends ConsumerState<WeatherScreen> {
+  final FocusNode latFocus = FocusNode();
+  final FocusNode lonFocus = FocusNode();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _latController = TextEditingController();
   final TextEditingController _lonController = TextEditingController();
   final LocationService _locationService = LocationService();
+
+  @override
+  void dispose() {
+    super.dispose();
+    latFocus.dispose();
+    lonFocus.dispose();
+  }
 
   @override
   void initState() {
@@ -169,6 +178,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
   SearchBar searchCityBar() {
     return SearchBar(
+      onSubmitted: (_) => _searchByCity(),
       controller: _cityController,
       textStyle: WidgetStatePropertyAll(TextStyle(
           fontFamily: Fonts.font1, fontSize: 20, color: AppColors.waterBlue)),
@@ -375,6 +385,10 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
         // Latitude TextField
         Expanded(
           child: TextField(
+            focusNode: latFocus,
+            onSubmitted: (_) {
+              FocusScope.of(context).requestFocus(lonFocus);
+            },
             controller: _latController,
             style: TextStyle(
                 fontFamily: Fonts.font1,
@@ -407,7 +421,9 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
         // Latitude TextField
         Expanded(
           child: TextField(
+            focusNode: lonFocus,
             controller: _lonController,
+            onSubmitted: (_) => _searchByCoordinates(),
             style: TextStyle(
                 fontFamily: Fonts.font1,
                 fontSize: 20,

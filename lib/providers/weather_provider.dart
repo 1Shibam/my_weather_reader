@@ -52,7 +52,7 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
       if (response.statusCode == 200) {
         final weather = WeatherData.fromJson(json.decode(response.body));
         state = WeatherState(weather: weather, isLoading: false);
-      } else { 
+      } else {
         state = WeatherState(
             error: 'Failed to load weather data', isLoading: false);
       }
