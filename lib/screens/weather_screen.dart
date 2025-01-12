@@ -6,6 +6,7 @@ import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/get_weather_icon.dart';
 import 'package:my_weather_reader/Widgets/my_container.dart';
+import 'package:my_weather_reader/Widgets/weather_widget_state.dart';
 import 'package:my_weather_reader/utils/app_colors.dart';
 import '../providers/weather_provider.dart';
 import '../services/location_service.dart';
@@ -142,21 +143,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
 
                 //if the state is loading gif will be displayed
                 if (weatherState.isLoading)
-                  FadeInWidget(
-                    child: Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.asset(
-                          'assets/animations/LoadingState.gif',
-                          fit:
-                              BoxFit.fitWidth, // Use your desired BoxFit option
-                          width: 400, // Adjust width as per your requirement
-                          height: 400,
-                        ),
-                      ),
-                    ),
-                  )
+                  const WeatherWidget()
 
                 //if error occured then this state
                 else if (weatherState.error.isNotEmpty)

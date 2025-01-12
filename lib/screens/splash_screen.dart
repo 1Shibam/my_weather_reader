@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+//not useful anymore
+
 import 'package:flutter/material.dart';
 import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
 import 'package:my_weather_reader/screens/weather_screen.dart';

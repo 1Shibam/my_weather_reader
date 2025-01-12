@@ -13,132 +13,74 @@ class ErrorStateWidget extends StatelessWidget {
         children: [
           Center(
             child: Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Image.asset(
                 'assets/animations/ERROR-OCCURED.png',
-                fit: BoxFit.fitWidth, // Use your desired BoxFit option
-                width: 400, // Adjust width as per your requirement
+                fit: BoxFit.fitWidth,
+                width: 400,
                 height: 400,
               ),
             ),
           ),
+          const SizedBox(height: 16), // Add spacing between sections
           Text(
             'The reason for this might be - ',
             style: TextStyle(
-                fontFamily: Fonts.font1, color: Colors.white, fontSize: 28),
+              fontFamily: Fonts.font1,
+              color: Colors.white,
+              fontSize: 28,
+            ),
           ),
-          Row(
-            children: [
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.white,
-                size: 16,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              const Icon(
-                Icons.wifi_off,
-                color: Colors.red,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                'Your internet connection might be off.',
-                style: TextStyle(
-                    fontFamily: Fonts.font1, color: Colors.white, fontSize: 20),
-              )
-            ],
+          const SizedBox(height: 8),
+          _buildRowWithText(
+            icon: Icons.wifi_off,
+            text: 'Your internet connection might be off.',
           ),
-          const SizedBox(
-            height: 8,
+          const SizedBox(height: 8),
+          _buildRowWithText(
+            icon: Icons.location_off,
+            text: 'Check location-service (if you are looking for your own location).',
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  const Icon(
-                    Icons.location_off,
-                    color: Colors.red,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    'Check location-service (if you are ',
-                    maxLines: 2,
-                    style: TextStyle(
-                        fontFamily: Fonts.font1,
-                        color: Colors.white,
-                        fontSize: 20),
-                  ),
-                ],
-              ),
-              Text(
-                'looking for your own location).',
-                maxLines: 2,
-                style: TextStyle(
-                    fontFamily: Fonts.font1, color: Colors.white, fontSize: 20),
-              )
-            ],
+          const SizedBox(height: 8),
+          _buildRowWithText(
+            icon: Icons.spellcheck,
+            text: 'Make sure there are no spelling mistakes.',
           ),
-          const SizedBox(
-            height: 8,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  const Icon(
-                    Icons.spellcheck,
-                    color: Colors.red,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    'Make sure there are no spelling ',
-                    maxLines: 2,
-                    style: TextStyle(
-                        fontFamily: Fonts.font1,
-                        color: Colors.white,
-                        fontSize: 20),
-                  ),
-                ],
-              ),
-              Text(
-                'mistakes).',
-                maxLines: 2,
-                style: TextStyle(
-                    fontFamily: Fonts.font1, color: Colors.white, fontSize: 20),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 28,
-          )
+          const SizedBox(height: 28),
         ],
       ),
+    );
+  }
+
+  // Helper method to build rows
+  Widget _buildRowWithText({required IconData icon, required String text}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.white,
+          size: 16,
+        ),
+        const SizedBox(width: 8),
+        Icon(
+          icon,
+          color: Colors.red,
+        ),
+        const SizedBox(width: 8),
+        Flexible(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: Fonts.font1,
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
