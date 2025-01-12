@@ -114,7 +114,7 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
             decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: [
               AppColors.darkBlue,
-              AppColors.waterBlue,
+              Color(0xFF0077B6),
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter))),
         Padding(
           padding: const EdgeInsets.only(right: 20.0, left: 20, top: 60),
