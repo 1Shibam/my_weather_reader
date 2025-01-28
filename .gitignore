@@ -1,4 +1,5 @@
 # Miscellaneous
+lib/models/config/.env
 *.class
 *.log
 *.pyc

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:my_weather_reader/Widgets/bottom_text.dart';
 import 'package:my_weather_reader/Widgets/error_state_widget.dart';
 import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/get_weather_icon.dart';
 import 'package:my_weather_reader/Widgets/my_container.dart';
 import 'package:my_weather_reader/Widgets/weather_widget_state.dart';
-import 'package:my_weather_reader/utils/app_colors.dart';
+import 'package:my_weather_reader/models/config/app_colors.dart';
 import '../providers/weather_provider.dart';
 import '../services/location_service.dart';
 
@@ -454,29 +455,4 @@ class _WeatherScreenState extends ConsumerState<WeatherScreen> {
   }
 }
 
-Align poweredByOpenWeather() {
-  return Align(
-    alignment: Alignment.bottomCenter,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Powered By",
-          style: TextStyle(
-              fontSize: 20, fontFamily: Fonts.font1, color: Colors.white),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        const Text(
-          "OpenWeatherMap",
-          style: TextStyle(
-            color: Colors.orange,
-            fontSize: 20,
-            fontFamily: 'Arial', // Replace with Fonts.font1 if available
-          ),
-        ),
-      ],
-    ),
-  );
-}
+
