@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_declarations, no_leading_underscores_for_local_identifiers
 
 import 'package:http/http.dart' as http;
-import 'package:my_weather_reader/providers/apikey.dart';
+import 'package:my_weather_reader/api_key.dart';
+
 import 'package:riverpod/riverpod.dart';
 import 'dart:convert';
 import '../models/weather_data.dart';
