@@ -8,8 +8,8 @@ import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/get_weather_icon.dart';
 import 'package:my_weather_reader/Widgets/my_container.dart';
 import 'package:my_weather_reader/Widgets/weather_widget_state.dart';
-import 'package:my_weather_reader/core/themes/app_colors.dart';
-import 'package:my_weather_reader/core/themes/fonts.dart';
+import 'package:my_weather_reader/themes/app_colors.dart';
+import 'package:my_weather_reader/themes/fonts.dart';
 import '../providers/weather_provider.dart';
 import '../services/location_service.dart';
 

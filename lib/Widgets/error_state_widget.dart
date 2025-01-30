@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
-import 'package:my_weather_reader/core/themes/fonts.dart';
+import 'package:my_weather_reader/themes/fonts.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   const ErrorStateWidget({super.key});

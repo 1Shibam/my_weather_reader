@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_weather_reader/core/themes/fonts.dart';
+import 'package:my_weather_reader/themes/fonts.dart';
 
 Align poweredByOpenWeather() {
   return Align(
