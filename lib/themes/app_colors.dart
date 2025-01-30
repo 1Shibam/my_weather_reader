@@ -8,7 +8,3 @@ class AppColors {
   static const Color blueShade100 = Color(0xFFCAF0F8);
 }
 
-class Fonts {
-  static String font1 = 'Technoma';
-  static String font2 = 'Machala';
-}

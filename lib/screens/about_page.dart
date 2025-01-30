@@ -107,5 +107,3 @@ class AboutPage extends StatelessWidget {
     );
   }
 }
-
-  // Helper function to launch URLs
