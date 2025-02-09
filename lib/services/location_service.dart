@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:riverpod/riverpod.dart';
 
 class LocationService {
   Future<Position> getCurrentLocation() async {
@@ -20,4 +21,8 @@ class LocationService {
 
     return await Geolocator.getCurrentPosition();
   }
+}
+
+class LocationServiceNotifier extends StateNotifier<AsyncValue<Position>> {
+  LocationServiceNotifier() : super(const AsyncValue.loading());
 }
