@@ -1,0 +1,32 @@
+📂 lib/
+│
+├── 📂 core/  (Data Layer)
+│   ├── 📂 services/  (API calls)
+│   │   ├── search_service.dart
+│   │   ├── weather_service.dart
+│   │
+│   ├── 📂 repository/  (Abstraction layer)
+│   │   ├── search_repository.dart
+│   │   ├── weather_repository.dart
+│   │
+│   ├── 📂 database/  (SQLite)
+│   │   ├── search_history_repository.dart
+│   │   ├── weather_cache_repository.dart
+│
+├── 📂 models/  (Domain Layer - Business logic)
+│   ├── location_data.dart
+│   ├── weather_data.dart
+│
+├── 📂 providers/  (Presentation Layer - State Management)
+│   ├── 📂 state_providers/  (Handles UI state)
+│   │   ├── search_provider.dart
+│   │   ├── weather_provider.dart
+│   │
+│   ├── 📂 data_providers/  (Holds services, repositories)
+│   │   ├── search_data_provider.dart
+│   │   ├── weather_data_provider.dart
+│
+├── 📂 screens/  (UI Screens)
+│   ├── home_screen.dart
+│   ├── search_screen.dart
+│
