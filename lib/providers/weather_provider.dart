@@ -2,7 +2,6 @@
 
 import 'package:http/http.dart' as http;
 
-
 import 'package:my_weather_reader/api_key.dart';
 import 'package:riverpod/riverpod.dart';
 import 'dart:convert';
@@ -20,15 +19,13 @@ class WeatherState {
   });
 }
 
-
-
 class WeatherNotifier extends StateNotifier<WeatherState> {
   WeatherNotifier() : super(WeatherState(isLoading: true));
 
   Future<void> fetchWeatherByCoordinates(double lat, double lon) async {
     state = WeatherState(isLoading: true);
     try {
-      final apiKey = apikey;
+      final apiKey = weatherApiKey;
       final url =
           'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric';
       final response = await http.get(Uri.parse(url));
@@ -48,7 +45,7 @@ class WeatherNotifier extends StateNotifier<WeatherState> {
   Future<void> fetchWeatherByCity(String city) async {
     state = WeatherState(isLoading: true);
     try {
-      final apiKey = apikey; 
+      final apiKey = weatherApiKey;
       final url =
           'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric';
       final response = await http.get(Uri.parse(url));
