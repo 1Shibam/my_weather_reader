@@ -10,7 +10,7 @@ Align poweredByOpenWeather() {
         Text(
           "Powered By",
           style: TextStyle(
-              fontSize: 20, fontFamily: Fonts.font1, color: Colors.white),
+              fontSize: 20, fontFamily: Fonts.fontRegular, color: Colors.white),
         ),
         const SizedBox(
           width: 10,
