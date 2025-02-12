@@ -34,8 +34,9 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
                     Scaffold.of(context).openDrawer();
                   },
                   icon: const Icon(
-                    Icons.menu,
+                    Icons.menu_sharp,
                     color: Colors.white,
+                    size: 28,
                   ));
             },
           ),
@@ -49,7 +50,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
             // Content area with scrollable widgets
             Column(
               children: [
-                SizedBox(height: 40.h), // Use ScreenUtil for height
+                SizedBox(height: 20.h), // Use ScreenUtil for height
                 const SearchLocationWidget(), // Your search widget
               ],
             ),
