@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/main.dart';
-import 'package:my_weather_reader/router/router_config.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
