@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_weather_reader/Widgets/fade_transition_widget.dart';
-import 'package:my_weather_reader/screens/weather_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:my_weather_reader/router/router_config.dart';
 
 void main() {
-
-
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -15,11 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Weather App',
-      theme: ThemeData(),
-      home:  const FadeInWidget(child: WeatherScreen()),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return MaterialApp.router(
+          routerConfig: router,
+          debugShowCheckedModeBanner: false,
+          title: 'Weather App',
+          theme: ThemeData(),
+        );
+      },
     );
   }
 }
