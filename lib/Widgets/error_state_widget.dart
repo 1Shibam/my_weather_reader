@@ -28,7 +28,7 @@ class ErrorStateWidget extends StatelessWidget {
           Text(
             'The reason for this might be - ',
             style: TextStyle(
-              fontFamily: Fonts.font1,
+              fontFamily: Fonts.fontRegular,
               color: Colors.white,
               fontSize: 28,
             ),
@@ -41,7 +41,8 @@ class ErrorStateWidget extends StatelessWidget {
           const SizedBox(height: 8),
           _buildRowWithText(
             icon: Icons.location_off,
-            text: 'Check location-service (if you are looking for your own location).',
+            text:
+                'Check location-service (if you are looking for your own location).',
           ),
           const SizedBox(height: 8),
           _buildRowWithText(
@@ -74,7 +75,7 @@ class ErrorStateWidget extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              fontFamily: Fonts.font1,
+              fontFamily: Fonts.fontRegular,
               color: Colors.white,
               fontSize: 20,
             ),
