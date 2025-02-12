@@ -31,8 +31,6 @@ class SearchSuggestionNotifier extends StateNotifier<List<SearchSuggestions>> {
   SearchSuggestionNotifier(this.searchService) : super(popularPlaces);
   Future<void> fetchSuggestions(String query) async {
     final suggestions = await searchService.placeSuggestion(query);
-    print(suggestions);
-    print('this shit is running as fuck!!!');
     state = suggestions;
   }
 }

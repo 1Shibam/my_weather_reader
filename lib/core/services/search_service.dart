@@ -18,24 +18,18 @@ class SearchService {
         'q': input,
         'format': 'json',
       });
-      print(response.statusCode);
 
       if (response.statusCode == 200) {
-        print('i am inside the if block');
         final List<Map<String, dynamic>> data =
             List<Map<String, dynamic>>.from(response.data);
-        print(data);
         final result =
             data.map((json) => SearchSuggestions.fromJson(json)).toList();
-        print(result.length);
-        print(result.isEmpty);
 
         return result;
       } else {
         return [];
       }
     } catch (e) {
-      print('emtpy ass nigga');
       return [];
     }
   }
