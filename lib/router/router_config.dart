@@ -10,6 +10,12 @@ GoRouter router = GoRouter(initialLocation: '/', routes: [
     },
   ),
   GoRoute(
+    path: '/home',
+    builder: (context, state) {
+      return const WeatherHomeScreen();
+    },
+  ),
+  GoRoute(
     path: '/about',
     builder: (context, state) {
       return const AboutPage();
