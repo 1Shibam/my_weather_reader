@@ -47,8 +47,8 @@ dependencies:
   path_provider: ^2.1.5
   path: ^1.9.0
   sqflite: ^2.4.1
-  google_api_headers: ^4.2.6
-
+  flutter_screenutil: ^5.9.3
+  go_router: ^14.8.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -89,12 +89,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Technoma
+    - family: Outfit-Regular
       fonts:
-        - asset: assets/fonts/Technoma.otf
-    - family: Machala
+        - asset: assets/fonts/Outfit-Regular.ttf
+    - family: Outfit-Bold
       fonts:
-        - asset: assets/fonts/Machala Sans.otf
+        - asset: assets/fonts/Outfit-Bold.ttf
+    - family: Outfit-Medium
+      fonts:
+        - asset: assets/fonts/Outfit-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
