@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
 
 final searchModeProvider = StateProvider<bool>(
@@ -26,8 +27,12 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
           // Use Expanded to ensure the TextField(s) take up available space
           Expanded(
             child: isSearchByCity
-                ? const CustomTextFiled(
-                    hintText: 'Enter Any Location', label: 'Search')
+                ? CustomTextFiled(
+                    onTap: () {
+                      context.go('/search');
+                    },
+                    hintText: 'Enter Any Location',
+                    label: 'Search')
                 : Row(
                     children: [
                       // Use Expanded to divide the available space equally
