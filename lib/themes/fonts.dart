@@ -1,4 +1,5 @@
 class Fonts {
-  static String font1 = 'Technoma';
-  static String font2 = 'Machala';
+  static String fontRegular = 'Outfit-Regular';
+  static String fontBold = 'Outfit-Bold';
+  static String fontMedium = 'Outfit-Medium';
 }
