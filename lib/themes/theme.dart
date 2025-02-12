@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 
 final appThemeData = ThemeData(
+  dividerColor: Colors.transparent,
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.r),
