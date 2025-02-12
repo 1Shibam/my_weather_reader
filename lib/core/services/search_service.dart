@@ -24,7 +24,7 @@ class SearchService {
             List<Map<String, dynamic>>.from(response.data);
         final result =
             data.map((json) => SearchSuggestions.fromJson(json)).toList();
-        print(result);
+
 
         return result;
       } else {
