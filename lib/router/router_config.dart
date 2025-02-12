@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/screens/about_page.dart';
+import 'package:my_weather_reader/screens/search_screen.dart';
 import 'package:my_weather_reader/screens/weather_home_screen.dart';
 
 GoRouter router = GoRouter(initialLocation: '/', routes: [
@@ -19,6 +20,12 @@ GoRouter router = GoRouter(initialLocation: '/', routes: [
     path: '/about',
     builder: (context, state) {
       return const AboutPage();
+    },
+  ),
+  GoRoute(
+    path: '/search',
+    builder: (context, state) {
+      return const SearchScreen();
     },
   ),
 ]);
