@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
 
 final searchModeProvider = StateProvider<bool>(
     (ref) => true); // true for city search, false for coordinates
@@ -25,33 +26,22 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
           // Use Expanded to ensure the TextField(s) take up available space
           Expanded(
             child: isSearchByCity
-                ? const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.white,
-                      hintText: 'Enter city name',
-                    ),
-                  )
+                ? const CustomTextFiled(
+                    hintText: 'Enter Any Location', label: 'Search')
                 : Row(
                     children: [
                       // Use Expanded to divide the available space equally
                       const Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            fillColor: Colors.white,
-                            hintText: 'Latitude',
-                          ),
+                        child: CustomTextFiled(
+                          hintText: '00.00',
+                          label: 'Latitude',
                         ),
                       ),
                       SizedBox(width: 10.w),
                       const Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            fillColor: Colors.white,
-                            hintText: 'Longitude',
-                          ),
+                        child: CustomTextFiled(
+                          label: 'Longitude',
+                          hintText: '00.00',
                         ),
                       ),
                     ],
@@ -63,7 +53,11 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
               // Toggle search mode using provider
               ref.read(searchModeProvider.notifier).state = !isSearchByCity;
             },
-            icon: const Icon(Icons.swap_horiz),
+            icon: const Icon(
+              Icons.swap_horiz,
+              color: Colors.white,
+              size: 32,
+            ),
           ),
         ],
       ),
