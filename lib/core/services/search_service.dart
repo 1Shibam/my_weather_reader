@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_print
-
 import 'package:dio/dio.dart';
 import 'package:my_weather_reader/api_key.dart';
+import 'package:my_weather_reader/models/search_suggestions.dart';
 
 class SearchService {
   final Dio dio = Dio(BaseOptions(
@@ -12,7 +11,7 @@ class SearchService {
 
   final String apiKey = mapsApiKey; // Replace with your actual API key
 
-  Future<void> placeSuggestion(String input) async {
+  Future<List<SearchSuggestions>> placeSuggestion(String input) async {
     try {
       final response = await dio.get('/autocomplete.php', queryParameters: {
         'key': apiKey,
@@ -21,21 +20,25 @@ class SearchService {
       });
 
       if (response.statusCode == 200) {
-        final data = response.data as List<dynamic>;
+        final List<Map<String, dynamic>> data =
+            List<Map<String, dynamic>>.from(response.data);
+        final result =
+            data.map((json) => SearchSuggestions.fromJson(json)).toList();
+        print(result);
 
-        if (data.isNotEmpty) {
-          print('Place Suggestions:');
-          for (var place in data) {
-            print('- ${place['display_name']}');
-          }
-        } else {
-          print('No suggestions found.');
-        }
+        return result;
       } else {
-        print('Failed to fetch data: ${response.statusMessage}');
+        return [];
       }
     } catch (e) {
-      print('Error: $e');
+      return [];
     }
   }
+}
+
+void main() async {
+  final searchService = SearchService();
+
+  // Example search input, you can change this as needed
+  await searchService.placeSuggestion('delhi');
 }
