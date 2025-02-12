@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_weather_reader/router/router_config.dart';
+import 'package:my_weather_reader/themes/theme.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
           routerConfig: router,
           debugShowCheckedModeBanner: false,
           title: 'Weather App',
-          theme: ThemeData(),
+          theme: appThemeData
         );
       },
     );
