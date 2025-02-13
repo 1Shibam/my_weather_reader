@@ -3,14 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
 import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
+import 'package:my_weather_reader/router/router_config.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
-
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
@@ -71,18 +72,33 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      return CustomTextFiled(
-                        autoFocus: true,
-                        hintText: 'Enter Location',
-                        label: '',
-                        controller: searchController,
-                        onChanged: (value) {
-                          onSearchChanged(value.trim(), ref);
-                        },
-                      );
-                    },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Consumer(
+                          builder: (context, ref, child) {
+                            return CustomTextFiled(
+                              autoFocus: true,
+                              hintText: 'Search Location',
+                              label: 'Search Location',
+                              controller: searchController,
+                              onChanged: (value) {
+                                onSearchChanged(value.trim(), ref);
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            context.go('/home');
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 40.sp,
+                          ))
+                    ],
                   ),
                   SizedBox(
                     height: 16.h,
@@ -113,24 +129,33 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                   shrinkWrap: true,
                                   itemCount: locations.length,
                                   itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 4.h),
-                                      child: ListTile(
-                                        leading: const Icon(
-                                          Icons.location_on,
-                                          color: Colors.red,
-                                        ),
-                                        tileColor: AppColors.waterBlue,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.r)),
-                                        title: Text(
-                                          locations[index].displayName!,
-                                          style: AppTextStyles.bold,
-                                        ),
-                                      ),
-                                    );
+                                    return locations.isEmpty
+                                        ? Center(
+                                            child: Text(
+                                              'No results, Please be more specific!!',
+                                              style: AppTextStyles.heading1,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 4.h),
+                                            child: ListTile(
+                                              leading: const Icon(
+                                                Icons.location_on,
+                                                color: Colors.red,
+                                              ),
+                                              tileColor: AppColors.waterBlue,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.r)),
+                                              title: Text(
+                                                locations[index].displayName!,
+                                                style: AppTextStyles.bold,
+                                              ),
+                                            ),
+                                          );
                                   },
                                 );
                               },
@@ -153,6 +178,3 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 }
-
-
-
