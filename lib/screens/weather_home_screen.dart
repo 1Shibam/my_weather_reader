@@ -44,13 +44,10 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
       backgroundColor: AppColors.darkBlue,
       body: Stack(
         children: [
-          // Background gradient container
-
-          // Content area with scrollable widgets
           Column(
             children: [
-              SizedBox(height: 20.h), // Use ScreenUtil for height
-              const SearchLocationWidget(), // Your search widget
+              SizedBox(height: 20.h),
+              const SearchLocationWidget(), 
             ],
           ),
         ],
