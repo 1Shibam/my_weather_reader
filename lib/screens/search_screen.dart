@@ -24,10 +24,12 @@ class _SearchScreenState extends State<SearchScreen> {
       _debounce?.cancel();
     }
     if (query.isNotEmpty) {
-      _debounce = Timer(const Duration(milliseconds: 500), () {
+      _debounce = Timer(const Duration(milliseconds: 600), () {
         ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
         print(query);
       });
+    } else {
+     ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
     }
   }
 
@@ -45,6 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Consumer(
             builder: (context, ref, child) {
               return CustomTextFiled(
+                autoFocus: true,
                 hintText: 'Enter the name',
                 label: '',
                 controller: searchController,
