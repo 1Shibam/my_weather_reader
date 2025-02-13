@@ -15,6 +15,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
+
+  void onSearchChanged(String query) {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 hintText: 'Enter the name',
                 label: '',
                 controller: searchController,
-                onChanged: (location) {
-                  ref
-                      .read(searchSuggestionsProvider.notifier)
-                      .fetchSuggestions(location);
-                },
+                onChanged: onSearchChanged,
               );
             },
           ),
