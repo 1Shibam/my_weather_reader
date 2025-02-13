@@ -7,6 +7,7 @@ class CustomTextFiled extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final bool autoFocus;
   final void Function()? onTap;
   final void Function(String)? onChanged;
   const CustomTextFiled(
@@ -15,6 +16,7 @@ class CustomTextFiled extends StatelessWidget {
       required this.label,
       this.onTap,
       this.onChanged,
+      this.autoFocus = false,
       this.controller,
       this.focusNode});
 
@@ -25,6 +27,7 @@ class CustomTextFiled extends StatelessWidget {
       focusNode: focusNode,
       onTap: onTap,
       onChanged: onChanged,
+      autofocus: autoFocus,
       decoration: InputDecoration(
           label: Text(label),
           hintText: hintText,
