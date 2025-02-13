@@ -17,45 +17,43 @@ class WeatherHomeScreen extends ConsumerStatefulWidget {
 class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
-          title: Text(
-            'Weather-Reader',
-            style: AppTextStyles.heading1,
-          ),
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu_sharp,
-                    color: Colors.white,
-                    size: 28,
-                  ));
-            },
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: Text(
+          'Weather-Reader',
+          style: AppTextStyles.heading1,
         ),
-        drawer: const DrawerWidget(),
-        backgroundColor: AppColors.darkBlue,
-        body: Stack(
-          children: [
-            // Background gradient container
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(
+                  Icons.menu_sharp,
+                  color: Colors.white,
+                  size: 28,
+                ));
+          },
+        ),
+      ),
+      drawer: const DrawerWidget(),
+      backgroundColor: AppColors.darkBlue,
+      body: Stack(
+        children: [
+          // Background gradient container
 
-            // Content area with scrollable widgets
-            Column(
-              children: [
-                SizedBox(height: 20.h), // Use ScreenUtil for height
-                const SearchLocationWidget(), // Your search widget
-              ],
-            ),
-          ],
-        ),
+          // Content area with scrollable widgets
+          Column(
+            children: [
+              SizedBox(height: 20.h), // Use ScreenUtil for height
+              const SearchLocationWidget(), // Your search widget
+            ],
+          ),
+        ],
       ),
     );
   }

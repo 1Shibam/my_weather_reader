@@ -23,6 +23,7 @@ class CustomTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: AppTextStyles.bold,
       controller: controller,
       focusNode: focusNode,
       onTap: onTap,
