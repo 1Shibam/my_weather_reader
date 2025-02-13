@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +17,20 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
+  Timer? _debounce;
 
-  void onSearchChanged(String query) {}
+  void onSearchChanged(String query, WidgetRef ref) {
+    if (_debounce?.isActive ?? false) {
+      _debounce?.cancel();
+    }
+    if (query.isNotEmpty) {
+      _debounce = Timer(const Duration(milliseconds: 400), () {
+        // ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
+        print('api query!!');
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +48,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 hintText: 'Enter the name',
                 label: '',
                 controller: searchController,
-                onChanged: onSearchChanged,
+                onChanged: (value) {
+                  onSearchChanged(value, ref);
+                },
               );
             },
           ),
@@ -47,7 +63,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   color: AppColors.skyBlue,
                   borderRadius: BorderRadius.circular(20.r)),
               padding: EdgeInsets.all(20.w),
-              child: Consumer(
+             /* child: Consumer(
                 builder: (context, ref, child) {
                   final suggestions = ref.watch(searchSuggestionsProvider);
                   return ListView.builder(
@@ -62,7 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                   );
                 },
-              ),
+              ),*/
             ),
           )
         ],
