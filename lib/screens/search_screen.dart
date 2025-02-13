@@ -24,9 +24,9 @@ class _SearchScreenState extends State<SearchScreen> {
       _debounce?.cancel();
     }
     if (query.isNotEmpty) {
-      _debounce = Timer(const Duration(milliseconds: 400), () {
-        // ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
-        print('api query!!');
+      _debounce = Timer(const Duration(milliseconds: 500), () {
+        ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
+        print(query);
       });
     }
   }
@@ -63,22 +63,33 @@ class _SearchScreenState extends State<SearchScreen> {
                   color: AppColors.skyBlue,
                   borderRadius: BorderRadius.circular(20.r)),
               padding: EdgeInsets.all(20.w),
-             /* child: Consumer(
+              child: Consumer(
                 builder: (context, ref, child) {
                   final suggestions = ref.watch(searchSuggestionsProvider);
-                  return ListView.builder(
-                    itemCount: suggestions.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(
-                          suggestions[index].displayName!,
-                          style: AppTextStyles.heading2,
-                        ),
-                      );
-                    },
-                  );
+                  return suggestions.when(
+                      data: (locations) {
+                        return ListView.builder(
+                          itemCount: locations.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(locations[index].displayName!),
+                            );
+                          },
+                        );
+                      },
+                      error: (err, stackTrace) {
+                        return Center(
+                          child: Text(
+                            'Something went wrong!!',
+                            style: AppTextStyles.heading1,
+                          ),
+                        );
+                      },
+                      loading: () => const Center(
+                            child: CircularProgressIndicator(),
+                          ));
                 },
-              ),*/
+              ),
             ),
           )
         ],
