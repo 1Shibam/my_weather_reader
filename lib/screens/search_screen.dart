@@ -29,7 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
         print(query);
       });
     } else {
-     ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
+      ref.read(searchSuggestionsProvider.notifier).fetchSuggestions(query);
     }
   }
 
@@ -66,32 +66,47 @@ class _SearchScreenState extends State<SearchScreen> {
                   color: AppColors.skyBlue,
                   borderRadius: BorderRadius.circular(20.r)),
               padding: EdgeInsets.all(20.w),
-              child: Consumer(
-                builder: (context, ref, child) {
-                  final suggestions = ref.watch(searchSuggestionsProvider);
-                  return suggestions.when(
-                      data: (locations) {
-                        return ListView.builder(
-                          itemCount: locations.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(locations[index].displayName!),
-                            );
-                          },
-                        );
+              child: Column(
+                
+                children: [
+                  if (searchController.text.trim().isEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      child: Text(
+                        'Suggested Locations',
+                        style: AppTextStyles.heading1,
+                      ),
+                    ),
+                  Expanded(
+                    child: Consumer(
+                      builder: (context, ref, child) {
+                        final suggestions = ref.watch(searchSuggestionsProvider);
+                        return suggestions.when(
+                            data: (locations) {
+                              return ListView.builder(
+                                itemCount: locations.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text(locations[index].displayName!),
+                                  );
+                                },
+                              );
+                            },
+                            error: (err, stackTrace) {
+                              return Center(
+                                child: Text(
+                                  'Something went wrong!!',
+                                  style: AppTextStyles.heading1,
+                                ),
+                              );
+                            },
+                            loading: () => const Center(
+                                  child: CircularProgressIndicator(),
+                                ));
                       },
-                      error: (err, stackTrace) {
-                        return Center(
-                          child: Text(
-                            'Something went wrong!!',
-                            style: AppTextStyles.heading1,
-                          ),
-                        );
-                      },
-                      loading: () => const Center(
-                            child: CircularProgressIndicator(),
-                          ));
-                },
+                    ),
+                  ),
+                ],
               ),
             ),
           )
