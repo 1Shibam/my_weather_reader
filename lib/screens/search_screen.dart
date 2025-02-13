@@ -9,7 +9,7 @@ import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
-import 'package:my_weather_reader/router/router_config.dart';
+
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
