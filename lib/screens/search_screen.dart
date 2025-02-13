@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
+import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
+import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
+import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
-import 'package:shimmer/shimmer.dart';
+
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
@@ -85,40 +88,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     height: 16.h,
                   ),
                   searchQuery.trim().isEmpty
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Popular Locations',
-                              style: AppTextStyles.heading1,
-                            ),
-                            SizedBox(
-                              width: 12.w,
-                            ),
-                            Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                              size: 40.spMax,
-                            )
-                          ],
-                        )
-                      : Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Suggested Location',
-                              style: AppTextStyles.heading1,
-                            ),
-                            SizedBox(
-                              width: 12.w,
-                            ),
-                            Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                              size: 40.spMax,
-                            )
-                          ],
-                        ),
+                      ? const PopularLocationsText()
+                      : const SuggestedLocationsText(),
                 ],
               ),
             ),
@@ -165,27 +136,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               },
                               error: (err, stackTrace) {
                                 return Center(
-                                  child: Text(
-                                    'Something went wrong!!',
-                                    style: AppTextStyles.heading1,
-                                  ),
-                                );
+                                    child: Image.asset(
+                                        'assets/animations/ERROR-OCCURED.png'));
                               },
-                              loading: () => Shimmer.fromColors(
-                                    baseColor: Colors.blueGrey[300]!,
-                                    highlightColor: Colors.blueGrey[100]!,
-                                    child: SingleChildScrollView(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: 16.h),
-                                        child: Column(
-                                          children: List.generate(
-                                            10, // Limit to 5 shimmer items to avoid overflow
-                                            (index) => _buildShimmerItem(),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ));
+                              loading: () => const ShimmerLoading());
                         },
                       ),
                     ),
@@ -200,16 +154,5 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 }
 
-Widget _buildShimmerItem() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Container(
-      height: 50.h, // Fixed height for shimmer item
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 234, 234, 234).withOpacity(0.3),
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-    ),
-  );
-}
+
+
