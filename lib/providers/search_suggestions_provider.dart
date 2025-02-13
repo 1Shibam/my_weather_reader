@@ -2,6 +2,7 @@ import 'package:my_weather_reader/core/services/search_service.dart';
 import 'package:my_weather_reader/models/search_suggestions.dart';
 import 'package:riverpod/riverpod.dart';
 
+/*
 final searchServiceProvider = Provider<SearchService>((ref) => SearchService());
 
 final searchSuggestionsProvider =
@@ -33,4 +34,4 @@ class SearchSuggestionNotifier extends StateNotifier<List<SearchSuggestions>> {
     final suggestions = await searchService.placeSuggestion(query);
     state = suggestions;
   }
-}
+} */
