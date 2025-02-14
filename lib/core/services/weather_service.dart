@@ -13,14 +13,13 @@ class WeatherService {
 //   Future<WeatherData> searchByLocationName(String location) async {
 //     try {
 //       final response = await dio.get('/weather', queryParameters: {
-//         'lat' : 
+//         'lat' :
 //       });
 //     } catch (e) {
 //       throw Exception(e.toString());
 //     }
 //   }
-// }
-
+}
 
 /*
 class WeatherState {
