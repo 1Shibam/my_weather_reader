@@ -1,8 +1,25 @@
 import 'package:dio/dio.dart';
+import 'package:my_weather_reader/api_key.dart';
+import 'package:my_weather_reader/models/weather_data.dart';
 
 class WeatherService {
-  final Dio dio = Dio();
-}
+  final Dio dio = Dio(BaseOptions(
+      baseUrl: 'https://api.openweathermap.org/data/2.5',
+      sendTimeout: const Duration(seconds: 7),
+      receiveTimeout: const Duration(seconds: 4)));
+
+  final String api = weatherApiKey;
+
+//   Future<WeatherData> searchByLocationName(String location) async {
+//     try {
+//       final response = await dio.get('/weather', queryParameters: {
+//         'lat' : 
+//       });
+//     } catch (e) {
+//       throw Exception(e.toString());
+//     }
+//   }
+// }
 
 
 /*
