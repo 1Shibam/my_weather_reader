@@ -82,7 +82,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               hintText: 'Search Location',
                               label: 'Search Location',
                               controller: searchController,
-                              
+                              suffixIcon: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.search_rounded,
+                                    color: Colors.white,
+                                    size: 32.sp,
+                                  )),
                               onChanged: (value) {
                                 onSearchChanged(value.trim(), ref);
                               },
