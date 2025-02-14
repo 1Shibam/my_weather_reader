@@ -26,16 +26,33 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
           'Weather-Reader',
           style: AppTextStyles.heading1,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                //? refresh the states right here
+              },
+              icon: Padding(
+                padding: EdgeInsets.only(right: 8.w),
+                child: Icon(
+                  Icons.refresh,
+                  color: Colors.white,
+                  size: 32.sp,
+                ),
+              ))
+        ],
         leading: Builder(
           builder: (context) {
             return IconButton(
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
-                icon: const Icon(
-                  Icons.menu_sharp,
-                  color: Colors.white,
-                  size: 28,
+                icon: Padding(
+                  padding: EdgeInsets.only(left: 8.w),
+                  child: Icon(
+                    Icons.menu_sharp,
+                    color: Colors.white,
+                    size: 32.sp,
+                  ),
                 ));
           },
         ),
@@ -47,7 +64,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
           Column(
             children: [
               SizedBox(height: 20.h),
-              const SearchLocationWidget(), 
+              const SearchLocationWidget(),
             ],
           ),
         ],
