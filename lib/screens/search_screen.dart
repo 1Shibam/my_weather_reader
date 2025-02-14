@@ -82,6 +82,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               hintText: 'Search Location',
                               label: 'Search Location',
                               controller: searchController,
+                              
                               onChanged: (value) {
                                 onSearchChanged(value.trim(), ref);
                               },
