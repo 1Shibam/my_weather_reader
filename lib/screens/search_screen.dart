@@ -125,19 +125,20 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               ref.watch(searchSuggestionsProvider);
                           return suggestions.when(
                               data: (locations) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: locations.length,
-                                  itemBuilder: (context, index) {
-                                    return locations.isEmpty
-                                        ? Center(
-                                            child: Text(
-                                              'No results, Please be more specific!!',
-                                              style: AppTextStyles.heading1,
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )
-                                        : Padding(
+                                return locations.isEmpty
+                                    ? Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Text(
+                                          'Opps no matches! please be more specific!',
+                                          style: AppTextStyles.heading1,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    : ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: locations.length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 4.h),
                                             child: ListTile(
@@ -156,8 +157,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                               ),
                                             ),
                                           );
-                                  },
-                                );
+                                        },
+                                      );
                               },
                               error: (err, stackTrace) {
                                 return Center(
