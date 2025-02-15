@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/drawer_widget.dart';
 import 'package:my_weather_reader/Widgets/search_location_widget.dart';
+import 'package:my_weather_reader/Widgets/weather_details.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
@@ -59,14 +60,12 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
       ),
       drawer: const DrawerWidget(),
       backgroundColor: AppColors.darkBlue,
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              SizedBox(height: 20.h),
-              const SearchLocationWidget(),
-            ],
-          ),
+          SizedBox(height: 20.h),
+          const SearchLocationWidget(),
+          SizedBox(height: 20.h),
+          const WeatherDetails()
         ],
       ),
     );
