@@ -24,38 +24,49 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         children: [
-          // Use Expanded to ensure the TextField(s) take up available space
           Expanded(
-            child: isSearchByCity
-                ? CustomTextFiled(
-                    onTap: () {
-                      context.go('/search');
-                    },
-                    hintText: 'Enter Any Location',
-                    label: 'Search')
-                : Row(
-                    children: [
-                      // Use Expanded to divide the available space equally
-                      const Expanded(
-                        child: CustomTextFiled(
-                          hintText: '00.00',
-                          label: 'Latitude',
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300), // Smooth transition
+              transitionBuilder: (child, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+              child: isSearchByCity
+                  ? CustomTextFiled(
+                      key: const ValueKey(
+                          'citySearch'), // Unique key for smooth transition
+                      onTap: () {
+                        context.go('/search');
+                      },
+                      hintText: 'Enter Any Location',
+                      label: 'Search',
+                    )
+                  : Row(
+                      key: const ValueKey(
+                          'coordsSearch'), // Unique key for smooth transition
+                      children: [
+                        const Expanded(
+                          child: CustomTextFiled(
+                            hintText: '00.00',
+                            label: 'Latitude',
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10.w),
-                      const Expanded(
-                        child: CustomTextFiled(
-                          label: 'Longitude',
-                          hintText: '00.00',
+                        SizedBox(width: 10.w),
+                        const Expanded(
+                          child: CustomTextFiled(
+                            label: 'Longitude',
+                            hintText: '00.00',
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+            ),
           ),
-          SizedBox(width: 10.w), // Space between the TextField and the icon
+          SizedBox(width: 10.w),
           IconButton(
             onPressed: () {
-              // Toggle search mode using provider
               ref.read(searchModeProvider.notifier).state = !isSearchByCity;
             },
             icon: const Icon(
