@@ -69,7 +69,7 @@ class SearchSuggestionsNotifier
       final suggestions = await searchService.placeSuggestion(query);
       state = AsyncValue.data(suggestions);
     } catch (error, stackTrace) {
-      AsyncValue.error(error, stackTrace);
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 }
