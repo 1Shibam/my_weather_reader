@@ -10,16 +10,52 @@ class WeatherService {
 
   final String api = weatherApiKey;
 
-//   Future<WeatherData> searchByLocationName(String location) async {
-//     try {
-//       final response = await dio.get('/weather', queryParameters: {
-//         'lat' :
-//       });
-//     } catch (e) {
-//       throw Exception(e.toString());
-//     }
-//   }
+  Future<WeatherData> searchByLocationName(String location) async {
+    try {
+      final response = await dio.get('/weather', queryParameters: {
+        'q': location,
+        'appid': weatherApiKey,
+        'units': 'metric'
+      });
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data =
+            Map<String, dynamic>.from(response.data);
+        final result = WeatherData.fromJson(data);
+        print(result);
+        return result;
+      } else {
+        throw Exception('Failed to fetch weather data');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<WeatherData> serachByCoordinates(
+      double latitude, double longitude) async {
+    try {
+      final response = await dio.get('/weather', queryParameters: {
+        'lat': latitude,
+        'lon': longitude,
+        'appid': weatherApiKey,
+        'units': 'metric'
+      });
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data =
+            Map<String, dynamic>.from(response.data);
+        final result = WeatherData.fromJson(data);
+        print(result);
+        return result;
+      } else {
+        throw Exception('Failed to fetch Weather data of these coordinates!!');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }
+
 
 /*
 class WeatherState {
