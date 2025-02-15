@@ -35,7 +35,3 @@ class SearchService {
   }
 }
 
-void main() async {
-  SearchService searchService = SearchService();
-  await searchService.placeSuggestion('nigeria');
-}
