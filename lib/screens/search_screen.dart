@@ -82,13 +82,29 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               hintText: 'Search Location',
                               label: 'Search Location',
                               controller: searchController,
-                              suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.search_rounded,
-                                    color: Colors.white,
-                                    size: 32.sp,
-                                  )),
+                              suffixIcon: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        searchController.clear();
+
+                                        onSearchChanged('', ref);
+                                      },
+                                      icon: Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                        size: 28.sp,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.search_rounded,
+                                        color: Colors.white,
+                                        size: 28.sp,
+                                      )),
+                                ],
+                              ),
                               onChanged: (value) {
                                 onSearchChanged(value.trim(), ref);
                               },
@@ -101,7 +117,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             context.go('/home');
                           },
                           icon: Icon(
-                            Icons.close,
+                            Icons.keyboard_arrow_down_outlined,
                             color: Colors.white,
                             size: 40.sp,
                           ))
