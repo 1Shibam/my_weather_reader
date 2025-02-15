@@ -1,1 +1,3 @@
-class GeoLocatorService {}
+class GeoLocatorService {
+  
+}
