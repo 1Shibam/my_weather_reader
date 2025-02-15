@@ -35,10 +35,11 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
               },
               child: isSearchByCity
                   ? CustomTextFiled(
+                      canRequestFocus: false,
                       key: const ValueKey(
                           'citySearch'), // Unique key for smooth transition
                       onTap: () {
-                        context.go('/search');
+                        context.push('/search');
                       },
                       hintText: 'Enter Any Location',
                       label: 'Search',
