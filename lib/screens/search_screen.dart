@@ -114,7 +114,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ),
                       IconButton(
                           onPressed: () {
-                            context.go('/home');
+                            context.pop();
                           },
                           icon: Icon(
                             Icons.keyboard_arrow_down_outlined,
