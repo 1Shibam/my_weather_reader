@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/city_name.dart';
+import 'package:my_weather_reader/Widgets/location_temperature.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
 
 class WeatherDetails extends StatelessWidget {
@@ -32,12 +33,7 @@ class WeatherDetails extends StatelessWidget {
               SizedBox(
                 width: 4.w,
               ),
-              const Expanded(
-                child: WeatherCondition(
-                  isDayTime: true,
-                  weatherCondition: 'snow',
-                ),
-              ),
+              const Expanded(child: LocationTemperature(tempInCelcious: 30)),
             ],
           )
         ],
