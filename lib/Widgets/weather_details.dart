@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/city_name.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
+
 
 class WeatherDetails extends StatelessWidget {
   const WeatherDetails({super.key});
