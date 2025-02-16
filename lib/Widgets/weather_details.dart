@@ -21,11 +21,11 @@ class WeatherDetails extends StatelessWidget {
   }
 }
 
-class LocationName extends ConsumerWidget {
+class LocationName extends StatelessWidget {
   const LocationName({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return ListTile(
       title: Row(
         children: [
