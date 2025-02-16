@@ -4,7 +4,8 @@ import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
 class LocationName extends StatelessWidget {
-  const LocationName({super.key});
+  final String locationName;
+  const LocationName({super.key, required this.locationName});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,8 @@ class LocationName extends StatelessWidget {
       tileColor: AppColors.waterBlue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       subtitle: Text(
-        'Delhi D',
-        style: AppTextStyles.heading1.copyWith(fontSize: 32.sp),
+        locationName,
+        style: AppTextStyles.heading1.copyWith(fontSize: 28.sp),
       ),
     );
   }
