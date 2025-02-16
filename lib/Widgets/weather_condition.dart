@@ -5,7 +5,9 @@ import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
 class WeatherCondition extends StatelessWidget {
-  const WeatherCondition({super.key});
+  final String weatherCondition;
+  final bool isDayTime;
+  const WeatherCondition({super.key, required this.weatherCondition, required this.isDayTime});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class WeatherCondition extends StatelessWidget {
       title: Row(
         children: [
           Text(
-            'Weahter Condition',
+            'Weather',
             style: AppTextStyles.heading2,
           ),
           SizedBox(
@@ -29,9 +31,14 @@ class WeatherCondition extends StatelessWidget {
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [getWeatherIcon('haze', true)],
+        children: [
+          getWeatherIcon(weatherCondition, isDayTime),
+          Text(
+            weatherCondition,
+            style: AppTextStyles.heading1.copyWith(fontSize: 28.sp),
+          )
+        ],
       ),
     );
-    
   }
 }
