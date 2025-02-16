@@ -61,6 +61,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
       drawer: const DrawerWidget(),
       backgroundColor: AppColors.darkBlue,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20.h),
           const SearchLocationWidget(),
