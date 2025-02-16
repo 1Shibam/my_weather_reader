@@ -33,7 +33,7 @@ class WeatherDetails extends StatelessWidget {
               SizedBox(
                 width: 4.w,
               ),
-              const Expanded(child: LocationTemperature(tempInCelcious: 30)),
+              const Expanded(child: LocationTemperature(tempInCelcious: 43.78)),
             ],
           )
         ],
