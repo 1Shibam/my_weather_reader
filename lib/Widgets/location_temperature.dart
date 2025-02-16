@@ -40,15 +40,20 @@ class _LocationTemperatureState extends State<LocationTemperature> {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.swap_horiz_outlined,
-            color: Colors.white,
-            size: 36.sp,
+          GestureDetector(
+            onTap: () => setState(() {
+              isInCelcious = !isInCelcious;
+            }),
+            child: Icon(
+              Icons.swap_horiz_outlined,
+              color: Colors.white,
+              size: 36.sp,
+            ),
           ),
           Text(
             isInCelcious
-                ? '${widget.tempInCelcious.toStringAsFixed(1)}°C' // Show Celsius
-                : '${celsiusToFahrenheit(widget.tempInCelcious).toStringAsFixed(1)}°F', // Show Fahrenheit
+                ? '${widget.tempInCelcious.toStringAsFixed(2)} °C' // Show Celsius
+                : '${celsiusToFahrenheit(widget.tempInCelcious).toStringAsFixed(2)} °F', // Show Fahrenheit
             style: AppTextStyles.heading1.copyWith(fontSize: 28.sp),
           ),
         ],
