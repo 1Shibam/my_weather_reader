@@ -19,9 +19,10 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         shadowColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.darkBlue,
         centerTitle: true,
         title: Text(
           'Weather-Reader',
@@ -60,14 +61,16 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
       ),
       drawer: const DrawerWidget(),
       backgroundColor: AppColors.darkBlue,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 20.h),
-          const SearchLocationWidget(),
-          SizedBox(height: 20.h),
-          const WeatherDetails()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20.h),
+            const SearchLocationWidget(),
+            SizedBox(height: 20.h),
+            const WeatherDetails()
+          ],
+        ),
       ),
     );
   }
