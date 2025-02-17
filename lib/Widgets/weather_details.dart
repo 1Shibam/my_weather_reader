@@ -9,7 +9,6 @@ import 'package:my_weather_reader/Widgets/weather_condition.dart';
 import 'package:my_weather_reader/providers/geo_locator_provider.dart';
 
 import 'package:my_weather_reader/providers/weather_animation_provider.dart';
-import 'package:my_weather_reader/providers/weather_service_provider.dart';
 
 class WeatherDetails extends ConsumerWidget {
   const WeatherDetails({super.key});
@@ -18,65 +17,54 @@ class WeatherDetails extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final geoLocator = ref.watch(geoNotifierStateProvider);
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: geoLocator.when(
-            data: (data) {
-              final location = ref.read(weatherServiceNotifierProvider.notifier).searchCoordinates(data.latitude, data.longitude);
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const LocationName(
-                    locationName: '',
-                  ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: WeatherCondition(
-                          isDayTime: false,
-                          weatherCondition: 'clear sky hai yaar tu samjah',
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const LocationName(
+            locationName: 'Jammu And Kashmir',
+          ),
+          SizedBox(
+            height: 12.h,
+          ),
+          Row(
+            children: [
+              const Expanded(
+                child: WeatherCondition(
+                  isDayTime: false,
+                  weatherCondition: 'clear sky hai yaar tu samjah',
+                ),
+              ),
+              SizedBox(
+                width: 12.w,
+              ),
+              const Expanded(child: LocationTemperature(tempInCelcious: 43.78)),
+            ],
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
+          Consumer(
+            builder: (context, ref, child) {
+              final showAnimation = ref.watch(weatherAnimationStateProvider);
+              return showAnimation
+                  ? Column(
+                      children: [
+                        getWeatherAnimation('snow', false),
+                        SizedBox(
+                          height: 16.h,
                         ),
-                      ),
-                      SizedBox(
-                        width: 12.w,
-                      ),
-                      const Expanded(
-                          child: LocationTemperature(tempInCelcious: 43.78)),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final showAnimation =
-                          ref.watch(weatherAnimationStateProvider);
-                      return showAnimation
-                          ? Column(
-                              children: [
-                                getWeatherAnimation('snow', false),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink();
-                    },
-                  ),
-                  const OtherWeatherDetailsExpansionTile(),
-                  SizedBox(
-                    height: 32.h,
-                  ),
-                ],
-              );
+                      ],
+                    )
+                  : const SizedBox.shrink();
             },
-            error: (error, stackTrace) {
-              return const Center(
-                child: Text('nigga'),
-              );
-            },
-            loading: ()=> Center(child: Image.asset('assets/animations/weather-animation.gif'),)));
+          ),
+          const OtherWeatherDetailsExpansionTile(),
+          SizedBox(
+            height: 32.h,
+          ),
+        ],
+      ),
+    );
   }
 }
