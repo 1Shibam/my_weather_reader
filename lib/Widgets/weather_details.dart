@@ -24,7 +24,7 @@ class WeatherDetails extends ConsumerWidget {
       next.whenData((location) {
         ref
             .read(weatherServiceNotifierProvider.notifier)
-            .searchCoordinates(location.latitude, location.speed);
+            .searchCoordinates(location.latitude, location.longitude);
       });
     });
 
