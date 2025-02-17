@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/city_name.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/location_temperature.dart';
+import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
 
 class WeatherDetails extends StatelessWidget {
@@ -28,7 +29,7 @@ class WeatherDetails extends StatelessWidget {
               const Expanded(
                 child: WeatherCondition(
                   isDayTime: false,
-                  weatherCondition: 'clear sky',
+                  weatherCondition: 'clear sky hai yaar tu samjah',
                 ),
               ),
               SizedBox(
@@ -40,7 +41,14 @@ class WeatherDetails extends StatelessWidget {
           SizedBox(
             height: 16.h,
           ),
-          getWeatherAnimation('snow', false)
+          getWeatherAnimation('snow', false),
+          SizedBox(
+            height: 16.h,
+          ),
+          const OtherWeatherDetailsExpansionTile(),
+          SizedBox(
+            height: 32.h,
+          ),
         ],
       ),
     );
