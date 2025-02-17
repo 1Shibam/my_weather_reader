@@ -33,7 +33,7 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
                   title: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(),
+                      const Icon(Icons.check),
                       Text(
                         'bruh - bruh',
                         style: AppTextStyles.heading1,
