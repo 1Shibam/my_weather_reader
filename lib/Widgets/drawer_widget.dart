@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/Widgets/weather_details.dart';
+
+import 'package:my_weather_reader/providers/weather_animation_provider.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
@@ -41,9 +42,11 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
               style: AppTextStyles.heading1.copyWith(color: Colors.black87),
             ),
             trailing: Switch(
-                value: ref.watch(weatheAnimationStateProvider),
+                value: ref.watch(weatherAnimationStateProvider),
                 onChanged: (value) {
-                  ref.read(weatheAnimationStateProvider.notifier).state = value;
+                  ref
+                      .read(weatherAnimationStateProvider.notifier)
+                      .setAnimationState(value);
                 }),
           ),
           ExpansionTile(
