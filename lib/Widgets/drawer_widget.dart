@@ -42,6 +42,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
               style: AppTextStyles.heading1.copyWith(color: Colors.black87),
             ),
             trailing: Switch(
+                activeColor: AppColors.waterBlue,
                 value: ref.watch(weatherAnimationStateProvider),
                 onChanged: (value) {
                   ref
