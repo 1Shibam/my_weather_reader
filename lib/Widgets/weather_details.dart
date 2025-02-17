@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:my_weather_reader/Widgets/city_name.dart';
 import 'package:my_weather_reader/Widgets/error_state_widget.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
@@ -19,13 +20,17 @@ class WeatherDetails extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final geoLocator = ref.watch(geoNotifierStateProvider);
     final weatherState = ref.watch(weatherServiceNotifierProvider);
+    
     return geoLocator.when(
         data: (location) {
-          ref
-              .read(weatherServiceNotifierProvider.notifier)
-              .searchCoordinates(location.latitude, location.longitude);
-         return weatherState.when(
+          // ref
+          //     .read(weatherServiceNotifierProvider.notifier)
+          //     .searchCoordinates(location.latitude, location.longitude);
+
+          return weatherState.when(
               data: (data) {
+                print(data.sunrise);
+                print(data.sunset);
                 return DetailsWidget(
                     locationName: data.cityName,
                     isDayTime: false,
@@ -42,9 +47,11 @@ class WeatherDetails extends ConsumerWidget {
                         Image.asset('assets/animations/weather-animation.gif'),
                   ));
         },
-        error: (error, stackTrace) {return const Center(
-                  child: ErrorStateWidget(),
-                );},
+        error: (error, stackTrace) {
+          return const Center(
+            child: ErrorStateWidget(),
+          );
+        },
         loading: () => Center(
               child: Image.asset('assets/animations/weather-animation.gif'),
             ));
