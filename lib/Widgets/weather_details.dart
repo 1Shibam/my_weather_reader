@@ -20,17 +20,20 @@ class WeatherDetails extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final geoLocator = ref.watch(geoNotifierStateProvider);
     final weatherState = ref.watch(weatherServiceNotifierProvider);
-    
+    ref.listen(geoNotifierStateProvider, (previous, next) {
+      next.whenData((location) {
+        ref
+            .read(weatherServiceNotifierProvider.notifier)
+            .searchCoordinates(location.latitude, location.speed);
+      });
+    });
+
     return geoLocator.when(
         data: (location) {
-          // ref
-          //     .read(weatherServiceNotifierProvider.notifier)
-          //     .searchCoordinates(location.latitude, location.longitude);
 
           return weatherState.when(
               data: (data) {
-                print(data.sunrise);
-                print(data.sunset);
+               
                 return DetailsWidget(
                     locationName: data.cityName,
                     isDayTime: false,
