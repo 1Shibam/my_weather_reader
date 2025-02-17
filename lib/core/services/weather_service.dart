@@ -21,7 +21,7 @@ class WeatherService {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
         final result = WeatherData.fromJson(data);
-        print(result);
+        // print(result);
         return result;
       } else {
         throw Exception('Failed to fetch weather data');
@@ -45,7 +45,7 @@ class WeatherService {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
         final result = WeatherData.fromJson(data);
-        print(result);
+        // print(result);
         return result;
       } else {
         throw Exception('Failed to fetch Weather data of these coordinates!!');
