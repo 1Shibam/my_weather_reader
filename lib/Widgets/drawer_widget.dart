@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_weather_reader/Widgets/weather_details.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
@@ -29,13 +30,23 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
             )),
           ),
           ListTile(
-            onTap: () => context.go('/about'),
+              onTap: () => context.go('/about'),
               title: Text(
-            'About',
-            style: AppTextStyles.heading1.copyWith(color: Colors.black87),
-          )),
+                'About',
+                style: AppTextStyles.heading1.copyWith(color: Colors.black87),
+              )),
+          ListTile(
+            title: Text(
+              'Weather GIF',
+              style: AppTextStyles.heading1.copyWith(color: Colors.black87),
+            ),
+            trailing: Switch(
+                value: ref.watch(weatheAnimationStateProvider),
+                onChanged: (value) {
+                  ref.read(weatheAnimationStateProvider.notifier).state = value;
+                }),
+          ),
           ExpansionTile(
-            
             initiallyExpanded: true,
             iconColor: AppColors.darkBlue,
             title: Text(
@@ -46,8 +57,11 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
               SizedBox(
                 height: 30.h,
               ),
-              const Center(
-                child: Text('There is no Search data yer!!'),
+              Center(
+                child: Text(
+                  'There is no Search data yet!!',
+                  style: AppTextStyles.regular.copyWith(color: Colors.black),
+                ),
               ),
               SizedBox(
                 height: 30.h,
