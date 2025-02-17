@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart';
+
 import 'package:my_weather_reader/Widgets/city_name.dart';
 import 'package:my_weather_reader/Widgets/error_state_widget.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
