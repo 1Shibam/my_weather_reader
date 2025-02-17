@@ -34,5 +34,5 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherData>> {
 
 final weatherServiceProvider =
     Provider<WeatherService>((ref) => WeatherService());
-final weatherServiceNotifierProvider = StateNotifierProvider(
+final weatherServiceNotifierProvider = StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherData>>(
     (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider)));
