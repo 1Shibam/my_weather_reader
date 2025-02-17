@@ -41,7 +41,6 @@ class _LocationTemperatureState extends State<LocationTemperature> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            
             onTap: () => setState(() {
               isInCelcious = !isInCelcious;
             }),
