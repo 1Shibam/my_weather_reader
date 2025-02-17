@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/Widgets/city_name.dart';
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/location_temperature.dart';
 import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
+import 'package:riverpod/riverpod.dart';
+
+final weatheAnimationStateProvider =
+    AutoDisposeStateProvider<bool>((ref) => true);
 
 class WeatherDetails extends StatelessWidget {
   const WeatherDetails({super.key});
@@ -41,9 +46,20 @@ class WeatherDetails extends StatelessWidget {
           SizedBox(
             height: 16.h,
           ),
-          getWeatherAnimation('snow', false),
-          SizedBox(
-            height: 16.h,
+          Consumer(
+            builder: (context, ref, child) {
+              final showAnimation = ref.watch(weatheAnimationStateProvider);
+              return showAnimation
+                  ? Column(
+                      children: [
+                        getWeatherAnimation('snow', false),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink();
+            },
           ),
           const OtherWeatherDetailsExpansionTile(),
           SizedBox(
