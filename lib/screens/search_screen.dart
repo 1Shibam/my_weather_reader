@@ -169,10 +169,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         shrinkWrap: true,
                                         itemCount: locations.length,
                                         itemBuilder: (context, index) {
+                                          final singleData = locations[index];
                                           return Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 4.h),
                                             child: ListTile(
+                                              onTap: () {
+                                                ref
+                                                        .read(
+                                                            searchQueryProvider
+                                                                .notifier)
+                                                        .state =
+                                                    singleData.displayName!;
+                                                ref
+                                                    .read(
+                                                        weatherServiceNotifierProvider
+                                                            .notifier)
+                                                    .searchCoordinates(
+                                                        singleData.lat!,
+                                                        singleData.lon!);
+                                                context.pop();
+                                              },
                                               leading: const Icon(
                                                 Icons.location_on,
                                                 color: Colors.red,
