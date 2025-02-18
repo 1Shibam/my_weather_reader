@@ -18,9 +18,13 @@ class WeatherServiceNotifier
     try {
       final position = await ref.read(geoNotifierStateProvider.future);
       await searchCoordinates(position.latitude, position.longitude);
-    } catch (error) {
-      final lastSearch = ref.read(searchListProvider).last;
-      await searchLocation(lastSearch.cityName);
+    } catch (error, stackTrace) {
+      final searchList = ref.read(searchListProvider);
+      if (searchList.isNotEmpty) {
+        await searchLocation(searchList.last.cityName);
+      } else {
+        state = AsyncValue.error(error, stackTrace);
+      }
     }
   }
 
@@ -38,10 +42,11 @@ class WeatherServiceNotifier
     state = const AsyncValue.loading();
     try {
       final coordinateSearch =
-          await service.serachByCoordinates(latitude, longitude);
+          await service.searchByCoordinates(latitude, longitude);
       state = AsyncValue.data(coordinateSearch);
     } catch (e, st) {
-      state = AsyncValue.error(e, st);
+      state = AsyncValue.error(
+          'Failed to get location, and no previous searches found.', st);
     }
   }
 }
