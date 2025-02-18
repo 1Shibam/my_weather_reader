@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_weather_reader/providers/searched_weather_location_list.dart';
 
 import 'package:my_weather_reader/providers/weather_animation_provider.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
@@ -50,28 +51,43 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                       .setAnimationState(value);
                 }),
           ),
-          ExpansionTile(
-            initiallyExpanded: true,
-            iconColor: AppColors.darkBlue,
-            title: Text(
-              'History',
-              style: AppTextStyles.heading1.copyWith(color: Colors.black87),
-            ),
-            children: [
-              SizedBox(
-                height: 30.h,
-              ),
-              Center(
-                child: Text(
-                  'There is no Search data yet!!',
-                  style: AppTextStyles.regular.copyWith(color: Colors.black),
-                ),
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-            ],
-          )
+          Consumer(builder: (context, ref, child) {
+            final searchedData = ref.watch(searchListProvider);
+            return searchedData.isEmpty
+                ? ExpansionTile(
+                    initiallyExpanded: true,
+                    iconColor: AppColors.darkBlue,
+                    title: Text(
+                      'History',
+                      style: AppTextStyles.heading1
+                          .copyWith(color: Colors.black87),
+                    ),
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Center(
+                        child: Text(
+                          'There is no Search data yet!!',
+                          style: AppTextStyles.regular
+                              .copyWith(color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                    ],
+                  )
+                : ListView.builder(
+                    itemCount: searchedData.length,
+                    itemBuilder: (context, index) {
+                      final singleData = searchedData[index];
+                      return ListTile(
+                        title: Text(singleData.cityName),
+                      );
+                    },
+                  );
+          })
         ],
       ),
     );
