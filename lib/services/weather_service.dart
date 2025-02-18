@@ -31,7 +31,7 @@ class WeatherService {
     }
   }
 
-  Future<WeatherDataModel> serachByCoordinates(
+  Future<WeatherDataModel> searchByCoordinates(
       double latitude, double longitude) async {
     try {
       final response = await dio.get('/weather', queryParameters: {
