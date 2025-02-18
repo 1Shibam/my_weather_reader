@@ -76,6 +76,7 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
                           ),
                         ),
                         SizedBox(width: 10.w),
+                        //! call search bycoordinates right here tomorrow done for today!!
                         Expanded(
                           child: CustomTextFiled(
                             controller: lonController,
