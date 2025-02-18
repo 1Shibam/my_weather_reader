@@ -6,8 +6,20 @@ class WeatherDatabaseService {
   WeatherDatabaseService(this.database);
 
   //! add search to database
-  Future<int> addSearchToDB(WeatherData weatherData) async {
+  Future<int> addSearchToDB(WeatherDataModel weatherData) async {
     return await database.insert('weatherTable', weatherData.toMap());
+  }
+
+  //! get list of searched location
+  Future<List<WeatherDataModel>> getSearchedList() async {
+    final maps = await database.query('weatherTable');
+    return maps.map((data) => WeatherDataModel.fromJson(data)).toList();
+  }
+
+  //! delete from search list
+  Future<int> deletedSearchedLocation(int id) async {
+    return await database
+        .delete('weatherTable', where: 'weatherID = ?', whereArgs: [id]);
   }
 }
 
