@@ -10,7 +10,7 @@ class WeatherService {
 
   final String api = weatherApiKey;
 
-  Future<WeatherData> searchByLocationName(String location) async {
+  Future<WeatherDataModel> searchByLocationName(String location) async {
     try {
       final response = await dio.get('/weather', queryParameters: {
         'q': location,
@@ -20,7 +20,7 @@ class WeatherService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
-        final result = WeatherData.fromJson(data);
+        final result = WeatherDataModel.fromJson(data);
         // print(result);
         return result;
       } else {
@@ -31,7 +31,7 @@ class WeatherService {
     }
   }
 
-  Future<WeatherData> serachByCoordinates(
+  Future<WeatherDataModel> serachByCoordinates(
       double latitude, double longitude) async {
     try {
       final response = await dio.get('/weather', queryParameters: {
@@ -44,7 +44,7 @@ class WeatherService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
-        final result = WeatherData.fromJson(data);
+        final result = WeatherDataModel.fromJson(data);
         // print(result);
         return result;
       } else {
