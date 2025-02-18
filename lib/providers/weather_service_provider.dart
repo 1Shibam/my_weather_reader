@@ -1,4 +1,4 @@
-import 'package:my_weather_reader/core/services/weather_service.dart';
+import 'package:my_weather_reader/services/weather_service.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 import 'package:riverpod/riverpod.dart';
 
