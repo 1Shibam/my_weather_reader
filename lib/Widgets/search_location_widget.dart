@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
+import 'package:my_weather_reader/screens/search_screen.dart';
 
 final searchModeProvider = StateProvider<bool>(
     (ref) => true); // true for city search, false for coordinates
@@ -18,6 +19,10 @@ class SearchLocationWidget extends ConsumerStatefulWidget {
 class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
   @override
   Widget build(BuildContext context) {
+    String text = ref.watch(searchQueryProvider);
+    
+    TextEditingController searchText = TextEditingController(text: text);
+    
     final isSearchByCity = ref.watch(searchModeProvider);
 
     return Padding(
@@ -35,6 +40,7 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
               },
               child: isSearchByCity
                   ? CustomTextFiled(
+                    controller: searchText ,
                       canRequestFocus: false,
                       key: const ValueKey(
                           'citySearch'), // Unique key for smooth transition
