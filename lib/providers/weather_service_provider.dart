@@ -45,8 +45,7 @@ class WeatherServiceNotifier
           await service.searchByCoordinates(latitude, longitude);
       state = AsyncValue.data(coordinateSearch);
     } catch (e, st) {
-      state = AsyncValue.error(
-          'Failed to get location, and no previous searches found.', st);
+      state = AsyncValue.error(e, st);
     }
   }
 }
