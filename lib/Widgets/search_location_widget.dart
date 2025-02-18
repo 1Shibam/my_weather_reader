@@ -17,12 +17,25 @@ class SearchLocationWidget extends ConsumerStatefulWidget {
 }
 
 class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
+  TextEditingController latController = TextEditingController();
+  TextEditingController lonController = TextEditingController();
+  FocusNode latFocus = FocusNode();
+  FocusNode lonFocus = FocusNode();
+  @override
+  void dispose() {
+    latController.dispose();
+    lonController.dispose();
+    latFocus.dispose();
+    lonFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     String text = ref.watch(searchQueryProvider);
-    
+
     TextEditingController searchText = TextEditingController(text: text);
-    
+
     final isSearchByCity = ref.watch(searchModeProvider);
 
     return Padding(
@@ -40,7 +53,7 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
               },
               child: isSearchByCity
                   ? CustomTextFiled(
-                    controller: searchText ,
+                      controller: searchText,
                       canRequestFocus: false,
                       key: const ValueKey(
                           'citySearch'), // Unique key for smooth transition
