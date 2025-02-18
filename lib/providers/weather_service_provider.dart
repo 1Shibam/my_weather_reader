@@ -1,3 +1,5 @@
+import 'package:my_weather_reader/providers/geo_locator_provider.dart';
+import 'package:my_weather_reader/providers/searched_weather_location_list.dart';
 import 'package:my_weather_reader/services/weather_service.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 import 'package:riverpod/riverpod.dart';
@@ -5,14 +7,23 @@ import 'package:riverpod/riverpod.dart';
 class WeatherServiceNotifier
     extends StateNotifier<AsyncValue<WeatherDataModel>> {
   final WeatherService service;
-  
+  final Ref ref;
 
-  WeatherServiceNotifier(this.service)
-      : super(const AsyncValue.loading()){
-        initializeWeatherStates();
-      }//initial state
-      
-  Future<void> initializeWeatherStates() async{}
+  WeatherServiceNotifier(this.service, this.ref)
+      : super(const AsyncValue.loading()) {
+    initializeWeatherStates();
+  } //initial state
+
+  Future<void> initializeWeatherStates() async {
+    try {
+      final position = await ref.read(geoNotifierStateProvider.future);
+      await searchCoordinates(position.latitude, position.longitude);
+    } catch (error) {
+      final lastSearch = ref.read(searchListProvider).last;
+      await searchLocation(lastSearch.cityName);
+    }
+  }
+
   Future<void> searchLocation(String location) async {
     state = const AsyncValue.loading();
     try {
@@ -39,4 +50,4 @@ final weatherServiceProvider =
     Provider<WeatherService>((ref) => WeatherService());
 final weatherServiceNotifierProvider =
     StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherDataModel>>(
-        (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider)));
+        (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider), ref));
