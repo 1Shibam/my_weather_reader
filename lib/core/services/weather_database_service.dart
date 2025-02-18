@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_weather_reader/core/database/weather_database.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,6 +24,19 @@ class WeatherDatabaseService {
         .delete('weatherTable', where: 'weatherID = ?', whereArgs: [id]);
   }
 }
+
+final weatherDatabaseServiceProvider = Provider<WeatherDatabaseService>((ref) {
+  final databaseAsync = ref.watch(weatherDataBaseProvider);
+
+  return databaseAsync.when(
+      data: (data) {
+        return WeatherDatabaseService(data);
+      },
+      error: (error, stackTrace) {
+        return throw Exception('Error loading database: $error');
+      },
+      loading: () => throw Exception('Still Loading'));
+});
 
 /*
 // ignore_for_file: avoid_print
