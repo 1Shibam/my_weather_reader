@@ -3,22 +3,45 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_weather_reader/Widgets/city_name.dart';
+import 'package:my_weather_reader/Widgets/error_state_widget.dart';
 
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/location_temperature.dart';
 import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
 
-
 import 'package:my_weather_reader/providers/weather_animation_provider.dart';
-
+import 'package:my_weather_reader/providers/weather_service_provider.dart';
+import 'package:my_weather_reader/themes/text_styles.dart';
 
 class WeatherDetails extends ConsumerWidget {
   const WeatherDetails({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    return const Center();
+    final weatherState = ref.watch(weatherServiceNotifierProvider);
+    return weatherState.when(
+        data: (data) {
+          return DetailsWidget(
+              locationName: data.cityName,
+              isDayTime: false,
+              weatherCondition: data.description,
+              tempInCelcious: data.temperature);
+        },
+        error: (error, stackTrace) => const Center(
+              child: ErrorStateWidget(),
+            ),
+        loading: () => Center(
+              child: Column(
+                children: [
+                  Image.asset('assets/animations/weatherAnimation.gif'),
+                  Text(
+                    'L O A D I N G ',
+                    style: AppTextStyles.heading1,
+                  )
+                ],
+              ),
+            ));
     // final geoLocator = ref.watch(geoNotifierStateProvider);
     // final weatherState = ref.watch(weatherServiceNotifierProvider);
     // ref.listen(geoNotifierStateProvider, (previous, next) {
