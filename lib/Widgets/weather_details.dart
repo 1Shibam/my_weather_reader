@@ -3,22 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_weather_reader/Widgets/city_name.dart';
-import 'package:my_weather_reader/Widgets/error_state_widget.dart';
+
 import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
 import 'package:my_weather_reader/Widgets/location_temperature.dart';
 import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
-import 'package:my_weather_reader/providers/geo_locator_provider.dart';
+
 
 import 'package:my_weather_reader/providers/weather_animation_provider.dart';
-import 'package:my_weather_reader/providers/weather_service_provider.dart';
+
 
 class WeatherDetails extends ConsumerWidget {
   const WeatherDetails({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    return Center();
+    return const Center();
     // final geoLocator = ref.watch(geoNotifierStateProvider);
     // final weatherState = ref.watch(weatherServiceNotifierProvider);
     // ref.listen(geoNotifierStateProvider, (previous, next) {
