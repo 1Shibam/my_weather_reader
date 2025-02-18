@@ -67,15 +67,19 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
                       key: const ValueKey(
                           'coordsSearch'), // Unique key for smooth transition
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: CustomTextFiled(
+                            controller: latController,
+                            focusNode: latFocus,
                             hintText: '00.00',
                             label: 'Latitude',
                           ),
                         ),
                         SizedBox(width: 10.w),
-                        const Expanded(
+                        Expanded(
                           child: CustomTextFiled(
+                            controller: lonController,
+                            focusNode: lonFocus,
                             label: 'Longitude',
                             hintText: '00.00',
                           ),
