@@ -20,29 +20,36 @@ class WeatherDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final weatherState = ref.watch(weatherServiceNotifierProvider);
-    return weatherState.when(
-        data: (data) {
-          return DetailsWidget(
-              locationName: data.cityName,
-              isDayTime: false,
-              weatherCondition: data.description,
-              tempInCelcious: data.temperature);
-        },
-        error: (error, stackTrace) => const Center(
-              child: ErrorStateWidget(),
-            ),
-        loading: () => Center(
-              child: Column(
-                children: [
-                  Image.asset('assets/animations/locationLoadingAnimation.gif'),
-                  Text(
-                    'L O A D I N G ',
-                    style: AppTextStyles.heading1,
-                  )
-                ],
+    return AnimatedSwitcher(
+      duration: const Duration(seconds: 1),
+      transitionBuilder: (child, animation) => FadeTransition(
+        opacity: animation,
+        child: child,
+      ),
+      child: weatherState.when(
+          data: (data) {
+            return DetailsWidget(
+                locationName: data.cityName,
+                isDayTime: false,
+                weatherCondition: data.description,
+                tempInCelcious: data.temperature);
+          },
+          error: (error, stackTrace) => const Center(
+                child: ErrorStateWidget(),
               ),
-            ));
-    
+          loading: () => Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                        'assets/animations/locationLoadingAnimation.gif'),
+                    Text(
+                      'L O A D I N G ',
+                      style: AppTextStyles.heading1,
+                    )
+                  ],
+                ),
+              )),
+    );
   }
 }
 
