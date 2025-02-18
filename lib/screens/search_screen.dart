@@ -9,6 +9,7 @@ import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
+import 'package:my_weather_reader/providers/weather_service_provider.dart';
 
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
@@ -97,7 +98,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         size: 28.sp,
                                       )),
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        ref
+                                            .read(weatherServiceNotifierProvider
+                                                .notifier)
+                                            .searchLocation(
+                                                searchController.text.trim());
+                                        context.pop();
+                                      },
                                       icon: Icon(
                                         Icons.search_rounded,
                                         color: Colors.white,
