@@ -18,46 +18,47 @@ class WeatherDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final geoLocator = ref.watch(geoNotifierStateProvider);
-    final weatherState = ref.watch(weatherServiceNotifierProvider);
-    ref.listen(geoNotifierStateProvider, (previous, next) {
-      next.whenData((location) {
-        ref
-            .read(weatherServiceNotifierProvider.notifier)
-            .searchCoordinates(location.latitude, location.longitude);
-      });
-    });
+    return Center();
+    // final geoLocator = ref.watch(geoNotifierStateProvider);
+    // final weatherState = ref.watch(weatherServiceNotifierProvider);
+    // ref.listen(geoNotifierStateProvider, (previous, next) {
+    //   next.whenData((location) {
+    //     ref
+    //         .read(weatherServiceNotifierProvider.notifier)
+    //         .searchCoordinates(location.latitude, location.longitude);
+    //   });
+    // });
 
-    return geoLocator.when(
-        data: (location) {
+    // return geoLocator.when(
+    //     data: (location) {
 
-          return weatherState.when(
-              data: (data) {
-               
-                return DetailsWidget(
-                    locationName: data.cityName,
-                    isDayTime: false,
-                    weatherCondition: data.description,
-                    tempInCelcious: data.temperature);
-              },
-              error: (error, stackTrace) {
-                return const Center(
-                  child: ErrorStateWidget(),
-                );
-              },
-              loading: () => Center(
-                    child:
-                        Image.asset('assets/animations/weather-animation.gif'),
-                  ));
-        },
-        error: (error, stackTrace) {
-          return const Center(
-            child: ErrorStateWidget(),
-          );
-        },
-        loading: () => Center(
-              child: Image.asset('assets/animations/weather-animation.gif'),
-            ));
+    //       return weatherState.when(
+    //           data: (data) {
+
+    //             return DetailsWidget(
+    //                 locationName: data.cityName,
+    //                 isDayTime: false,
+    //                 weatherCondition: data.description,
+    //                 tempInCelcious: data.temperature);
+    //           },
+    //           error: (error, stackTrace) {
+    //             return const Center(
+    //               child: ErrorStateWidget(),
+    //             );
+    //           },
+    //           loading: () => Center(
+    //                 child:
+    //                     Image.asset('assets/animations/weather-animation.gif'),
+    //               ));
+    //     },
+    //     error: (error, stackTrace) {
+    //       return const Center(
+    //         child: ErrorStateWidget(),
+    //       );
+    //     },
+    //     loading: () => Center(
+    //           child: Image.asset('assets/animations/weather-animation.gif'),
+    //         ));
   }
 }
 
