@@ -1,4 +1,4 @@
-class WeatherData {
+class WeatherDataModel {
   final String cityName;
   final double temperature;
   final double tempMin;
@@ -14,7 +14,7 @@ class WeatherData {
   final int currentTime;
   final int timezone;
 
-  WeatherData({
+  WeatherDataModel({
     required this.cityName,
     required this.temperature,
     required this.tempMin,
@@ -31,7 +31,7 @@ class WeatherData {
     required this.timezone,
   });
 
-  factory WeatherData.fromJson(Map<String, dynamic> json) {
+  factory WeatherDataModel.fromJson(Map<String, dynamic> json) {
     final temp = json['main']['temp'].toDouble();
     final tempMin = json['main']['temp_min'].toDouble();
     final tempMax = json['main']['temp_max'].toDouble();
@@ -46,7 +46,7 @@ class WeatherData {
     final sunset = json['sys']['sunset'];
     final currentTime = json['dt'];
 
-    return WeatherData(
+    return WeatherDataModel(
       cityName: json['name'],
       temperature: temp,
       tempMin: tempMin,
