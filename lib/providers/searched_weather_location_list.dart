@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_weather_reader/core/services/weather_database_service.dart';
+import 'package:my_weather_reader/services/weather_database_service.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 
 class SearchedWeatherLocationList
