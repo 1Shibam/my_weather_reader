@@ -2,9 +2,8 @@ import 'package:my_weather_reader/core/services/weather_service.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 import 'package:riverpod/riverpod.dart';
 
-
-
-class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherData>> {
+class WeatherServiceNotifier
+    extends StateNotifier<AsyncValue<WeatherDataModel>> {
   final WeatherService service;
 
   WeatherServiceNotifier(this.service)
@@ -34,5 +33,6 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherData>> {
 
 final weatherServiceProvider =
     Provider<WeatherService>((ref) => WeatherService());
-final weatherServiceNotifierProvider = StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherData>>(
-    (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider)));
+final weatherServiceNotifierProvider =
+    StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherDataModel>>(
+        (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider)));
