@@ -1,4 +1,3 @@
-import 'package:my_weather_reader/providers/geo_locator_provider.dart';
 import 'package:my_weather_reader/services/weather_service.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 import 'package:riverpod/riverpod.dart';
@@ -6,20 +5,14 @@ import 'package:riverpod/riverpod.dart';
 class WeatherServiceNotifier
     extends StateNotifier<AsyncValue<WeatherDataModel>> {
   final WeatherService service;
-  final Ref ref;
+  
 
-  WeatherServiceNotifier(this.service, this.ref)
-      : super(const AsyncValue.loading()) {
-    initializeWeatherStates();
-  } //initial state
-
-  Future<void> initializeWeatherStates() async {
-    final position = await ref
-        .read(geoNotifierStateProvider.notifier)
-        .fetchCurrentLocation();
-    // do location when state if caught error show the database state and if search show the searched state!!
-  }
-
+  WeatherServiceNotifier(this.service)
+      : super(const AsyncValue.loading()){
+        initializeWeatherStates();
+      }//initial state
+      
+  Future<void> initializeWeatherStates() async{}
   Future<void> searchLocation(String location) async {
     state = const AsyncValue.loading();
     try {
