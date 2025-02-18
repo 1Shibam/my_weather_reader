@@ -9,10 +9,10 @@ class WeatherData {
   final String description;
   final int cloudCoverage;
   final int pressure;
-  final int sunrise; 
-  final int sunset; 
-  final int currentTime; 
-  final int timezone; 
+  final int sunrise;
+  final int sunset;
+  final int currentTime;
+  final int timezone;
 
   WeatherData({
     required this.cityName,
@@ -44,7 +44,7 @@ class WeatherData {
 
     final sunrise = json['sys']['sunrise'];
     final sunset = json['sys']['sunset'];
-    final currentTime = json['dt']; 
+    final currentTime = json['dt'];
 
     return WeatherData(
       cityName: json['name'],
@@ -62,5 +62,9 @@ class WeatherData {
       currentTime: currentTime,
       timezone: json['timezone'],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {};
   }
 }
