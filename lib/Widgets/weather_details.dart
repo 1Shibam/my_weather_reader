@@ -34,7 +34,7 @@ class WeatherDetails extends ConsumerWidget {
         loading: () => Center(
               child: Column(
                 children: [
-                  Image.asset('assets/animations/weatherAnimation.gif'),
+                  Image.asset('assets/animations/locationLoadingAnimation.gif'),
                   Text(
                     'L O A D I N G ',
                     style: AppTextStyles.heading1,
