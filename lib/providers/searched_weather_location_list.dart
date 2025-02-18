@@ -17,3 +17,6 @@ class SearchedWeatherLocationList
     state = searches;
   }
 }
+
+final searchListProvider =
+    StateNotifierProvider<SearchedWeatherLocationList, List<WeatherDataModel>>((ref) => SearchedWeatherLocationList(ref));
