@@ -240,7 +240,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     child: SizedBox(
                       child: Text(
                         'Suggestion are Turned off',
-                        style: AppTextStyles.heading1,
+                        style: AppTextStyles.heading2,
                       ),
                     ),
                   )
@@ -250,5 +250,3 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 }
-
-
