@@ -10,7 +10,7 @@ class ShowSearchSuggestionNotifier extends StateNotifier<bool> {
     state = prefs.getBool('isSearchSuggestionEnabled') ?? true;
   }
 
-  Future<void> getSerachState(bool value) async {
+  Future<void> setSerachState(bool value) async {
     state = value;
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isSearchSuggestionEnabled', value);
