@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
+
+//? warning dialog used in warning and suggestion switch widget
 void showWarningDialog(BuildContext context) {
   showDialog(
     context: context,
@@ -19,10 +21,6 @@ void showWarningDialog(BuildContext context) {
                   style: AppTextStyles.heading2.copyWith(color: Colors.blue))
             ]),
       ),
-      //Text(
-      //   "The suggested location may display different results because coordinate-based searches provide more precise locations.",
-      //   style: AppTextStyles.heading2.copyWith(color: Colors.red),
-      // ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
