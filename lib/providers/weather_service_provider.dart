@@ -1,7 +1,7 @@
 import 'package:my_weather_reader/providers/geo_locator_provider.dart';
 import 'package:my_weather_reader/providers/searched_weather_location_list.dart';
 import 'package:my_weather_reader/services/weather_service.dart';
-import 'package:my_weather_reader/models/weather_data.dart';
+import 'package:my_weather_reader/models/weather%20model/weather_data.dart';
 import 'package:riverpod/riverpod.dart';
 
 class WeatherServiceNotifier
