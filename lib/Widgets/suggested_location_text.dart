@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_weather_reader/Widgets/show_warning_dialog.dart';
-import 'package:my_weather_reader/providers/show_serach_suggestion_preference.dart';
+
 import 'package:my_weather_reader/themes/text_styles.dart';
 
 class SuggestedLocationsText extends StatelessWidget {
