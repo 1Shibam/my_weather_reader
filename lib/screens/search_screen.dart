@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
 import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
+import 'package:my_weather_reader/Widgets/show_warning_dialog.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
 import 'package:my_weather_reader/providers/show_serach_suggestion_preference.dart';
@@ -133,6 +134,41 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           ))
                     ],
                   ),
+                  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              onTap: () => showWarningDialog(context),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.info_outline, color: Colors.red, size: 22.sp),
+                  SizedBox(width: 6.w),
+                  Text(
+                    "Note",
+                    style: AppTextStyles.heading2.copyWith(
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                final value = ref.watch(searchSuggestionEnableProvider);
+                return Switch(
+                  activeColor: Colors.blue,
+                  value: value,
+                  onChanged: (currentVal) {
+                    ref
+                        .read(searchSuggestionEnableProvider.notifier)
+                        .setSerachState(currentVal);
+                  },
+                );
+              },
+            )
+          ],
+        ),
                   SizedBox(
                     height: 16.h,
                   ),
