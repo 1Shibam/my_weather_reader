@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/screens/about_page.dart';
+import 'package:my_weather_reader/screens/on_boarding_screen.dart';
 import 'package:my_weather_reader/screens/search_screen.dart';
+import 'package:my_weather_reader/screens/splash_screen.dart';
 import 'package:my_weather_reader/screens/weather_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +60,51 @@ GoRouter router = GoRouter(
         return CustomTransitionPage(
           key: state.pageKey,
           child: const SearchScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/search',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const SearchScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/onBoarding',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const OnBoardingScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/splash',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const SplashScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity: animation,
