@@ -12,6 +12,7 @@ class CustomTextFiled extends StatelessWidget {
   final void Function()? onTap;
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
+  final void Function(String)? onSubmitted;
   const CustomTextFiled(
       {super.key,
       this.canRequestFocus = true,
@@ -22,7 +23,8 @@ class CustomTextFiled extends StatelessWidget {
       this.autoFocus = false,
       this.controller,
       this.focusNode,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomTextFiled extends StatelessWidget {
       onTap: onTap,
       onChanged: onChanged,
       autofocus: autoFocus,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,
           label: Text(label),
