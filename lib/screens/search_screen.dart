@@ -67,7 +67,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 left: 16.w,
                 right: 16.w,
               ),
-              padding: EdgeInsets.only(bottom: 20.h),
+              padding: EdgeInsets.only(bottom: 10.h),
               color: AppColors.darkBlue,
               child: Column(
                 children: [
@@ -132,7 +132,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           ))
                     ],
                   ),
-                  
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -170,16 +172,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       )
                     ],
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      searchQuery.trim().isEmpty
-                          ? const PopularLocationsText()
-                          : const SuggestedLocationsText(),
-                    ],
-                  ),
+                  showSuggestions
+                      ? Column(
+                          children: [
+                            SizedBox(
+                              height: 4.h,
+                            ),
+                            searchQuery.trim().isEmpty
+                                ? const PopularLocationsText()
+                                : const SuggestedLocationsText(),
+                          ],
+                        )
+                      : const SizedBox.shrink()
                 ],
               ),
             ),
@@ -190,9 +194,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 6.h,
-                          ),
                           Expanded(
                             child: Consumer(
                               builder: (context, ref, child) {
