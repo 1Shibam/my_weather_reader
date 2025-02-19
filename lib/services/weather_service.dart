@@ -69,7 +69,6 @@ class WeatherService {
         final Map<String, dynamic> forecastData =
             Map<String, dynamic>.from(response.data);
         final resultForecast = ForecastDataModel.fromJson(forecastData);
-        print(resultForecast);
         return resultForecast;
       } else {
         throw Exception('Failet to get weather Forecast!!');
