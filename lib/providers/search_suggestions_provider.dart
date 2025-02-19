@@ -1,5 +1,5 @@
 import 'package:my_weather_reader/services/search_service.dart';
-import 'package:my_weather_reader/models/search_suggestions.dart';
+import 'package:my_weather_reader/models/search%20suggestion%20model/search_suggestions.dart';
 import 'package:riverpod/riverpod.dart';
 
 class SearchSuggestionsNotifier
