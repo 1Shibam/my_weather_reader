@@ -71,7 +71,6 @@ class WeatherService {
         final resultForecast = ForecastDataModel.fromJson(forecastData);
         print(resultForecast);
         return resultForecast;
-        
       } else {
         throw Exception('Failet to get weather Forecast!!');
       }
@@ -79,4 +78,9 @@ class WeatherService {
       throw Exception(e.toString());
     }
   }
+}
+
+void main() {
+  WeatherService service = WeatherService();
+  service.getWeatherForecast(37.7749, -122.4194);
 }
