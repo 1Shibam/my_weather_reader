@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
 import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
-import 'package:my_weather_reader/Widgets/show_warning_dialog.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/Widgets/warning_and_suggestion_switch.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
