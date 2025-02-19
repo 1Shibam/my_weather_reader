@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
@@ -24,6 +25,8 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/animations/final loading.gif'),
+            SizedBox(height: 16.h,),
             Text("L O A D I N G ", style: AppTextStyles.heading1),
           ],
         ),
