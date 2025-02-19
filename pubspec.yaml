@@ -40,7 +40,6 @@ dependencies:
   http: ^1.2.2
   riverpod: ^2.6.1
   flutter_riverpod: ^2.6.1
-  
   flutter_launcher_icons: ^0.14.2
   flutter_dotenv: ^5.2.1
   dio: ^5.8.0+1
@@ -51,6 +50,7 @@ dependencies:
   go_router: ^14.8.0
   shimmer: ^3.0.0
   shared_preferences: ^2.5.2
+  smooth_page_indicator: ^1.2.0+3
 dev_dependencies:
   flutter_test:
     sdk: flutter
