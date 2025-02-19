@@ -1,3 +1,4 @@
+import 'package:my_weather_reader/models/weather%20model/current_clouds.dart';
 import 'package:my_weather_reader/models/weather%20model/current_weather_coords.dart';
 import 'package:my_weather_reader/models/weather%20model/main_details.dart';
 import 'package:my_weather_reader/models/weather%20model/current_weather.dart';
@@ -10,7 +11,7 @@ class WeatherDataModel {
   MainDetails? main;
   int? visibility;
   CurrentWind? wind;
-  Clouds? clouds;
+  CurrentClouds? clouds;
   int? dt;
   Sys? sys;
   int? timezone;
@@ -59,7 +60,7 @@ class WeatherDataModel {
       wind = json["wind"] == null ? null : CurrentWind.fromJson(json["wind"]);
     }
     if (json["clouds"] is Map) {
-      clouds = json["clouds"] == null ? null : Clouds.fromJson(json["clouds"]);
+      clouds = json["clouds"] == null ? null : CurrentClouds.fromJson(json["clouds"]);
     }
     if (json["dt"] is int) {
       dt = json["dt"];
@@ -158,24 +159,4 @@ class Sys {
   }
 }
 
-class Clouds {
-  int? all;
 
-  Clouds({this.all});
-
-  Clouds.fromJson(Map<String, dynamic> json) {
-    if (json["all"] is int) {
-      all = json["all"];
-    }
-  }
-
-  static List<Clouds> fromList(List<Map<String, dynamic>> list) {
-    return list.map(Clouds.fromJson).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["all"] = all;
-    return data;
-  }
-}
