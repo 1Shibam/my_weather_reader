@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
+import 'package:my_weather_reader/providers/weather_service_provider.dart';
 import 'package:my_weather_reader/screens/search_screen.dart';
 
 final searchModeProvider = StateProvider<bool>(
@@ -73,6 +74,9 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
                             focusNode: latFocus,
                             hintText: '00.00',
                             label: 'Latitude',
+                            onSubmitted: (p0) {
+                              FocusScope.of(context).requestFocus(lonFocus);
+                            },
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -83,6 +87,13 @@ class _SearchLocationWidgetState extends ConsumerState<SearchLocationWidget> {
                             focusNode: lonFocus,
                             label: 'Longitude',
                             hintText: '00.00',
+                            onSubmitted: (p0) {
+                              ref
+                                  .read(weatherServiceNotifierProvider.notifier)
+                                  .searchCoordinates(
+                                      double.parse(latController.text),
+                                      double.parse(lonController.text));
+                            },
                           ),
                         ),
                       ],
