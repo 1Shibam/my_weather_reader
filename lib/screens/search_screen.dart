@@ -9,6 +9,7 @@ import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
 import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
 import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
+import 'package:my_weather_reader/providers/show_serach_suggestion_preference.dart';
 import 'package:my_weather_reader/providers/weather_service_provider.dart';
 
 import 'package:my_weather_reader/themes/app_colors.dart';
@@ -51,6 +52,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final searchQuery = ref.watch(searchQueryProvider);
+    final showSuggestions = ref.watch(searchSuggestionEnableProvider);
 
     return SafeArea(
       child: Scaffold(
@@ -140,87 +142,102 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 6.h,
-                    ),
-                    Expanded(
-                      child: Consumer(
-                        builder: (context, ref, child) {
-                          final suggestions =
-                              ref.watch(searchSuggestionsProvider);
-                          return suggestions.when(
-                              data: (locations) {
-                                return locations.isEmpty
-                                    ? Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text(
-                                          'Opps no matches! please be more specific!',
-                                          style: AppTextStyles.heading1,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    : ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: locations.length,
-                                        itemBuilder: (context, index) {
-                                          final singleData = locations[index];
-                                          return Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 4.h),
-                                            child: ListTile(
-                                              onTap: () {
-                                                ref
-                                                        .read(
-                                                            searchQueryProvider
-                                                                .notifier)
-                                                        .state =
-                                                    singleData.displayName!;
-                                                ref
-                                                    .read(
-                                                        weatherServiceNotifierProvider
-                                                            .notifier)
-                                                    .searchCoordinates(
-                                                        singleData.lat!,
-                                                        singleData.lon!);
-                                                context.pop();
+            showSuggestions
+                ? Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 6.h,
+                          ),
+                          Expanded(
+                            child: Consumer(
+                              builder: (context, ref, child) {
+                                final suggestions =
+                                    ref.watch(searchSuggestionsProvider);
+                                return suggestions.when(
+                                    data: (locations) {
+                                      return locations.isEmpty
+                                          ? Align(
+                                              alignment: Alignment.topCenter,
+                                              child: Text(
+                                                'Opps no matches! please be more specific!',
+                                                style: AppTextStyles.heading1,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: locations.length,
+                                              itemBuilder: (context, index) {
+                                                final singleData =
+                                                    locations[index];
+                                                return Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 4.h),
+                                                  child: ListTile(
+                                                    onTap: () {
+                                                      ref
+                                                              .read(
+                                                                  searchQueryProvider
+                                                                      .notifier)
+                                                              .state =
+                                                          singleData
+                                                              .displayName!;
+                                                      ref
+                                                          .read(
+                                                              weatherServiceNotifierProvider
+                                                                  .notifier)
+                                                          .searchCoordinates(
+                                                              singleData.lat!,
+                                                              singleData.lon!);
+                                                      context.pop();
+                                                    },
+                                                    leading: const Icon(
+                                                      Icons.location_on,
+                                                      color: Colors.red,
+                                                    ),
+                                                    tileColor:
+                                                        AppColors.waterBlue,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.r)),
+                                                    title: Text(
+                                                      locations[index]
+                                                          .displayName!,
+                                                      style: AppTextStyles.bold,
+                                                    ),
+                                                  ),
+                                                );
                                               },
-                                              leading: const Icon(
-                                                Icons.location_on,
-                                                color: Colors.red,
-                                              ),
-                                              tileColor: AppColors.waterBlue,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.r)),
-                                              title: Text(
-                                                locations[index].displayName!,
-                                                style: AppTextStyles.bold,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
+                                            );
+                                    },
+                                    error: (err, stackTrace) {
+                                      return Center(
+                                          child: Image.asset(
+                                              'assets/animations/ERROR-OCCURED.png'));
+                                    },
+                                    loading: () => const ShimmerLoading());
                               },
-                              error: (err, stackTrace) {
-                                return Center(
-                                    child: Image.asset(
-                                        'assets/animations/ERROR-OCCURED.png'));
-                              },
-                              loading: () => const ShimmerLoading());
-                        },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            )
+                  )
+                : Center(
+                    child: SizedBox(
+                      child: Text(
+                        'Suggestion are Turned off',
+                        style: AppTextStyles.heading1,
+                      ),
+                    ),
+                  )
           ],
         ),
       ),
