@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +11,6 @@ import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
 import 'package:my_weather_reader/providers/search_suggestions_provider.dart';
 import 'package:my_weather_reader/providers/show_serach_suggestion_preference.dart';
 import 'package:my_weather_reader/providers/weather_service_provider.dart';
-
 import 'package:my_weather_reader/themes/app_colors.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
@@ -134,47 +132,54 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           ))
                     ],
                   ),
+                  
                   Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () => showWarningDialog(context),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.info_outline, color: Colors.red, size: 22.sp),
-                  SizedBox(width: 6.w),
-                  Text(
-                    "Note",
-                    style: AppTextStyles.heading2.copyWith(
-                      color: Colors.red,
-                    ),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () => showWarningDialog(context),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.info_outline,
+                                color: Colors.red, size: 22.sp),
+                            SizedBox(width: 6.w),
+                            Text(
+                              "Note",
+                              style: AppTextStyles.heading2.copyWith(
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final value =
+                              ref.watch(searchSuggestionEnableProvider);
+                          return Switch(
+                            activeColor: Colors.blue,
+                            value: value,
+                            onChanged: (currentVal) {
+                              ref
+                                  .read(searchSuggestionEnableProvider.notifier)
+                                  .setSerachState(currentVal);
+                            },
+                          );
+                        },
+                      )
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Consumer(
-              builder: (context, ref, child) {
-                final value = ref.watch(searchSuggestionEnableProvider);
-                return Switch(
-                  activeColor: Colors.blue,
-                  value: value,
-                  onChanged: (currentVal) {
-                    ref
-                        .read(searchSuggestionEnableProvider.notifier)
-                        .setSerachState(currentVal);
-                  },
-                );
-              },
-            )
-          ],
-        ),
-                  SizedBox(
-                    height: 16.h,
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      searchQuery.trim().isEmpty
+                          ? const PopularLocationsText()
+                          : const SuggestedLocationsText(),
+                    ],
                   ),
-                  searchQuery.trim().isEmpty
-                      ? const PopularLocationsText()
-                      : const SuggestedLocationsText(),
                 ],
               ),
             ),
