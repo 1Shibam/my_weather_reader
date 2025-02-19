@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:my_weather_reader/api_key.dart';
-import 'package:my_weather_reader/models/forecast_data_model.dart';
+import 'package:my_weather_reader/models/forecast_mode/forecast_data_model.dart';
 import 'package:my_weather_reader/models/weather_data.dart';
 
 class WeatherService {
