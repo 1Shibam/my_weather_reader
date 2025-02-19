@@ -10,7 +10,7 @@ import 'package:my_weather_reader/Widgets/location_temperature.dart';
 import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
 import 'package:my_weather_reader/Widgets/weather_condition.dart';
 
-import 'package:my_weather_reader/providers/weather_animation_provider.dart';
+import 'package:my_weather_reader/providers/weather_animation_preference_provider.dart';
 import 'package:my_weather_reader/providers/weather_service_provider.dart';
 import 'package:my_weather_reader/themes/text_styles.dart';
 
