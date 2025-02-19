@@ -16,7 +16,17 @@ class SearchedWeatherLocationList
         await ref.read(weatherDatabaseServiceProvider).getSearchedList();
     state = searches;
   }
+
+  Future<void> addSearch(WeatherDataModel weatherData) async {
+    await ref.read(weatherDatabaseServiceProvider).addSearchToDB(weatherData);
+    loadSearchedList();
+  }
+
+  Future<void> deleteSearchedFromList(int id) async {
+    await ref.read(weatherDatabaseServiceProvider).deletedSearchedLocation(id);
+  }
 }
 
 final searchListProvider =
-    StateNotifierProvider<SearchedWeatherLocationList, List<WeatherDataModel>>((ref) => SearchedWeatherLocationList(ref));
+    StateNotifierProvider<SearchedWeatherLocationList, List<WeatherDataModel>>(
+        (ref) => SearchedWeatherLocationList(ref));
