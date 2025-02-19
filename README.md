@@ -46,14 +46,6 @@ This is a simple and visually appealing weather application that allows users to
    ~~~bash
    flutter run
 
-## Sample Images of the App (might take few seconds to load.. big file you know )
-
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="https://github.com/user-attachments/assets/9ead101f-78ef-4e0b-9bf8-949751c64827" alt="Weather App - Home Screen" height="300" />
-  <img src="https://github.com/user-attachments/assets/cb5d0a87-55d9-453e-93f7-f7304396d74b" alt="Weather App - Search Result" height="300" />
-  <img src="https://github.com/user-attachments/assets/96dfdf98-1218-4b37-9b65-cf371f0b889a" alt="Weather App - Error case" height="300" />
-  <img src="https://github.com/user-attachments/assets/8c3ad3d1-b302-4a6d-a197-329ef6ae41d3" alt="Weather App - another place" height="300" />
-  <img src="https://github.com/user-attachments/assets/47dacd10-a4e4-4261-abf2-c135455bc2c7" alt="Weather App - Using latitude and longitude" height="300" />
 
 </div>
 
