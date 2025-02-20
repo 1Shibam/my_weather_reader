@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_weather_reader/Widgets/build_on_boarding_pages.dart';
 import 'package:my_weather_reader/screens/splash_screen.dart';
 
 import 'package:my_weather_reader/themes/app_colors.dart';
@@ -22,9 +23,18 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       child: Stack(
         children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  'S K I P',
+                  style: AppTextStyles.heading2,
+                )),
+          ),
           PageView(
             controller: _controller,
             children: [
@@ -76,72 +86,4 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 
-class BuildOnBoardingPages extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String description;
-  final bool hasButton;
-  final void Function()? onPressed;
-  const BuildOnBoardingPages(
-      {super.key,
-      required this.imageUrl,
-      required this.title,
-      required this.description,
-      this.hasButton = false,
-      this.onPressed});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            imageUrl,
-            width: 200.w,
-            height: 200.h,
-          ),
-          SizedBox(height: 20.h),
-          Text(
-            title,
-            style: AppTextStyles.heading1,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Padding(
-            padding: EdgeInsets.all(12.w),
-            child: Text(
-              description,
-              style: AppTextStyles.regular,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          hasButton
-              ? Container(
-                  padding: EdgeInsets.all(12.w),
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                      color: AppColors.waterBlue,
-                      borderRadius: BorderRadius.circular(20.r)),
-                  child: ElevatedButton(
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            WidgetStatePropertyAll(Colors.transparent),
-                        foregroundColor:
-                            WidgetStatePropertyAll(Colors.transparent),
-                        shadowColor: WidgetStatePropertyAll(Colors.transparent),
-                      ),
-                      onPressed: onPressed,
-                      child: Text(
-                        'Get Started',
-                        style: AppTextStyles.heading1,
-                      )),
-                )
-              : const SizedBox.shrink()
-        ],
-      ),
-    );
-  }
-}
