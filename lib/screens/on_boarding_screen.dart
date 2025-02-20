@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:my_weather_reader/themes/app_colors.dart';
 
+import 'package:my_weather_reader/themes/text_styles.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -17,12 +18,13 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: PageView(
-      controller: _controller,
+        body: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: PageView(
+        controller: _controller,
+      ),
     ));
   }
-
-
 }
 
 class BuildOnBoardingPages extends StatelessWidget {
@@ -30,12 +32,14 @@ class BuildOnBoardingPages extends StatelessWidget {
   final String title;
   final String description;
   final bool hasButton;
+  final void Function()? onPressed;
   const BuildOnBoardingPages(
       {super.key,
       required this.imageUrl,
       required this.title,
       required this.description,
-      this.hasButton = false});
+      this.hasButton = false,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +69,21 @@ class BuildOnBoardingPages extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          hasButton ? Container(
-            
-          ) : const SizedBox.shrink()
+          hasButton
+              ? Container(
+                  padding: EdgeInsets.all(12.w),
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      color: AppColors.waterBlue,
+                      borderRadius: BorderRadius.circular(20.r)),
+                  child: ElevatedButton(
+                      onPressed: onPressed,
+                      child: Text(
+                        'Get Started',
+                        style: AppTextStyles.heading1,
+                      )),
+                )
+              : const SizedBox.shrink()
         ],
       ),
     );
