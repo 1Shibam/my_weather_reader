@@ -29,7 +29,11 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
           Align(
             alignment: Alignment.topRight,
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  //setting prefernce of on boarding page to true it wont show up again
+                  setOnBoardingPreference(true);
+                  context.go('/');
+                },
                 child: Text(
                   'S K I P',
                   style: AppTextStyles.heading2,
@@ -53,8 +57,9 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                 description: 'Plan ahead with a 5-day weather forecast.',
                 hasButton: true,
                 onPressed: () {
+                  //set the preference the on boarding page wont show up after this 
+                  //same thing will happen when the top skip text button will be pressed 
                   setOnBoardingPreference(true);
-
                   context.go('/');
                 },
               ),
