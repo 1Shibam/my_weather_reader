@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
 
 import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:path/path.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -77,6 +78,13 @@ class BuildOnBoardingPages extends StatelessWidget {
                       color: AppColors.waterBlue,
                       borderRadius: BorderRadius.circular(20.r)),
                   child: ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.transparent),
+                        foregroundColor:
+                            WidgetStatePropertyAll(Colors.transparent),
+                        shadowColor: WidgetStatePropertyAll(Colors.transparent),
+                      ),
                       onPressed: onPressed,
                       child: Text(
                         'Get Started',
