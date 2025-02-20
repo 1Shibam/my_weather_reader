@@ -38,11 +38,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                 title: '5-Day Forecast',
                 description: 'Plan ahead with a 5-day weather forecast.',
               ),
-              _buildPage(
-                image: 'assets/weather_4.png',
-                title: 'Search History & Suggestions',
-                description: 'Easily access past searches and get instant suggestions.',
-              ),
+             
             ],
           ),
           Positioned(
