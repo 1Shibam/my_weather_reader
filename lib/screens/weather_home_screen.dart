@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_weather_reader/Widgets/app_bar_widget.dart';
 import 'package:my_weather_reader/Widgets/drawer_widget.dart';
+import 'package:my_weather_reader/Widgets/forecast_details_widget.dart';
 import 'package:my_weather_reader/Widgets/search_location_widget.dart';
 import 'package:my_weather_reader/Widgets/weather_details.dart';
+import 'package:my_weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
 
 class WeatherHomeScreen extends ConsumerStatefulWidget {
   const WeatherHomeScreen({super.key});
@@ -20,44 +22,12 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        shadowColor: Colors.transparent,
-        backgroundColor: AppColors.darkBlue,
-        centerTitle: true,
-        title: Text(
-          'Weather-Reader',
-          style: AppTextStyles.heading1,
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                //? refresh the states right here
-              },
-              icon: Padding(
-                padding: EdgeInsets.only(right: 8.w),
-                child: Icon(
-                  Icons.refresh,
-                  color: Colors.white,
-                  size: 32.sp,
-                ),
-              ))
-        ],
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: Padding(
-                  padding: EdgeInsets.only(left: 8.w),
-                  child: Icon(
-                    Icons.menu_sharp,
-                    color: Colors.white,
-                    size: 32.sp,
-                  ),
-                ));
-          },
-        ),
+      appBar: AppBarWidget(
+        onRefresh: () {
+          ref
+              .read(weatherServiceNotifierProvider.notifier)
+              .initializeWeatherStates();
+        },
       ),
       drawer: const DrawerWidget(),
       backgroundColor: AppColors.darkBlue,
@@ -68,10 +38,13 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
             SizedBox(height: 20.h),
             const SearchLocationWidget(),
             SizedBox(height: 20.h),
-            const WeatherDetails()
+            const WeatherDetails(),
+            const ForecastDetailsWidget()
           ],
         ),
       ),
     );
   }
 }
+
+
