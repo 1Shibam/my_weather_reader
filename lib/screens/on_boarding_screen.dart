@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
+
 import 'package:my_weather_reader/themes/text_styles.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -22,29 +22,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
     ));
   }
 
-  Widget _buildPage(
-      {required String image,
-      required String title,
-      required String description}) {
-    return Container(
-      color: AppColors.darkBlue,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(image, width: 250.w, height: 250.h),
-          SizedBox(height: 20.h),
-          Text(title,
-              style: AppTextStyles.heading1, textAlign: TextAlign.center),
-          SizedBox(height: 10.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
-            child: Text(description,
-                style: AppTextStyles.regular, textAlign: TextAlign.center),
-          ),
-        ],
-      ),
-    );
-  }
+
 }
 
 class BuildOnBoardingPages extends StatelessWidget {
