@@ -20,31 +20,32 @@ class WeatherHomeScreen extends ConsumerStatefulWidget {
 class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBarWidget(
-        onRefresh: () {
-          ref
-              .read(weatherServiceNotifierProvider.notifier)
-              .initializeWeatherStates();
-        },
-      ),
-      drawer: const DrawerWidget(),
-      backgroundColor: AppColors.darkBlue,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20.h),
-            const SearchLocationWidget(),
-            SizedBox(height: 20.h),
-            const WeatherDetails(),
-            const ForecastDetailsWidget()
-          ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: AppBarWidget(
+          onRefresh: () {
+            ref
+                .read(weatherServiceNotifierProvider.notifier)
+                .initializeWeatherStates();
+          },
+        ),
+        drawer: const DrawerWidget(),
+        backgroundColor: AppColors.darkBlue,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.h),
+              const SearchLocationWidget(),
+              SizedBox(height: 20.h),
+              const WeatherDetails(),
+              const ForecastDetailsWidget()
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-
