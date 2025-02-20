@@ -34,20 +34,19 @@ class BuildOnBoardingPages extends StatelessWidget {
             style: AppTextStyles.heading1,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-            height: 10.h,
-          ),
           Padding(
             padding: EdgeInsets.all(12.w),
             child: Text(
               description,
-              style: AppTextStyles.regular,
+              style: AppTextStyles.heading2,
               textAlign: TextAlign.center,
             ),
           ),
+          SizedBox(height: 20.h),
           hasButton
               ? Container(
-                  padding: EdgeInsets.all(12.w),
+                  margin: EdgeInsets.all(8.w),
+                  padding: EdgeInsets.all(4.w),
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                       color: AppColors.waterBlue,
