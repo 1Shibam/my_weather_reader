@@ -14,7 +14,6 @@ import 'package:weather_reader/providers/preference_providers/show_serach_sugges
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
-
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
 class SearchScreen extends ConsumerStatefulWidget {
