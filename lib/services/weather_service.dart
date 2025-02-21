@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:weather_reader/api_key.dart';
 import 'package:weather_reader/models/forecast_model/forecast_data_model.dart';
-import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+import 'package:weather_reader/models/weather_model.dart';
+
 
 
 class WeatherService {
@@ -12,7 +13,7 @@ class WeatherService {
 
   final String api = weatherApiKey;
 
-  Future<WeatherDataModel> searchByLocationName(String location) async {
+  Future<WeatherModel> searchByLocationName(String location) async {
     try {
       final response = await dio.get('/weather', queryParameters: {
         'q': location,
@@ -22,7 +23,7 @@ class WeatherService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
-        final result = WeatherDataModel.fromJson(data);
+        final result = WeatherModel.fromJson(data);
         // print(result);
         return result;
       } else {
@@ -33,7 +34,7 @@ class WeatherService {
     }
   }
 
-  Future<WeatherDataModel> searchByCoordinates(
+  Future<WeatherModel> searchByCoordinates(
       double latitude, double longitude) async {
     try {
       final response = await dio.get('/weather', queryParameters: {
@@ -46,7 +47,7 @@ class WeatherService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
-        final result = WeatherDataModel.fromJson(data);
+        final result = WeatherModel.fromJson(data);
         // print(result);
         return result;
       } else {
