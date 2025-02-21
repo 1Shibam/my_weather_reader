@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weather_reader/Widgets/show_warning_dialog.dart';
+import 'package:weather_reader/Widgets/dialog_widget/show_warning_dialog.dart';
 import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 

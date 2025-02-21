@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weather_reader/Widgets/app_bar_widget.dart';
-import 'package:weather_reader/Widgets/drawer_widget.dart';
-import 'package:weather_reader/Widgets/forecast_details_widget.dart';
-import 'package:weather_reader/Widgets/search_location_widget.dart';
-import 'package:weather_reader/Widgets/weather_details.dart';
+import 'package:weather_reader/Widgets/main_widgets/app_bar_widget.dart';
+import 'package:weather_reader/Widgets/main_widgets/drawer_widget.dart';
+import 'package:weather_reader/Widgets/data_widgets/forecast_details_widget.dart';
+import 'package:weather_reader/Widgets/main_widgets/search_location_widget.dart';
+import 'package:weather_reader/Widgets/data_widgets/weather_details.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/screens/search_screen.dart';
 

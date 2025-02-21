@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weather_reader/Widgets/error_state_widget.dart';
-import 'package:weather_reader/Widgets/get_weather_animation.dart';
-import 'package:weather_reader/Widgets/location_temperature.dart';
-import 'package:weather_reader/Widgets/other_weather_details_expansion_tile.dart';
-import 'package:weather_reader/Widgets/weather_condition.dart';
+import 'package:weather_reader/Widgets/reusable_widgets/error_state_widget.dart';
+import 'package:weather_reader/Widgets/reusable_widgets/get_weather_animation.dart';
+import 'package:weather_reader/Widgets/data_widgets/location_temperature.dart';
+import 'package:weather_reader/Widgets/main_widgets/other_weather_details_expansion_tile.dart';
+import 'package:weather_reader/Widgets/data_widgets/weather_condition.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/providers/preference_providers/weather_animation_preference_provider.dart';
 import 'package:weather_reader/themes/text_styles.dart';
