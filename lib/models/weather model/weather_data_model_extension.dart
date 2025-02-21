@@ -1,3 +1,4 @@
+import 'package:weather_reader/models/weather%20model/current_weather_coords.dart';
 import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
 
 extension WeatherDataModelExtension on WeatherDataModel {
@@ -12,7 +13,8 @@ extension WeatherDataModelExtension on WeatherDataModel {
       'humidity': main?.humidity,
       'windSpeed': wind?.speed,
       'windDeg': wind?.deg,
-      'description': weather?.isNotEmpty == true ? weather![0].description : null,
+      'description':
+          weather?.isNotEmpty == true ? weather![0].description : null,
       'cloudCoverage': clouds?.all,
       'pressure': main?.pressure,
       'sunrise': sys?.sunrise,
@@ -20,5 +22,12 @@ extension WeatherDataModelExtension on WeatherDataModel {
       'currentTime': dt,
       'timezone': timezone,
     };
+  }
+
+  static WeatherDataModel fromDatabaseMap(Map<String, dynamic> map) {
+    return WeatherDataModel(
+      name: map['cityName'],
+      coord: CurrentWeatherCoords()
+    );
   }
 }

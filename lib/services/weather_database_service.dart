@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:weather_reader/database/weather_database.dart';
 import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+import 'package:weather_reader/models/weather%20model/weather_data_model_extension.dart';
 
 class WeatherDatabaseService {
   final Database database;
@@ -10,7 +11,8 @@ class WeatherDatabaseService {
 
   //! add search to database
   Future<int> addSearchToDB(WeatherDataModel weatherData) async {
-    return await database.insert('weatherTable', weatherData.toJson());
+    return await database.insert('weatherTable', weatherData.toDatabaseJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   //! get list of searched location
