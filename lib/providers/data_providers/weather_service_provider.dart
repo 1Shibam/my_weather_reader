@@ -1,7 +1,8 @@
+import 'package:my_weather_reader/models/weather%20model/weather_data_model.dart';
 import 'package:my_weather_reader/providers/data_providers/geo_locator_provider.dart';
 import 'package:my_weather_reader/providers/data_providers/searched_weather_location_list.dart';
 import 'package:my_weather_reader/services/weather_service.dart';
-import 'package:my_weather_reader/models/weather%20model/weather_data.dart';
+
 import 'package:riverpod/riverpod.dart';
 
 class WeatherServiceNotifier
@@ -21,7 +22,7 @@ class WeatherServiceNotifier
     } catch (error, stackTrace) {
       final searchList = ref.read(searchListProvider);
       if (searchList.isNotEmpty) {
-        await searchLocation(searchList.last.cityName);
+        await searchLocation(searchList.last.name!);
       } else {
         state = AsyncValue.error(error, stackTrace);
       }
