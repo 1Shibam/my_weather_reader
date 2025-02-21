@@ -8,6 +8,7 @@ import 'package:my_weather_reader/Widgets/search_location_widget.dart';
 import 'package:my_weather_reader/Widgets/weather_details.dart';
 import 'package:my_weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:my_weather_reader/themes/app_colors.dart';
+import 'package:my_weather_reader/themes/text_styles.dart';
 
 class WeatherHomeScreen extends ConsumerStatefulWidget {
   const WeatherHomeScreen({super.key});
@@ -18,11 +19,36 @@ class WeatherHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
+  int _selectPage = 0;
+  void onItemTapped(int index) {
+    setState(() {
+      _selectPage = index;
+    });
+  }
+
+  final List<Widget> pages = [
+    const CurrentWeatherPage(),
+    const ForecastDetailsWidget()
+  ];
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Current'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Forecast'),
+          ],
+          currentIndex: _selectPage,
+          onTap: (value) {
+            onItemTapped(value);
+          },
+          backgroundColor: const Color.fromARGB(255, 0, 68, 225),
+          elevation: 10,
+          selectedItemColor: Colors.white,
+          selectedLabelStyle: AppTextStyles.regular,
+          unselectedItemColor: Colors.grey,
+          unselectedLabelStyle: AppTextStyles.subtitle,
+        ),
         resizeToAvoidBottomInset: true,
         appBar: AppBarWidget(
           onRefresh: () {
@@ -33,18 +59,26 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
         ),
         drawer: const DrawerWidget(),
         backgroundColor: AppColors.darkBlue,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20.h),
-              const SearchLocationWidget(),
-              SizedBox(height: 20.h),
-              const WeatherDetails(),
-              const ForecastDetailsWidget()
-            ],
-          ),
-        ),
+        body: pages[_selectPage]);
+  }
+}
+
+class CurrentWeatherPage extends StatelessWidget {
+  const CurrentWeatherPage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 8.h),
+          const SearchLocationWidget(),
+          SizedBox(height: 10.h),
+          const WeatherDetails(),
+        ],
       ),
     );
   }
