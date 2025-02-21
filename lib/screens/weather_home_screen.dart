@@ -8,6 +8,7 @@ import 'package:weather_reader/Widgets/main_widgets/search_location_widget.dart'
 import 'package:weather_reader/Widgets/data_widgets/weather_details.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/screens/search_screen.dart';
+import 'package:weather_reader/screens/weather_forecast_screen.dart';
 
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
@@ -30,7 +31,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
 
   final List<Widget> pages = [
     const CurrentWeatherPage(),
-    const ForecastDetailsWidget()
+    WeatherForecastScreen()
   ];
   @override
   Widget build(BuildContext context) {
