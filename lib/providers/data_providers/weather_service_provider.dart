@@ -13,8 +13,11 @@ class WeatherServiceNotifier
       : super(const AsyncValue.loading());
 
   Future<void> initializeWeatherStates() async {
+    state = const AsyncValue.loading();
     try {
-      final position = await ref.read(geoNotifierStateProvider.future);
+      final position = await ref
+          .read(geoNotifierStateProvider.notifier)
+          .fetchCurrentLocation();
       await searchCoordinates(position.latitude, position.longitude);
     } catch (error, stackTrace) {
       final searchList = ref.read(searchListProvider);
