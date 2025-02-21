@@ -2,23 +2,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:weather_reader/database/weather_database.dart';
-import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
-import 'package:weather_reader/models/weather%20model/weather_data_model_extension.dart';
+import 'package:weather_reader/models/weather_model.dart';
 
 class WeatherDatabaseService {
   final Database database;
   WeatherDatabaseService(this.database);
 
   //! add search to database
-  Future<int> addSearchToDB(WeatherDataModel weatherData) async {
-    return await database.insert('weatherTable', weatherData.toDatabaseJson(),
+  Future<int> addSearchToDB(WeatherModel weatherData) async {
+    return await database.insert('weatherTable', weatherData.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   //! get list of searched location
-  Future<List<WeatherDataModel>> getSearchedList() async {
+  Future<List<WeatherModel>> getSearchedList() async {
     final maps = await database.query('weatherTable');
-    return maps.map((data) => WeatherDataModel.fromJson(data)).toList();
+    return maps.map((data) => WeatherModel.fromJson(data)).toList();
   }
 
   //! delete from search list
