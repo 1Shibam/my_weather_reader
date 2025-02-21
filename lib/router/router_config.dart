@@ -70,21 +70,7 @@ GoRouter router = GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: '/search',
-      pageBuilder: (context, state) {
-        return CustomTransitionPage(
-          key: state.pageKey,
-          child: const SearchScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-        );
-      },
-    ),
+
     GoRoute(
       path: '/onBoarding',
       pageBuilder: (context, state) {

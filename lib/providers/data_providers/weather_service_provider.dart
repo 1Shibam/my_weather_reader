@@ -1,6 +1,4 @@
-
-
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
 import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
@@ -12,9 +10,7 @@ class WeatherServiceNotifier
   final Ref ref;
 
   WeatherServiceNotifier(this.service, this.ref)
-      : super(const AsyncValue.loading()) {
-    initializeWeatherStates();
-  } //initial state
+      : super(const AsyncValue.loading());
 
   Future<void> initializeWeatherStates() async {
     try {
@@ -54,6 +50,7 @@ class WeatherServiceNotifier
 
 final weatherServiceProvider =
     Provider<WeatherService>((ref) => WeatherService());
+
 final weatherServiceNotifierProvider =
     StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherDataModel>>(
         (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider), ref));

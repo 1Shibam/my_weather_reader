@@ -6,7 +6,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_reader/Widgets/build_on_boarding_pages.dart';
 import 'package:weather_reader/screens/splash_screen.dart';
 import 'package:weather_reader/themes/app_colors.dart';
-import 'package:weather_reader/themes/text_styles.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -26,19 +25,6 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 40.h),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: TextButton(
-                    onPressed: () {
-                      //setting prefernce of on boarding page to true it wont show up again
-                      setOnBoardingPreference(true);
-                      context.go('/');
-                    },
-                    child: Text(
-                      'S K I P',
-                      style: AppTextStyles.heading2,
-                    )),
-              ),
               PageView(
                 controller: _controller,
                 children: [

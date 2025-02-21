@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/themes/theme.dart';
 
 import 'router/router_config.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure async services initialize
+  final container = ProviderContainer();
+
+  // Wait for the location and weather data to load before app starts
+  await container
+      .read(weatherServiceNotifierProvider.notifier)
+      .initializeWeatherStates();
+
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,11 +32,10 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp.router(
-          routerConfig: router,
-          debugShowCheckedModeBanner: false,
-          title: 'Weather App',
-          theme: appThemeData
-        );
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+            title: 'Weather App',
+            theme: appThemeData);
       },
     );
   }
