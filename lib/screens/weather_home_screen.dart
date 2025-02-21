@@ -30,7 +30,9 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
 
   final List<Widget> pages = [
     const CurrentWeatherPage(),
-    WeatherForecastScreen()
+    const WeatherForecastScreen(
+      forecastData: [],
+    )
   ];
   @override
   Widget build(BuildContext context) {
