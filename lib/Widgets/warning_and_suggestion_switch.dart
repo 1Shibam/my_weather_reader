@@ -29,7 +29,9 @@ class WarningAndSuggestionSwitch extends StatelessWidget {
                 style: AppTextStyles.heading2.copyWith(
                   color: Colors.red,
                 ),
+                
               ),
+              
             ],
           ),
         ),
