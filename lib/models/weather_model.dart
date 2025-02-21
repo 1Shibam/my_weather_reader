@@ -31,6 +31,25 @@ class WeatherModel {
       required this.sunset,
       required this.currentTime,
       required this.timezone});
+
+  factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    return WeatherModel(
+        cityName: json['name'],
+        latitude: json['coord']['lat'].toDouble(),
+        longitude: json['coord']['lon'].toDouble(),
+        temperature: json['main']['temp'].toDouble(),
+        minTemperature: json['main']['temp_min'].toDouble(),
+        maxTemperature: json['main']['temp_max'].toDouble(),
+        windSpeed: json['wind']['speed'].toDouble(),
+        windDeg: json['wind']['deg'],
+        description: json['weather'][0]['description'],
+        cloudCoverage: json['clouds']['all'],
+        pressure: json['main']['pressure'],
+        sunrise: json['sys']['sunrise'],
+        sunset: json['sys']['sunset'],
+        currentTime: json['dt'],
+        timezone: json['timezone']);
+  }
 }
 
 /* db.execute('''
