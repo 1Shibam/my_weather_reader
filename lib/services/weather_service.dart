@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:my_weather_reader/api_key.dart';
 import 'package:my_weather_reader/models/forecast_model/forecast_data_model.dart';
-import 'package:my_weather_reader/models/weather%20model/weather_data.dart';
+import 'package:my_weather_reader/models/weather%20model/weather_data_model.dart';
 
 class WeatherService {
   final Dio dio = Dio(BaseOptions(
