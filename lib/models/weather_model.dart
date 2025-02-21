@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
 class WeatherModel {
   final String cityName;
   final double latitude;
@@ -15,7 +18,7 @@ class WeatherModel {
   final int currentTime;
   final int timezone;
 
-  WeatherModel(
+  const WeatherModel(
       {required this.cityName,
       required this.latitude,
       required this.longitude,
@@ -49,6 +52,9 @@ class WeatherModel {
         sunset: json['sys']['sunset'],
         currentTime: json['dt'],
         timezone: json['timezone']);
+  }
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
