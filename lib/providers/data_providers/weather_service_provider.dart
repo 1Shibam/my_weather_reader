@@ -1,11 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+
+import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
 import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
 import 'package:weather_reader/services/weather_service.dart';
 
 class WeatherServiceNotifier
-    extends StateNotifier<AsyncValue<WeatherDataModel>> {
+    extends StateNotifier<AsyncValue<WeatherModel>> {
   final WeatherService service;
   final Ref ref;
 
@@ -22,7 +23,7 @@ class WeatherServiceNotifier
     } catch (error, stackTrace) {
       final searchList = ref.read(searchListProvider);
       if (searchList.isNotEmpty) {
-        await searchLocation(searchList.last.name!);
+        await searchLocation(searchList.last.cityName);
       } else {
         state = AsyncValue.error(error, stackTrace);
       }
@@ -55,5 +56,5 @@ final weatherServiceProvider =
     Provider<WeatherService>((ref) => WeatherService());
 
 final weatherServiceNotifierProvider =
-    StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherDataModel>>(
+    StateNotifierProvider<WeatherServiceNotifier, AsyncValue<WeatherModel>>(
         (ref) => WeatherServiceNotifier(ref.read(weatherServiceProvider), ref));
