@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+
+import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/services/weather_database_service.dart';
 
 
 class SearchedWeatherLocationList
-    extends StateNotifier<List<WeatherDataModel>> {
+    extends StateNotifier<List<WeatherModel>> {
   final Ref ref;
   SearchedWeatherLocationList(this.ref) : super([]) {
     loadSearchedList();
@@ -18,7 +19,7 @@ class SearchedWeatherLocationList
     state = searches;
   }
 
-  Future<void> addSearch(WeatherDataModel weatherData) async {
+  Future<void> addSearch(WeatherModel weatherData) async {
     await ref.read(weatherDatabaseServiceProvider).addSearchToDB(weatherData);
     loadSearchedList();
   }
@@ -29,5 +30,5 @@ class SearchedWeatherLocationList
 }
 
 final searchListProvider =
-    StateNotifierProvider<SearchedWeatherLocationList, List<WeatherDataModel>>(
+    StateNotifierProvider<SearchedWeatherLocationList, List<WeatherModel>>(
         (ref) => SearchedWeatherLocationList(ref));
