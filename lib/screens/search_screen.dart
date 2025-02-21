@@ -8,9 +8,11 @@ import 'package:weather_reader/Widgets/reusable_widgets/popular_locations_text.d
 import 'package:weather_reader/Widgets/reusable_widgets/shimmer_loading.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/suggested_location_text.dart';
 import 'package:weather_reader/Widgets/dialog_widget/warning_and_suggestion_switch.dart';
+import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
 import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
+import 'package:weather_reader/services/weather_database_service.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
@@ -106,6 +108,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                             .searchLocation(
                                                 searchController.text.trim());
                                         context.pop();
+                                        ref
+                                            .read(
+                                                weatherDatabaseServiceProvider)
+                                            .addSearchToDB(WeatherDataModel());
                                       },
                                       icon: Icon(
                                         Icons.search_rounded,
