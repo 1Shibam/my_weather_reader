@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
 
-import 'package:my_weather_reader/themes/text_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

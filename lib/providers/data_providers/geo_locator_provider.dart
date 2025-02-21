@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
-import 'package:my_weather_reader/services/geo_locator_service.dart';
+
 import 'package:riverpod/riverpod.dart';
+import 'package:weather_reader/services/geo_locator_service.dart';
 
 //geolocator service provider
 final geoLocationProvider =

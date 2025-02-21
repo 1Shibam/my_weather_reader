@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/Widgets/build_on_boarding_pages.dart';
-import 'package:my_weather_reader/screens/splash_screen.dart';
 
-import 'package:my_weather_reader/themes/app_colors.dart';
-
-import 'package:my_weather_reader/themes/text_styles.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:weather_reader/Widgets/build_on_boarding_pages.dart';
+import 'package:weather_reader/screens/splash_screen.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

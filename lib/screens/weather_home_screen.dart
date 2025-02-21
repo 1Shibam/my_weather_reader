@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_weather_reader/Widgets/app_bar_widget.dart';
-import 'package:my_weather_reader/Widgets/drawer_widget.dart';
-import 'package:my_weather_reader/Widgets/forecast_details_widget.dart';
-import 'package:my_weather_reader/Widgets/search_location_widget.dart';
-import 'package:my_weather_reader/Widgets/weather_details.dart';
-import 'package:my_weather_reader/providers/data_providers/weather_service_provider.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:weather_reader/Widgets/app_bar_widget.dart';
+import 'package:weather_reader/Widgets/drawer_widget.dart';
+import 'package:weather_reader/Widgets/forecast_details_widget.dart';
+import 'package:weather_reader/Widgets/search_location_widget.dart';
+import 'package:weather_reader/Widgets/weather_details.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
+
 
 class WeatherHomeScreen extends ConsumerStatefulWidget {
   const WeatherHomeScreen({super.key});

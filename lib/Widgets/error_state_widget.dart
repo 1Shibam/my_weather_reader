@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_reader/themes/fonts.dart';
 
-import 'package:my_weather_reader/themes/fonts.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   const ErrorStateWidget({super.key});

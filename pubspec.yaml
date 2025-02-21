@@ -1,4 +1,4 @@
-name: my_weather_reader
+name: weather_reader
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -129,7 +129,7 @@ flutter_native_splash:
   # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
   # size of the app. Only one parameter can be used, color and background_image cannot both be set.
   color: "#0034AD"
-  #background_image: "assets/background.png"
+  background_image: "assets/images/ic_launcher_monochrome.png"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
   # the leading # character.

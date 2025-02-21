@@ -1,5 +1,7 @@
-import 'package:my_weather_reader/models/forecast_model/forecast_city_model.dart';
-import 'package:my_weather_reader/models/forecast_model/forecast_list.dart';
+
+
+import 'package:weather_reader/models/forecast_model/forecast_city_model.dart';
+import 'package:weather_reader/models/forecast_model/forecast_list.dart';
 
 class ForecastDataModel {
   ForecastCityModel? city;

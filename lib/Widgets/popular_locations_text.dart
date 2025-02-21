@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
-import 'package:my_weather_reader/themes/text_styles.dart';
 
 class PopularLocationsText extends StatelessWidget {
   const PopularLocationsText({super.key});

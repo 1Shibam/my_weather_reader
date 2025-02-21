@@ -1,9 +1,10 @@
-import 'package:my_weather_reader/models/weather%20model/weather_data_model.dart';
-import 'package:my_weather_reader/providers/data_providers/geo_locator_provider.dart';
-import 'package:my_weather_reader/providers/data_providers/searched_weather_location_list.dart';
-import 'package:my_weather_reader/services/weather_service.dart';
+
 
 import 'package:riverpod/riverpod.dart';
+import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
+import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
+import 'package:weather_reader/services/weather_service.dart';
 
 class WeatherServiceNotifier
     extends StateNotifier<AsyncValue<WeatherDataModel>> {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_reader/themes/theme.dart';
 
-import 'package:my_weather_reader/router/router_config.dart';
-import 'package:my_weather_reader/themes/theme.dart';
+import 'router/router_config.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

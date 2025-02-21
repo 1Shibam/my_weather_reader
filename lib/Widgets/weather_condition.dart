@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_weather_reader/Widgets/get_weather_icon.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:weather_reader/Widgets/get_weather_icon.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
+
 
 class WeatherCondition extends StatelessWidget {
   final String weatherCondition;

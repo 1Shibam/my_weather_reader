@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:weather_reader/themes/text_styles.dart';
+
 
 
 //? warning dialog used in warning and suggestion switch widget

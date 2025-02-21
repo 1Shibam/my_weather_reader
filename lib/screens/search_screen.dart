@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/Widgets/custom_text_filed.dart';
-import 'package:my_weather_reader/Widgets/popular_locations_text.dart';
-import 'package:my_weather_reader/Widgets/shimmer_loading.dart';
-import 'package:my_weather_reader/Widgets/suggested_location_text.dart';
-import 'package:my_weather_reader/Widgets/warning_and_suggestion_switch.dart';
-import 'package:my_weather_reader/providers/data_providers/search_suggestions_provider.dart';
-import 'package:my_weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
-import 'package:my_weather_reader/providers/data_providers/weather_service_provider.dart';
-import 'package:my_weather_reader/themes/app_colors.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
+import 'package:weather_reader/Widgets/custom_text_filed.dart';
+import 'package:weather_reader/Widgets/popular_locations_text.dart';
+import 'package:weather_reader/Widgets/shimmer_loading.dart';
+import 'package:weather_reader/Widgets/suggested_location_text.dart';
+import 'package:weather_reader/Widgets/warning_and_suggestion_switch.dart';
+import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
+import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
+
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 

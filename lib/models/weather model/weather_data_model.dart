@@ -1,8 +1,10 @@
-import 'package:my_weather_reader/models/weather%20model/current_clouds.dart';
-import 'package:my_weather_reader/models/weather%20model/current_weather_coords.dart';
-import 'package:my_weather_reader/models/weather%20model/main_details.dart';
-import 'package:my_weather_reader/models/weather%20model/current_weather.dart';
-import 'package:my_weather_reader/models/weather%20model/current_wind.dart';
+
+
+import 'current_clouds.dart';
+import 'current_weather.dart';
+import 'current_weather_coords.dart';
+import 'current_wind.dart';
+import 'main_details.dart';
 
 class WeatherDataModel {
   CurrentWeatherCoords? coord;

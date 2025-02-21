@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_reader/Widgets/error_state_widget.dart';
+import 'package:weather_reader/Widgets/get_weather_animation.dart';
+import 'package:weather_reader/Widgets/location_temperature.dart';
+import 'package:weather_reader/Widgets/other_weather_details_expansion_tile.dart';
+import 'package:weather_reader/Widgets/weather_condition.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
+import 'package:weather_reader/providers/preference_providers/weather_animation_preference_provider.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
-import 'package:my_weather_reader/Widgets/city_name.dart';
-import 'package:my_weather_reader/Widgets/error_state_widget.dart';
+import 'city_name.dart';
 
-import 'package:my_weather_reader/Widgets/get_weather_animation.dart';
-import 'package:my_weather_reader/Widgets/location_temperature.dart';
-import 'package:my_weather_reader/Widgets/other_weather_details_expansion_tile.dart';
-import 'package:my_weather_reader/Widgets/weather_condition.dart';
-
-import 'package:my_weather_reader/providers/preference_providers/weather_animation_preference_provider.dart';
-import 'package:my_weather_reader/providers/data_providers/weather_service_provider.dart';
-import 'package:my_weather_reader/themes/text_styles.dart';
 
 class WeatherDetails extends ConsumerWidget {
   const WeatherDetails({super.key});

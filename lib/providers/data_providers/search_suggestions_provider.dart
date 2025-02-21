@@ -1,6 +1,8 @@
-import 'package:my_weather_reader/services/search_service.dart';
-import 'package:my_weather_reader/models/search%20suggestion%20model/search_suggestions.dart';
+
 import 'package:riverpod/riverpod.dart';
+import 'package:weather_reader/services/search_service.dart';
+
+import '../../models/search suggestion model/search_suggestions.dart';
 
 class SearchSuggestionsNotifier
     extends StateNotifier<AsyncValue<List<SearchSuggestions>>> {

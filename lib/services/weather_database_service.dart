@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_weather_reader/database/weather_database.dart';
-import 'package:my_weather_reader/models/weather%20model/weather_data_model.dart';
+
 import 'package:sqflite/sqflite.dart';
+import 'package:weather_reader/database/weather_database.dart';
+import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
 
 class WeatherDatabaseService {
   final Database database;

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_weather_reader/models/weather%20model/weather_data_model.dart';
-import 'package:my_weather_reader/services/weather_database_service.dart';
+import 'package:weather_reader/models/weather%20model/weather_data_model.dart';
+import 'package:weather_reader/services/weather_database_service.dart';
+
 
 class SearchedWeatherLocationList
     extends StateNotifier<List<WeatherDataModel>> {

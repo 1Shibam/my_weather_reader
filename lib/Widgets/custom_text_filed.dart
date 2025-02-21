@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
-import 'package:my_weather_reader/themes/text_styles.dart';
 
 class CustomTextFiled extends StatelessWidget {
   final bool canRequestFocus;

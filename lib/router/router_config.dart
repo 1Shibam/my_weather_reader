@@ -1,10 +1,11 @@
 import 'package:go_router/go_router.dart';
-import 'package:my_weather_reader/screens/about_page.dart';
-import 'package:my_weather_reader/screens/on_boarding_screen.dart';
-import 'package:my_weather_reader/screens/search_screen.dart';
-import 'package:my_weather_reader/screens/splash_screen.dart';
-import 'package:my_weather_reader/screens/weather_home_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:weather_reader/screens/about_page.dart';
+import 'package:weather_reader/screens/on_boarding_screen.dart';
+import 'package:weather_reader/screens/search_screen.dart';
+import 'package:weather_reader/screens/splash_screen.dart';
+import 'package:weather_reader/screens/weather_home_screen.dart';
 
 GoRouter router = GoRouter(
   initialLocation: '/',
