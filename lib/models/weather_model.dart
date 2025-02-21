@@ -8,6 +8,7 @@ class WeatherModel {
   final double temperature;
   final double minTemperature;
   final double maxTemperature;
+  final int humidity;
   final double windSpeed;
   final int windDeg;
   final String description;
@@ -25,6 +26,7 @@ class WeatherModel {
       required this.temperature,
       required this.minTemperature,
       required this.maxTemperature,
+      required this.humidity,
       required this.windSpeed,
       required this.windDeg,
       required this.description,
@@ -43,6 +45,7 @@ class WeatherModel {
         temperature: json['main']['temp'].toDouble(),
         minTemperature: json['main']['temp_min'].toDouble(),
         maxTemperature: json['main']['temp_max'].toDouble(),
+        humidity: json['main']['humidity'],
         windSpeed: json['wind']['speed'].toDouble(),
         windDeg: json['wind']['deg'],
         description: json['weather'][0]['description'],
@@ -54,7 +57,24 @@ class WeatherModel {
         timezone: json['timezone']);
   }
   Map<String, dynamic> toJson() {
-    return {};
+    return {
+      'cityName': cityName,
+      'lat': latitude,
+      'lon': longitude,
+      'temperature': temperature,
+      'tempMin': minTemperature,
+      'tempMax': maxTemperature,
+      'humidity': humidity,
+      'windSpeed': windSpeed,
+      'windDeg': windDeg,
+      'description': description,
+      'cloudCoverage': cloudCoverage,
+      'pressure': pressure,
+      'sunrise': sunrise,
+      'sunset': sunset,
+      'currentTime': currentTime,
+      'timezone': timezone
+    };
   }
 }
 
