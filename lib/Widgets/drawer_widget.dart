@@ -83,7 +83,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                     itemBuilder: (context, index) {
                       final singleData = searchedData[index];
                       return ListTile(
-                        title: Text(singleData.cityName),
+                        title: Text(singleData.name!),
                       );
                     },
                   );
