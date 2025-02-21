@@ -12,23 +12,23 @@ final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
     onCreate: (db, version) {
       db.execute('''
             CREATE TABLE weatherTable(
-            weatherID INT PRIMARY KEY AUTOINCREMENT,
+            weatherID INTEGER PRIMARY KEY AUTOINCREMENT,
             cityName TEXT NOT NULL,
             REAL lat,
             REAL lon,
             temperature REAL,
             tempMin REAL,
             tempMax REAL,
-            humidity INT,
+            humidity INTEGER,
             windSpeed REAL,
-            windDeg INT,
+            windDeg INTEGER,
             description TEXT,
-            cloudCoverage INT,
-            pressure INT,
-            sunrise INT,
-            sunset INT,
-            currentTime INT,
-            timezone INT,
+            cloudCoverage INTEGER,
+            pressure INTEGER,
+            sunrise INTEGER,
+            sunset INTEGER,
+            currentTime INTEGER,
+            timezone INTEGER
               )
 ''');
     },
