@@ -23,10 +23,10 @@ class WeatherDetails extends ConsumerWidget {
     return weatherState.when(
         data: (data) {
           return DetailsWidget(
-              locationName: data.cityName,
+              locationName: data.name!,
               isDayTime: false,
-              weatherCondition: data.description,
-              tempInCelcious: data.temperature);
+              weatherCondition: data.weather![0].description!,
+              tempInCelcious: data.main!.temp!);
         },
         error: (error, stackTrace) => const Center(
               child: ErrorStateWidget(),
