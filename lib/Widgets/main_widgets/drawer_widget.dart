@@ -31,7 +31,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
             )),
           ),
           ListTile(
-              onTap: () => context.go('/about'),
+              onTap: () => context.push('/about'),
               title: Text(
                 'About',
                 style: AppTextStyles.heading1.copyWith(color: Colors.black87),
