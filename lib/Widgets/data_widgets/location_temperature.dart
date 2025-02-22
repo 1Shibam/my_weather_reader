@@ -32,10 +32,7 @@ class _LocationTemperatureState extends State<LocationTemperature> {
             style: AppTextStyles.heading2,
           ),
           SizedBox(width: 8.w),
-          const Icon(
-            Icons.thermostat,
-            color: Colors.white,
-          ),
+          
         ],
       ),
       subtitle: Column(
