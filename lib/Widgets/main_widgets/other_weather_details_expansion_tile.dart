@@ -77,7 +77,7 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        '',
+                        '$humidity %',
                         style: AppTextStyles.heading1,
                       ),
                     ],
