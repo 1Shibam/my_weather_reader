@@ -25,4 +25,14 @@ class ForecastModel {
           return ForecastList.fromJson(json);
         }).toList());
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': cityName,
+      'timezone': timezone,
+      'sunrise': sunrise,
+      'sunset': sunset,
+      'list': allForecasts.map((data) => data.toJson()).toList()
+    };
+  }
 }
