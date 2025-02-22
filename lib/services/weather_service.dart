@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:weather_reader/api_key.dart';
+import 'package:weather_reader/models/forecast_model/forecast_model.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 
@@ -56,25 +57,45 @@ class WeatherService {
     }
   }
 
-  // Future<ForecastDataModel> getWeatherForecast(
-  //     double latitude, double longitude) async {
-  //   try {
-  //     final response = await dio.get('/forecast', queryParameters: {
-  //       'lat': latitude,
-  //       'lon': longitude,
-  //       'appid': weatherApiKey,
-  //       'units': 'metric'
-  //     });
-  //     if (response.statusCode == 200) {
-  //       final Map<String, dynamic> forecastData =
-  //           Map<String, dynamic>.from(response.data);
-  //       final resultForecast = ForecastDataModel.fromJson(forecastData);
-  //       return resultForecast;
-  //     } else {
-  //       throw Exception('Failet to get weather Forecast!!');
-  //     }
-  //   } catch (e) {
-  //     throw Exception(e.toString());
-  //   }
-  // }
+  Future<ForecastModel> getWeatherForecastUsingCoordinates(
+      double latitude, double longitude) async {
+    try {
+      final response = await dio.get('/forecast', queryParameters: {
+        'lat': latitude,
+        'lon': longitude,
+        'appid': weatherApiKey,
+        'units': 'metric'
+      });
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> forecastData =
+            Map<String, dynamic>.from(response.data);
+        final resultForecast = ForecastModel.fromJson(forecastData);
+        return resultForecast;
+      } else {
+        throw Exception('Failet to get weather Forecast!!');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<ForecastModel> getWeatherForecastWithName(String location) async {
+    try {
+      final response = await dio.get('/forecast', queryParameters: {
+        'q': location,
+        'appid': weatherApiKey,
+        'units': 'metric'
+      });
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> forecastData =
+            Map<String, dynamic>.from(response.data);
+        final resultForecast = ForecastModel.fromJson(forecastData);
+        return resultForecast;
+      } else {
+        throw Exception('Failet to get weather Forecast!!');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }
