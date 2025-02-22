@@ -8,8 +8,10 @@ import 'package:weather_reader/Widgets/reusable_widgets/popular_locations_text.d
 import 'package:weather_reader/Widgets/reusable_widgets/shimmer_loading.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/suggested_location_text.dart';
 import 'package:weather_reader/Widgets/dialog_widget/warning_and_suggestion_switch.dart';
+import 'package:weather_reader/models/weather_model.dart';
 
 import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
+import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
 
@@ -107,6 +109,37 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                                 .notifier)
                                             .searchLocation(
                                                 searchController.text.trim());
+                                        if (ref
+                                            .watch(
+                                                weatherServiceNotifierProvider)
+                                            .hasValue) {
+                                          final data = ref
+                                              .watch(
+                                                  weatherServiceNotifierProvider)
+                                              .value!;
+                                          ref
+                                              .read(searchListProvider.notifier)
+                                              .addSearch(WeatherModel(
+                                                  cityName: data.cityName,
+                                                  latitude: data.latitude,
+                                                  longitude: data.longitude,
+                                                  temperature: data.temperature,
+                                                  minTemperature:
+                                                      data.minTemperature,
+                                                  maxTemperature:
+                                                      data.maxTemperature,
+                                                  humidity: data.humidity,
+                                                  windSpeed: data.windSpeed,
+                                                  windDeg: data.windDeg,
+                                                  description: data.description,
+                                                  cloudCoverage:
+                                                      data.cloudCoverage,
+                                                  pressure: data.pressure,
+                                                  sunrise: data.sunrise,
+                                                  sunset: data.sunset,
+                                                  currentTime: data.currentTime,
+                                                  timezone: data.timezone));
+                                        }
                                         context.pop();
                                       },
                                       icon: Icon(
