@@ -22,7 +22,7 @@ class WeatherDetails extends ConsumerWidget {
         data: (data) {
           return DetailsWidget(
             locationName: data.cityName,
-            isDayTime: false,
+            isDayTime: isDayTime(data.sunrise, data.sunset, data.currentTime),
             weatherCondition: data.description,
             tempInCelcious: data.temperature,
             humidity: data.humidity,
@@ -99,6 +99,7 @@ class DetailsWidget extends StatelessWidget {
         children: [
           LocationName(
             locationName: locationName,
+            currentTime: currentTime,
           ),
           SizedBox(
             height: 12.h,
@@ -107,7 +108,7 @@ class DetailsWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: WeatherCondition(
-                  isDayTime: false,
+                  isDayTime: isDayTime,
                   weatherCondition: weatherCondition,
                 ),
               ),
@@ -155,4 +156,10 @@ class DetailsWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+//! some required methods don't touch--
+
+bool isDayTime(int sunrise, int sunset, int current) {
+  return current >= sunrise && current < sunset;
 }
