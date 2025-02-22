@@ -12,7 +12,6 @@ import 'package:weather_reader/themes/text_styles.dart';
 
 import 'city_name.dart';
 
-
 class WeatherDetails extends ConsumerWidget {
   const WeatherDetails({super.key});
 
@@ -22,10 +21,22 @@ class WeatherDetails extends ConsumerWidget {
     return weatherState.when(
         data: (data) {
           return DetailsWidget(
-              locationName: data.cityName,
-              isDayTime: false,
-              weatherCondition: data.description,
-              tempInCelcious: data.temperature);
+            locationName: data.cityName,
+            isDayTime: false,
+            weatherCondition: data.description,
+            tempInCelcious: data.temperature,
+            humidity: data.humidity,
+            minTemperature: data.minTemperature,
+            maxTemperature: data.maxTemperature,
+            windSpeed: data.windSpeed,
+            windDeg: data.windDeg,
+            cloudCoverage: data.cloudCoverage,
+            sunrise: data.sunrise,
+            sunset: data.sunset,
+            pressure: data.pressure,
+            timezone: data.timezone,
+            currentTime: data.currentTime,
+          );
         },
         error: (error, stackTrace) => const Center(
               child: ErrorStateWidget(),
@@ -33,8 +44,7 @@ class WeatherDetails extends ConsumerWidget {
         loading: () => Center(
               child: Column(
                 children: [
-                  Image.asset(
-                      'assets/animations/locationLoadingAnimation.gif'),
+                  Image.asset('assets/animations/locationLoadingAnimation.gif'),
                   Text(
                     'L O A D I N G ',
                     style: AppTextStyles.heading1,
@@ -50,11 +60,33 @@ class DetailsWidget extends StatelessWidget {
   final bool isDayTime;
   final String weatherCondition;
   final double tempInCelcious;
+  final int humidity;
+  final double minTemperature;
+  final double maxTemperature;
+  final double windSpeed;
+  final int windDeg;
+  final int cloudCoverage;
+  final int sunrise;
+  final int sunset;
+  final int pressure;
+  final int timezone;
+  final int currentTime;
   const DetailsWidget({
     required this.locationName,
     required this.isDayTime,
     required this.weatherCondition,
     required this.tempInCelcious,
+    required this.humidity,
+    required this.minTemperature,
+    required this.maxTemperature,
+    required this.windSpeed,
+    required this.windDeg,
+    required this.cloudCoverage,
+    required this.sunrise,
+    required this.sunset,
+    required this.pressure,
+    required this.currentTime,
+    required this.timezone,
     super.key,
   });
 
@@ -104,7 +136,18 @@ class DetailsWidget extends StatelessWidget {
                   : const SizedBox.shrink();
             },
           ),
-          const OtherWeatherDetailsExpansionTile(),
+          OtherWeatherDetailsExpansionTile(
+              humidity: humidity,
+              minTemperature: minTemperature,
+              maxTemperature: maxTemperature,
+              windSpeed: windSpeed,
+              windDeg: windDeg,
+              cloudCoverage: cloudCoverage,
+              sunrise: sunrise,
+              sunset: sunset,
+              pressure: pressure,
+              currentTime: currentTime,
+              timezone: timezone),
           SizedBox(
             height: 32.h,
           ),
