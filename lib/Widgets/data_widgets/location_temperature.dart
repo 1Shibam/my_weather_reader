@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
-
 class LocationTemperature extends StatefulWidget {
   final double tempInCelcious;
   const LocationTemperature({super.key, required this.tempInCelcious});
