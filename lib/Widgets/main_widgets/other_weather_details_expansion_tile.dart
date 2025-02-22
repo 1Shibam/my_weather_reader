@@ -50,3 +50,24 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
     );
   }
 }
+
+/*
+CREATE TABLE weatherTable(
+            weatherID INTEGER PRIMARY KEY AUTOINCREMENT,
+           ! cityName TEXT NOT NULL,
+            REAL lat,
+            REAL lon,
+           ! temperature REAL,
+            tempMin REAL,
+            tempMax REAL,
+            humidity INTEGER,
+            windSpeed REAL,
+            windDeg INTEGER,
+           ! description TEXT,
+            cloudCoverage INTEGER,
+            pressure INTEGER,
+            sunrise INTEGER,
+            sunset INTEGER,
+            currentTime INTEGER,
+            timezone INTEGE
+ */
