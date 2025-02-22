@@ -14,7 +14,7 @@ class AboutPage extends StatelessWidget {
       backgroundColor: AppColors.darkBlue,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () => context.go('/'),
+            onPressed: () => context.pop(),
             icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
