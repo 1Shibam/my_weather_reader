@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
-
 class OtherWeatherDetailsExpansionTile extends StatelessWidget {
-  const OtherWeatherDetailsExpansionTile({super.key});
+  final int humidity;
+  final double minTemperature;
+  final double maxTemperature;
+  final double windSpeed;
+  final int windDeg;
+  final int cloudCoverage;
+  final int sunrise;
+  final int sunset;
+  final int pressure;
+  final int timezone;
+  final int currentTime;
+
+  const OtherWeatherDetailsExpansionTile(
+      {super.key,
+      required this.humidity,
+      required this.minTemperature,
+      required this.maxTemperature,
+      required this.windSpeed,
+      required this.windDeg,
+      required this.cloudCoverage,
+      required this.sunrise,
+      required this.sunset,
+      required this.pressure,
+      required this.currentTime,
+      required this.timezone});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +57,27 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.r)),
                   title: Row(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(Icons.check),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/new/humidity-svgrepo-com.svg',
+                            width: 32.sp,
+                            height: 32.sp,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            'Humidity',
+                            style: AppTextStyles.heading1,
+                          ),
+                        ],
+                      ),
                       Text(
-                        'bruh - bruh',
+                        '',
                         style: AppTextStyles.heading1,
                       ),
                     ],
