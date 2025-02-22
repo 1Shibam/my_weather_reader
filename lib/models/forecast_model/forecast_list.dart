@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+@immutable
 class ForecastList {
   final double temperature;
   final double minTemperature;
@@ -10,7 +13,7 @@ class ForecastList {
   final int pressure;
   final String forecastTime;
 
-  ForecastList(
+  const ForecastList(
       {required this.temperature,
       required this.minTemperature,
       required this.maxTemperature,
