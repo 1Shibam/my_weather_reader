@@ -38,4 +38,18 @@ class ForecastList {
         pressure: json['main']['pressure'],
         forecastTime: json['dt_txt']);
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'temp': temperature,
+      'temp_min': minTemperature,
+      'temp_max': maxTemperature,
+      'humidity': humidity,
+      'speed': windSpeed,
+      'deg': windDeg,
+      'description': description,
+      'clouds': cloudCoverage,
+      'pressure': pressure,
+      'forecastTime': forecastTime
+    };
+  }
 }
