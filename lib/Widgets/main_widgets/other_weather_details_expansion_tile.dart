@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/other_details_tile.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
@@ -33,6 +34,8 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String sunriseTime = formatTime(sunrise);
+    String sunsetTime = formatTime(sunset);
     return ClipRRect(
       borderRadius: BorderRadius.circular(20.r),
       child: ExpansionTile(
@@ -54,12 +57,12 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
             iconPath: 'assets/new/humidity-svgrepo-com.svg',
           ),
           OtherDetailsTile(
-            value: "$sunrise %",
+            value: sunriseTime,
             title: 'Sunrise',
             iconPath: 'assets/new/sunrise.svg',
           ),
           OtherDetailsTile(
-            value: "$sunset %",
+            value: sunsetTime,
             title: 'Sunset',
             iconPath: 'assets/new/sunset.svg',
           ),
@@ -113,25 +116,9 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
   }
 }
 
+//! converting unix time stamp to readable time stamp
 
-
-/*
-CREATE TABLE weatherTable(
-            weatherID INTEGER PRIMARY KEY AUTOINCREMENT,
-           ! cityName TEXT NOT NULL,
-            REAL lat,
-            REAL lon,
-           ! temperature REAL,
-           ! tempMin REAL,
-           ! tempMax REAL,
-           ! humidity INTEGER,
-           ! windSpeed REAL,
-           ! windDeg INTEGER,
-           ! description TEXT,
-            !cloudCoverage INTEGER,
-            pressure INTEGER,
-            sunrise INTEGER,
-            sunset INTEGER,
-            currentTime INTEGER,
-            timezone INTEGE
- */
+String formatTime(int unixTimestamp) {
+  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(unixTimestamp * 1000);
+  return DateFormat('h:mm a').format(dateTime); // Converts to AM/PM format
+}
