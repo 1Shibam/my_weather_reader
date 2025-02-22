@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_reader/Widgets/reusable_widgets/other_details_tile.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
@@ -48,49 +48,72 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
         initiallyExpanded: true,
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.h),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.r)),
-                  title: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/new/humidity-svgrepo-com.svg',
-                            width: 32.sp,
-                            height: 32.sp,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            'Humidity',
-                            style: AppTextStyles.heading1,
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '$humidity %',
-                        style: AppTextStyles.heading1,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          )
+          OtherDetailsTile(
+            value: "$humidity %",
+            title: 'Humidity',
+            iconPath: 'assets/new/humidity-svgrepo-com.svg',
+          ),
+          OtherDetailsTile(
+            value: "$sunrise %",
+            title: 'Sunrise',
+            iconPath: 'assets/new/sunrise.svg',
+          ),
+          OtherDetailsTile(
+            value: "$sunset %",
+            title: 'Sunset',
+            iconPath: 'assets/new/sunset.svg',
+          ),
+          OtherDetailsTile(
+            value: "$pressure hPa",
+            title: 'Pressure',
+            iconPath: 'assets/new/pressure-svgrepo-com.svg',
+          ),
+          OtherDetailsTile(
+            value: "$minTemperature °C",
+            title: 'Min Temp',
+            iconPath: 'assets/new/min temp.svg',
+            iconColor: const Color.fromARGB(255, 174, 55, 55),
+          ),
+          OtherDetailsTile(
+            value: "$maxTemperature °C",
+            title: 'Max Temp',
+            iconPath: 'assets/new/max temp.svg',
+          ),
+          OtherDetailsTile(
+            value: "$cloudCoverage %",
+            title: 'Clouds',
+            iconPath: 'assets/new/cloud cover.svg',
+          ),
+          OtherDetailsTile(
+            value: "$windSpeed m/s",
+            title: 'Wind Speed',
+            iconPath: 'assets/new/wind-svgrepo-com.svg',
+          ),
+          OtherDetailsTile(
+            value: switch (windDeg) {
+              0 || 360 => '$windDeg° (N)', // North
+              90 => '$windDeg° (E)', // East
+              180 => '$windDeg° (S)', // South
+              270 => '$windDeg° (W)', // West
+
+              > 0 && < 90 => '$windDeg° (NE)', // Northeast
+              > 90 && < 180 => '$windDeg° (SE)', // Southeast
+              > 180 && < 270 => '$windDeg° (SW)', // Southwest
+              > 270 && < 360 => '$windDeg° (NW)', // Northwest
+
+              _ => '$windDeg° (Unknown)', // Fallback case
+            },
+            title: 'Wind Dir.',
+            iconColor: const Color.fromARGB(255, 0, 69, 125),
+            iconPath: 'assets/new/wind direction.svg',
+          ),
         ],
       ),
     );
   }
 }
+
+
 
 /*
 CREATE TABLE weatherTable(
@@ -99,13 +122,13 @@ CREATE TABLE weatherTable(
             REAL lat,
             REAL lon,
            ! temperature REAL,
-            tempMin REAL,
-            tempMax REAL,
-            humidity INTEGER,
-            windSpeed REAL,
-            windDeg INTEGER,
+           ! tempMin REAL,
+           ! tempMax REAL,
+           ! humidity INTEGER,
+           ! windSpeed REAL,
+           ! windDeg INTEGER,
            ! description TEXT,
-            cloudCoverage INTEGER,
+            !cloudCoverage INTEGER,
             pressure INTEGER,
             sunrise INTEGER,
             sunset INTEGER,
