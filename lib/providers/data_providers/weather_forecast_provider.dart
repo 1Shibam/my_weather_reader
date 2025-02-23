@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_reader/models/forecast_model/forecast_model.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/services/weather_service.dart';
 
 class WeatherForecastNotifier extends StateNotifier<AsyncValue<ForecastModel>> {
@@ -29,3 +30,8 @@ class WeatherForecastNotifier extends StateNotifier<AsyncValue<ForecastModel>> {
     }
   }
 }
+
+final weatherForecastProvider =
+    StateNotifierProvider<WeatherForecastNotifier, AsyncValue<ForecastModel>>(
+        (ref) =>
+            WeatherForecastNotifier(ref.read(weatherServiceProvider), ref));
