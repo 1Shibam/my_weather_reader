@@ -11,7 +11,7 @@ class ForecastList {
   final String description;
   final int cloudCoverage;
   final int pressure;
-  final String forecastTime;
+  final String forecastDateTime;
 
   const ForecastList(
       {required this.temperature,
@@ -23,7 +23,7 @@ class ForecastList {
       required this.description,
       required this.cloudCoverage,
       required this.pressure,
-      required this.forecastTime});
+      required this.forecastDateTime});
 
   factory ForecastList.fromJson(Map<String, dynamic> json) {
     return ForecastList(
@@ -36,7 +36,7 @@ class ForecastList {
         description: json['weather'][0]['description'],
         cloudCoverage: json['clouds']['all'],
         pressure: json['main']['pressure'],
-        forecastTime: json['dt_txt']);
+        forecastDateTime: json['dt_txt']);
   }
   Map<String, dynamic> toJson() {
     return {
@@ -49,7 +49,7 @@ class ForecastList {
       'description': description,
       'clouds': cloudCoverage,
       'pressure': pressure,
-      'forecastTime': forecastTime
+      'forecastTime': forecastDateTime
     };
   }
 }
