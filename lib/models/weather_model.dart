@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 @immutable
 class WeatherModel {
   final String cityName;
+  final String country;
   final double latitude;
   final double longitude;
   final double temperature;
@@ -21,6 +22,7 @@ class WeatherModel {
 
   const WeatherModel(
       {required this.cityName,
+      required this.country,
       required this.latitude,
       required this.longitude,
       required this.temperature,
@@ -40,6 +42,7 @@ class WeatherModel {
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
         cityName: json['name'],
+        country: json['sys']['country'],
         latitude: json['coord']['lat'].toDouble(),
         longitude: json['coord']['lon'].toDouble(),
         temperature: json['main']['temp'].toDouble(),
@@ -61,6 +64,7 @@ class WeatherModel {
       'cityName': cityName,
       'lat': latitude,
       'lon': longitude,
+      'country': country,
       'temperature': temperature,
       'tempMin': minTemperature,
       'tempMax': maxTemperature,
@@ -78,24 +82,3 @@ class WeatherModel {
   }
 }
 
-/* db.execute('''
-            CREATE TABLE weatherTable(
-            weatherID INTEGER PRIMARY KEY AUTOINCREMENT,
-            cityName TEXT NOT NULL,
-            REAL lat,
-            REAL lon,
-            temperature REAL,
-            tempMin REAL,
-            tempMax REAL,
-            humidity INTEGER,
-            windSpeed REAL,
-            windDeg INTEGER,
-            description TEXT,
-            cloudCoverage INTEGER,
-            pressure INTEGER,
-            sunrise INTEGER,
-            sunset INTEGER,
-            currentTime INTEGER,
-            timezone INTEGER
-              )
-'''); */
