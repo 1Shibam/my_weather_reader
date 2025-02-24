@@ -33,6 +33,8 @@ class WeatherForecastScreen extends StatelessWidget {
 
                   return ForecastDetailsWidget(
                     forecastData: sortedData,
+                    country: data.country,
+                    location: data.cityName,
                   );
                 },
                 error: (error, stackTrace) {
