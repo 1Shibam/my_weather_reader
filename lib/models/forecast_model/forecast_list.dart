@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 class ForecastList {
@@ -27,16 +27,16 @@ class ForecastList {
 
   factory ForecastList.fromJson(Map<String, dynamic> json) {
     return ForecastList(
-        temperature: json['main']['temp'].toDouble(),
-        minTemperature: json['main']['temp_min'].toDouble(),
-        maxTemperature: json['main']['temp_max'].toDouble(),
-        humidity: json['main']['humidity'],
-        windSpeed: json['wind']['speed'].toDouble(),
-        windDeg: json['wind']['deg'],
-        description: json['weather'][0]['description'],
-        cloudCoverage: json['clouds']['all'],
-        pressure: json['main']['pressure'],
-        forecastDateTime: json['dt_txt']);
+        temperature: json['main']['temp'].toDouble() ?? 0,
+        minTemperature: json['main']['temp_min'].toDouble() ?? 0,
+        maxTemperature: json['main']['temp_max'].toDouble() ?? 0,
+        humidity: json['main']['humidity'] ?? 0,
+        windSpeed: json['wind']['speed'].toDouble() ?? 0,
+        windDeg: json['wind']['deg'] ?? 0,
+        description: json['weather'][0]['description'] ?? '',
+        cloudCoverage: json['clouds']['all'] ?? 0,
+        pressure: json['main']['pressure'] ?? 0,
+        forecastDateTime: json['dt_txt'] ?? '');
   }
   Map<String, dynamic> toJson() {
     return {
@@ -51,5 +51,10 @@ class ForecastList {
       'pressure': pressure,
       'forecastTime': forecastDateTime
     };
+  }
+
+  @override
+  String toString() {
+    return 'ForecastList(temperature: $temperature, minTemperature: $minTemperature, maxTemperature: $maxTemperature, humidity: $humidity, windSpeed: $windSpeed, windDeg: $windDeg, description: $description, cloudCoverage: $cloudCoverage, pressure: $pressure, forecastDateTime: $forecastDateTime)';
   }
 }
