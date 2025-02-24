@@ -4,27 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'fonts.dart';
 
 class AppTextStyles {
-  // Regular Text Style
   static TextStyle get regular => TextStyle(
         fontFamily: Fonts.fontRegular,
-        fontSize: 16.sp, // Use ScreenUtil for responsiveness
-        color: Colors.white, // Light text for visibility on blue background
+        fontSize: 16.sp,
+        color: Colors.white,
       );
 
-  // Bold Text Style (for stronger emphasis)
   static TextStyle get bold => TextStyle(
         fontFamily: Fonts.fontBold,
-        fontSize: 18.sp, // Use ScreenUtil for responsiveness
+        fontSize: 18.sp,
         fontWeight: FontWeight.bold,
-        color: Colors.white, // Light text for emphasis on blue background
+        color: Colors.white,
       );
 
-  // Light Text Style (lighter than regular)
   static TextStyle get light => TextStyle(
         fontFamily: Fonts.fontRegular,
-        fontSize: 16.sp, // Use ScreenUtil for responsiveness
-        fontWeight: FontWeight.w300, // Lighter weight
-        color: Colors.white70, // Slightly transparent white for subtle effect
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w300,
+        color: Colors.white70,
       );
 
   // Heading 1 (Larger text style for titles or headings)
@@ -50,4 +47,7 @@ class AppTextStyles {
         fontWeight: FontWeight.w200, // Very light weight
         color: Colors.white54, // Even more subtle light color for subtitles
       );
+
+  static TextStyle get myStyle => TextStyle(
+      fontFamily: Fonts.fontMedium, fontSize: 20.sp, color: Colors.white);
 }
