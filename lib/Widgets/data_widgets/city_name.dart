@@ -6,9 +6,10 @@ import 'package:weather_reader/themes/text_styles.dart';
 
 class LocationName extends StatelessWidget {
   final String locationName;
+  final String country;
   final int currentTime;
   const LocationName(
-      {super.key, required this.locationName, required this.currentTime});
+      {super.key, required this.locationName, required this.currentTime, required this.country});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class LocationName extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            locationName,
+            "$locationName, $country",
             style: AppTextStyles.heading1.copyWith(fontSize: 28.sp),
           ),
           SizedBox(
