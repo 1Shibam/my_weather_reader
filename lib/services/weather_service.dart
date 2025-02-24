@@ -59,18 +59,22 @@ class WeatherService {
 
   Future<ForecastModel> getWeatherForecastUsingCoordinates(
       double latitude, double longitude) async {
-    print('This method is getting called!!');
+    print('it is here');
     try {
+      print('it tried too!');
       final response = await dio.get('/forecast', queryParameters: {
         'lat': latitude,
         'lon': longitude,
         'appid': weatherApiKey,
         'units': 'metric'
       });
+
       if (response.statusCode == 200) {
         final Map<String, dynamic> forecastData =
             Map<String, dynamic>.from(response.data);
+
         final resultForecast = ForecastModel.fromJson(forecastData);
+        print(resultForecast);
         return resultForecast;
       } else {
         throw Exception('Failet to get weather Forecast!!');
@@ -98,5 +102,17 @@ class WeatherService {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+}
+
+void main() async {
+  WeatherService service = WeatherService();
+
+  try {
+    final forecast =
+        await service.getWeatherForecastUsingCoordinates(37.7749, -122.4194);
+    print(forecast); // This prints the fetched data
+  } catch (e) {
+    print('Error: $e'); // This ensures errors don’t crash the script
   }
 }
