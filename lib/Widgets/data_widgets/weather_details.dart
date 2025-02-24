@@ -22,6 +22,7 @@ class WeatherDetails extends ConsumerWidget {
         data: (data) {
           return DetailsWidget(
             locationName: data.cityName,
+            country: data.country,
             isDayTime: isDayTime(data.sunrise, data.sunset, data.currentTime),
             weatherCondition: data.description,
             tempInCelcious: data.temperature,
@@ -57,6 +58,7 @@ class WeatherDetails extends ConsumerWidget {
 
 class DetailsWidget extends StatelessWidget {
   final String locationName;
+  final String country;
   final bool isDayTime;
   final String weatherCondition;
   final double tempInCelcious;
@@ -73,6 +75,7 @@ class DetailsWidget extends StatelessWidget {
   final int currentTime;
   const DetailsWidget({
     required this.locationName,
+    required this.country,
     required this.isDayTime,
     required this.weatherCondition,
     required this.tempInCelcious,
@@ -100,6 +103,7 @@ class DetailsWidget extends StatelessWidget {
           LocationName(
             locationName: locationName,
             currentTime: currentTime,
+            country: country,
           ),
           SizedBox(
             height: 12.h,
