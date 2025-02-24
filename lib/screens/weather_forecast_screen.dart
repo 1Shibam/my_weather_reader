@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
+import 'package:weather_reader/Widgets/data_widgets/forecast_details_widget.dart';
+import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
-class WeatherForecastScreen extends ConsumerStatefulWidget {
+class WeatherForecastScreen extends StatelessWidget {
   const WeatherForecastScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _WeatherForecastScreenState();
-}
-
-class _WeatherForecastScreenState extends ConsumerState<WeatherForecastScreen> {
-  @override
   Widget build(BuildContext context) {
-    final weather = ref.watch(weatherServiceNotifierProvider);
-    if (weather.value != null) {
-      // final data = ;
-      
-
-    }
-    return Container();
+    return Consumer(
+      builder: (context, ref, child) {
+        final forecasts = ref.watch(weatherForecastProvider);
+        return forecasts.when(
+            data: (data) {
+              return const ForecastDetailsWidget();
+            },
+            error: (error, stackTrace) {
+              return Text(error.toString());
+            },
+            loading: () => Center(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                          'assets/animations/locationLoadingAnimation.gif'),
+                      Text(
+                        'L O A D I N G ',
+                        style: AppTextStyles.heading1,
+                      )
+                    ],
+                  ),
+                ));
+      },
+    );
   }
 }
-
 
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
