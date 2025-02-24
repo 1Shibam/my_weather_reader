@@ -59,6 +59,7 @@ class WeatherService {
 
   Future<ForecastModel> getWeatherForecastUsingCoordinates(
       double latitude, double longitude) async {
+    print('This method is getting called!!');
     try {
       final response = await dio.get('/forecast', queryParameters: {
         'lat': latitude,

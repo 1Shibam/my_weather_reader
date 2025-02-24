@@ -22,8 +22,8 @@ class ForecastModel {
         cityName: json['city']['name'],
         country: json['city']['country'],
         timezone: json['timezone'],
-        sunrise: json['sunrise'],
-        sunset: json['sunset'],
+        sunrise: json['city']['sunrise'],
+        sunset: json['city']['sunset'],
         allForecasts: (json['list'] as List).map((json) {
           return ForecastList.fromJson(json);
         }).toList());
