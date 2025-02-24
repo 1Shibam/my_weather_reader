@@ -24,28 +24,26 @@ class AppTextStyles {
         color: Colors.white70,
       );
 
-  // Heading 1 (Larger text style for titles or headings)
   static TextStyle get heading1 => TextStyle(
         fontFamily: Fonts.fontBold,
-        fontSize: 24.sp, // Use ScreenUtil for responsiveness
+        fontSize: 24.sp,
         fontWeight: FontWeight.bold,
-        color: Colors.white, // Light white text for headings
+        color: Colors.white,
       );
 
   // Heading 2 (Subheadings)
   static TextStyle get heading2 => TextStyle(
         fontFamily: Fonts.fontMedium,
-        fontSize: 20.sp, // Use ScreenUtil for responsiveness
-        fontWeight: FontWeight.w400, // Medium weight for subtler heading
-        color: Colors.white70, // Light but not too bright for subheadings
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.white70,
       );
 
-  // Subtitle Text Style (lighter than regular)
   static TextStyle get subtitle => TextStyle(
         fontFamily: Fonts.fontRegular,
-        fontSize: 14.sp, // Use ScreenUtil for responsiveness
-        fontWeight: FontWeight.w200, // Very light weight
-        color: Colors.white54, // Even more subtle light color for subtitles
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w200,
+        color: Colors.white54,
       );
 
   static TextStyle get myStyle => TextStyle(
