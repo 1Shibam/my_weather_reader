@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'package:weather_reader/models/forecast_model/forecast_list.dart';
 
 @immutable
@@ -19,11 +19,11 @@ class ForecastModel {
 
   factory ForecastModel.fromJson(Map<String, dynamic> json) {
     return ForecastModel(
-        cityName: json['city']['name'],
-        country: json['city']['country'],
-        timezone: json['timezone'],
-        sunrise: json['city']['sunrise'],
-        sunset: json['city']['sunset'],
+        cityName: json['city']['name'] ?? '',
+        country: json['city']['country'] ?? '',
+        timezone: json['city']['timezone'] ?? 0,
+        sunrise: json['city']['sunrise'] ?? 0,
+        sunset: json['city']['sunset'] ?? 0,
         allForecasts: (json['list'] as List).map((json) {
           return ForecastList.fromJson(json);
         }).toList());
@@ -38,5 +38,10 @@ class ForecastModel {
       'sunset': sunset,
       'list': allForecasts.map((data) => data.toJson()).toList()
     };
+  }
+
+  @override
+  String toString() {
+    return 'ForecastModel(cityName: $cityName, country: $country, timezone: $timezone, sunrise: $sunrise, sunset: $sunset, allForecasts: $allForecasts)';
   }
 }
