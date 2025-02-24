@@ -121,6 +121,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                               .read(searchListProvider.notifier)
                                               .addSearch(WeatherModel(
                                                   cityName: data.cityName,
+                                                  country: data.country,
                                                   latitude: data.latitude,
                                                   longitude: data.longitude,
                                                   temperature: data.temperature,
