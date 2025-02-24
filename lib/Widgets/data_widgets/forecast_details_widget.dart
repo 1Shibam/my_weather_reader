@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weather_reader/themes/text_styles.dart';
 
 class ForecastDetailsWidget extends ConsumerStatefulWidget {
   const ForecastDetailsWidget({super.key});
@@ -24,4 +23,5 @@ class _ForecastDetailsWidgetState extends ConsumerState<ForecastDetailsWidget> {
       ),
     );
   }
+  
 }
