@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
-
 class CustomTextFiled extends StatelessWidget {
   final bool canRequestFocus;
   final String label;
@@ -13,6 +12,7 @@ class CustomTextFiled extends StatelessWidget {
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
   final void Function(String)? onSubmitted;
+  final String? Function(String?)? validator;
   const CustomTextFiled(
       {super.key,
       this.canRequestFocus = true,
@@ -24,11 +24,14 @@ class CustomTextFiled extends StatelessWidget {
       this.controller,
       this.focusNode,
       this.suffixIcon,
-      this.onSubmitted});
+      this.onSubmitted,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      autocorrect: true,
+      validator: validator,
       style: AppTextStyles.bold,
       controller: controller,
       focusNode: focusNode,
@@ -36,7 +39,7 @@ class CustomTextFiled extends StatelessWidget {
       onTap: onTap,
       onChanged: onChanged,
       autofocus: autoFocus,
-      onSubmitted: onSubmitted,
+      onFieldSubmitted: onSubmitted,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,
           label: Text(label),
