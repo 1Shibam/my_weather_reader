@@ -1,16 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:weather_reader/api_key.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:weather_reader/models/search%20suggestion%20model/search_suggestions.dart';
-
 
 class SearchService {
   final Dio dio = Dio(BaseOptions(
-    baseUrl: 'https://api.locationiq.com/v1',
+    baseUrl: dotenv.env['SUGGESTIONS_BASE_URL']!,
+    // baseUrl: 'https://api.locationiq.com/v1',
     receiveTimeout: const Duration(seconds: 4),
     sendTimeout: const Duration(seconds: 7),
   ));
 
-  final String apiKey = mapsApiKey; // Replace with your actual API key
+  final String apiKey =
+      dotenv.env['SUGGESTIONS_API_KEY']!; // Replace with your actual API key
 
   Future<List<SearchSuggestions>> placeSuggestion(String input) async {
     try {
@@ -35,4 +36,3 @@ class SearchService {
     }
   }
 }
-
