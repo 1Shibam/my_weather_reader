@@ -50,3 +50,6 @@ app.*.map.json
 
 # api rlated
 lib/providers/apikey.dart
+
+#ENV 
+.env
