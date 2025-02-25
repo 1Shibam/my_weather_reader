@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:weather_reader/api_key.dart';
 import 'package:weather_reader/models/forecast_model/forecast_model.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 
 class WeatherService {
+
+  final String api = dotenv.env['WEATHER_API_KEY']!;
+
   final Dio dio = Dio(BaseOptions(
-      baseUrl: 'https://api.openweathermap.org/data/2.5',
+      baseUrl: dotenv.env['WEATHER_BASE_URL']!,
       sendTimeout: const Duration(seconds: 7),
       receiveTimeout: const Duration(seconds: 4)));
 
-  final String api = weatherApiKey;
+  
 
   Future<WeatherModel> searchByLocationName(String location) async {
     try {
