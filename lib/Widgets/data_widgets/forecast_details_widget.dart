@@ -33,14 +33,14 @@ class ForecastDetailsWidget extends StatelessWidget {
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.r)),
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Icon(Icons.location_on, size: 32.r, color: Colors.red),
+              Icon(Icons.location_on, size: 40.sp, color: Colors.red),
               SizedBox(width: 8.w),
               Expanded(
                 child: Text(
                   '$location, $country',
                   style: AppTextStyles.heading1.copyWith(fontSize: 22.sp),
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
