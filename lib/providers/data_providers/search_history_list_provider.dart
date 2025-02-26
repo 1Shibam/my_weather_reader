@@ -12,7 +12,8 @@ class SearchHistoryNotifier extends StateNotifier<List<WeatherModel>> {
   Future<void> loadSearchedList() async {
     print('load search list is actually working');
 
-    final databaseService = await ref.read(weatherDatabaseServiceProvider.future);
+    final databaseService =
+        await ref.read(weatherDatabaseServiceProvider.future);
 
     final searches = await databaseService.getSearchedList();
     state = searches;
@@ -21,20 +22,22 @@ class SearchHistoryNotifier extends StateNotifier<List<WeatherModel>> {
   Future<void> addSearch(WeatherModel weatherData) async {
     print('add search to DB is actually working');
 
-    final databaseService = await ref.read(weatherDatabaseServiceProvider.future);
-    
+    final databaseService =
+        await ref.read(weatherDatabaseServiceProvider.future);
+
     await databaseService.addSearchToDB(weatherData);
-    
+
     await loadSearchedList(); // Reload list after adding
   }
 
   Future<void> deleteSearchedFromList(int id) async {
     print('delete search from DB is actually working');
 
-    final databaseService = await ref.read(weatherDatabaseServiceProvider.future);
-    
+    final databaseService =
+        await ref.read(weatherDatabaseServiceProvider.future);
+
     await databaseService.deletedSearchedLocation(id);
-    
+
     await loadSearchedList(); // Reload list after deleting
   }
 }

@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
   final dbPath = await getApplicationDocumentsDirectory();
   String pathDirectory = join(dbPath.path, 'weather.db');
-  await deleteDatabase(pathDirectory);
+
   return openDatabase(
     pathDirectory,
     version: 1,
@@ -36,6 +36,3 @@ final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
     },
   );
 });
-
-
-
