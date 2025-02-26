@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_reader/Widgets/reusable_widgets/get_weather_icon.dart';
 import 'package:weather_reader/models/forecast_model/forecast_list.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
@@ -77,7 +78,7 @@ class ForecastDetailsWidget extends StatelessWidget {
                     CarouselSlider(
                       items: forecastData[date]!.map((forecast) {
                         return Container(
-                          height: 4.h,
+                          width: 400.w,
                           margin: EdgeInsets.symmetric(horizontal: 8.w),
                           decoration: BoxDecoration(
                             color: AppColors.waterBlue,
@@ -89,13 +90,14 @@ class ForecastDetailsWidget extends StatelessWidget {
                             children: [
                               // Time
                               ForecastTile(
-                                title: forecast.forecastDateTime.split(' ')[1],
-                                leading: SvgPicture.asset(
-                                  'assets/new/time-svgrepo-com.svg',
-                                  height: 18.sp,
-                                  width: 18.sp,
-                                ),
-                              ),
+                                  title:
+                                      forecast.forecastDateTime.split(' ')[1],
+                                  leading: getWeatherIcon(
+                                      forecast.description,
+                                      width: 24,
+                                      height: 24,
+                                      isDayTime(forecast.forecastDateTime
+                                          .split(' ')[1]))),
 
                               // Temperature
                               ForecastTile(
@@ -104,13 +106,18 @@ class ForecastDetailsWidget extends StatelessWidget {
                                   title: "${forecast.temperature}°C"),
 
                               // Weather Description
-                              ForecastTile(
-                                leading: SvgPicture.asset(
-                                  'assets/new/weather-svgrepo-com.svg',
-                                  height: 24.sp,
-                                  width: 24.sp,
-                                ),
-                                title: forecast.description,
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ForecastTile(
+                                    leading: SvgPicture.asset(
+                                      'assets/new/weather-svgrepo-com.svg',
+                                      height: 24.sp,
+                                      width: 24.sp,
+                                    ),
+                                    title: forecast.description,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -147,14 +154,15 @@ class ForecastTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
-      leading: leading,
-      title: Text(
-        title,
-        style: AppTextStyles.bold,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+        leading: leading,
+        title: Text(
+          title,
+          style: AppTextStyles.bold,
+        ),
       ),
-    ));
+    );
   }
 }
 
@@ -162,4 +170,9 @@ class ForecastTile extends StatelessWidget {
 String formatDateTime(String dateTime) {
   final date = DateTime.parse(dateTime);
   return '${date.day}/${date.month}/${date.year}, ${DateFormat.EEEE().format(date)}';
+}
+
+bool isDayTime(String forecastTime) {
+  final time = int.parse(forecastTime.split(':')[0]);
+  return time >= 6 && time < 18;
 }
