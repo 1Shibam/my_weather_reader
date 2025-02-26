@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
 import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
+import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/services/weather_service.dart';
 
-class WeatherServiceNotifier
-    extends StateNotifier<AsyncValue<WeatherModel>> {
+class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
   final WeatherService service;
   final Ref ref;
 
@@ -34,6 +34,9 @@ class WeatherServiceNotifier
     state = const AsyncValue.loading();
     try {
       final search = await service.searchByLocationName(location);
+      ref
+          .read(weatherForecastProvider.notifier)
+          .getWeatherForecastWithName(location);
       state = AsyncValue.data(search);
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
@@ -45,6 +48,9 @@ class WeatherServiceNotifier
     try {
       final coordinateSearch =
           await service.searchByCoordinates(latitude, longitude);
+      ref
+          .read(weatherForecastProvider.notifier)
+          .getWeatherForecastWithCoordinates(latitude, longitude);
       state = AsyncValue.data(coordinateSearch);
     } catch (e, st) {
       state = AsyncValue.error(e, st);
