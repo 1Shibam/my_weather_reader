@@ -81,7 +81,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
-    - assets/new/
+    - assets/newAssets/
     - .env
   #   - images/a_dot_ham.jpeg
 
