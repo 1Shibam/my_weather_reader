@@ -5,6 +5,7 @@ import 'package:weather_reader/Widgets/main_widgets/app_bar_widget.dart';
 import 'package:weather_reader/Widgets/main_widgets/drawer_widget.dart';
 import 'package:weather_reader/Widgets/main_widgets/search_location_widget.dart';
 import 'package:weather_reader/Widgets/data_widgets/weather_details.dart';
+import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/screens/search_screen.dart';
 import 'package:weather_reader/screens/weather_forecast_screen.dart';
@@ -37,7 +38,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Current'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Forecast'),
           ],
           currentIndex: _selectPage,
@@ -58,6 +59,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
                 .read(weatherServiceNotifierProvider.notifier)
                 .initializeWeatherStates();
             ref.read(searchQueryProvider.notifier).state = '';
+            ref.invalidate(weatherForecastProvider);
           },
         ),
         drawer: const DrawerWidget(),
