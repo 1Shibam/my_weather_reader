@@ -61,6 +61,12 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
         ),
         drawer: const DrawerWidget(),
         backgroundColor: AppColors.darkBlue,
-        body: pages[_selectPage]);
+        body: AnimatedSwitcher(
+            duration: const Duration(
+              milliseconds: 600,
+            ),
+            switchInCurve: Curves.easeIn,
+            switchOutCurve: Curves.easeOut,
+            child: pages[_selectPage]));
   }
 }
