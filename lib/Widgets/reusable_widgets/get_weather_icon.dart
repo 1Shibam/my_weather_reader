@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-Widget getWeatherIcon(String description, bool isDaytime) {
+Widget getWeatherIcon(String description, bool isDaytime,
+    {double width = 36, double height = 36}) {
   String imageAssetPath;
 
   switch (description.toLowerCase()) {
@@ -104,7 +104,7 @@ Widget getWeatherIcon(String description, bool isDaytime) {
   return Image.asset(
     imageAssetPath,
 
-    width: 36.sp, // You can adjust the size
-    height: 36.sp, // You can adjust the size
+    width: width.sp, // You can adjust the size
+    height: height.sp, // You can adjust the size
   );
 }
