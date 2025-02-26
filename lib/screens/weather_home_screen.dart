@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_reader/Widgets/main_widgets/app_bar_widget.dart';
 import 'package:weather_reader/Widgets/main_widgets/drawer_widget.dart';
-import 'package:weather_reader/Widgets/main_widgets/search_location_widget.dart';
-import 'package:weather_reader/Widgets/data_widgets/weather_details.dart';
 import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
+import 'package:weather_reader/screens/current_weather_page.dart';
 import 'package:weather_reader/screens/search_screen.dart';
 import 'package:weather_reader/screens/weather_forecast_screen.dart';
-
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
@@ -65,26 +62,5 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
         drawer: const DrawerWidget(),
         backgroundColor: AppColors.darkBlue,
         body: pages[_selectPage]);
-  }
-}
-
-class CurrentWeatherPage extends StatelessWidget {
-  const CurrentWeatherPage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 8.h),
-          const SearchLocationWidget(),
-          SizedBox(height: 10.h),
-          const WeatherDetails(),
-        ],
-      ),
-    );
   }
 }

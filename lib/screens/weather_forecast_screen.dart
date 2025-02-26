@@ -18,40 +18,45 @@ class WeatherForecastScreen extends StatelessWidget {
         body: Consumer(
           builder: (context, ref, child) {
             final forecasts = ref.watch(weatherForecastProvider);
-            return forecasts.when(
-                data: (data) {
-                  Map<String, List<ForecastList>> sortedData = {};
-                  List<ForecastList> listData = data.allForecasts;
-                  for (var forecast in listData) {
-                    String date = forecast.forecastDateTime.split(' ')[0];
-                    if (sortedData.containsKey(date)) {
-                      sortedData[date]!.add(forecast);
-                    } else {
-                      sortedData[date] = [forecast];
+            return AnimatedSwitcher(
+              duration: const Duration(seconds: 1),
+              switchInCurve: Curves.easeInOutCirc,
+              switchOutCurve: Curves.easeInOutCirc,
+              child: forecasts.when(
+                  data: (data) {
+                    Map<String, List<ForecastList>> sortedData = {};
+                    List<ForecastList> listData = data.allForecasts;
+                    for (var forecast in listData) {
+                      String date = forecast.forecastDateTime.split(' ')[0];
+                      if (sortedData.containsKey(date)) {
+                        sortedData[date]!.add(forecast);
+                      } else {
+                        sortedData[date] = [forecast];
+                      }
                     }
-                  }
 
-                  return ForecastDetailsWidget(
-                    forecastData: sortedData,
-                    country: data.country,
-                    location: data.cityName,
-                  );
-                },
-                error: (error, stackTrace) {
-                  return Text(error.toString());
-                },
-                loading: () => Center(
-                      child: Column(
-                        children: [
-                          Image.asset(
-                              'assets/animations/locationLoadingAnimation.gif'),
-                          Text(
-                            'L O A D I N G ',
-                            style: AppTextStyles.heading1,
-                          )
-                        ],
-                      ),
-                    ));
+                    return ForecastDetailsWidget(
+                      forecastData: sortedData,
+                      country: data.country,
+                      location: data.cityName,
+                    );
+                  },
+                  error: (error, stackTrace) {
+                    return Text(error.toString());
+                  },
+                  loading: () => Center(
+                        child: Column(
+                          children: [
+                            Image.asset(
+                                'assets/animations/locationLoadingAnimation.gif'),
+                            Text(
+                              'L O A D I N G ',
+                              style: AppTextStyles.heading1,
+                            )
+                          ],
+                        ),
+                      )),
+            );
           },
         ),
       ),
