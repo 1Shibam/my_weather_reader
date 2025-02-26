@@ -11,7 +11,7 @@ import 'package:weather_reader/Widgets/dialog_widget/warning_and_suggestion_swit
 import 'package:weather_reader/models/weather_model.dart';
 
 import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
-import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
+import 'package:weather_reader/providers/data_providers/search_history_list_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
 

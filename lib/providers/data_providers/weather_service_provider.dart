@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
-import 'package:weather_reader/providers/data_providers/searched_weather_location_list.dart';
+import 'package:weather_reader/providers/data_providers/search_history_list_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/services/weather_service.dart';
 

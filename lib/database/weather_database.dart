@@ -14,6 +14,7 @@ final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
             CREATE TABLE weatherTable(
             weatherID INTEGER PRIMARY KEY AUTOINCREMENT,
             cityName TEXT NOT NULL,
+            country TEXT NOT NULL,
             REAL lat,
             REAL lon,
             temperature REAL,
