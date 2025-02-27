@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
-import 'package:weather_reader/providers/data_providers/search_history_list_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/services/weather_service.dart';
 
@@ -21,12 +20,7 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
           .fetchCurrentLocation();
       await searchCoordinates(position.latitude, position.longitude);
     } catch (error, stackTrace) {
-      final searchList = ref.read(searchListProvider);
-      if (searchList.isNotEmpty) {
-        await searchLocation(searchList.last.cityName);
-      } else {
-        state = AsyncValue.error(error, stackTrace);
-      }
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 
