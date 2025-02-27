@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_reader/Widgets/main_widgets/search_suggestion_tile.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/custom_text_filed.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/popular_locations_text.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/shimmer_loading.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/suggested_location_text.dart';
 import 'package:weather_reader/Widgets/dialog_widget/warning_and_suggestion_switch.dart';
-
 
 import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
 
@@ -179,53 +179,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             )
-                                          : ListView.builder(
-                                              shrinkWrap: true,
-                                              itemCount: locations.length,
-                                              itemBuilder: (context, index) {
-                                                final singleData =
-                                                    locations[index];
-                                                return Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 4.h),
-                                                  child: ListTile(
-                                                    onTap: () {
-                                                      ref
-                                                              .read(
-                                                                  searchQueryProvider
-                                                                      .notifier)
-                                                              .state =
-                                                          singleData
-                                                              .displayName!;
-                                                      ref
-                                                          .read(
-                                                              weatherServiceNotifierProvider
-                                                                  .notifier)
-                                                          .searchCoordinates(
-                                                              singleData.lat!,
-                                                              singleData.lon!);
-                                                      context.pop();
-                                                    },
-                                                    leading: const Icon(
-                                                      Icons.location_on,
-                                                      color: Colors.red,
-                                                    ),
-                                                    tileColor:
-                                                        AppColors.waterBlue,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.r)),
-                                                    title: Text(
-                                                      locations[index]
-                                                          .displayName!,
-                                                      style: AppTextStyles.bold,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
+                                          : SearchSuggestionTiles(
+                                              locations: locations,
                                             );
                                     },
                                     error: (err, stackTrace) {
