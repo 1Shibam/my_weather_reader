@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
@@ -15,6 +16,9 @@ class SplashScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     Future.delayed(const Duration(seconds: 2), () async {
       final bool whereToGo = await getOnBoardingPreference();
+      await ref
+          .read(weatherServiceNotifierProvider.notifier)
+          .initializeWeatherStates();
       if (context.mounted) {
         whereToGo ? context.go('/home') : context.go('/onBoarding');
       }
