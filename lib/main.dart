@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/themes/theme.dart';
 
 import 'router/router_config.dart';
@@ -13,18 +12,9 @@ void main() async {
   // Load dotenv first before doing anything else!
   await dotenv.load(fileName: ".env");
 
-
-  final container = ProviderContainer();
-
-  // Now it's safe to initialize weather data
-  await container
-      .read(weatherServiceNotifierProvider.notifier)
-      .initializeWeatherStates();
-
   runApp(
-    UncontrolledProviderScope(
-      container: container,
-      child: const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }
