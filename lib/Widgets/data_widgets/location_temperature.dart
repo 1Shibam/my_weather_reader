@@ -22,6 +22,7 @@ class _LocationTemperatureState extends State<LocationTemperature> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: ValueKey(widget.tempInCelcious),
       tileColor: AppColors.waterBlue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       title: Row(
