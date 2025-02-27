@@ -9,6 +9,10 @@ class WeatherForecastNotifier extends StateNotifier<AsyncValue<ForecastModel>> {
   WeatherForecastNotifier(this.service, this.ref)
       : super(const AsyncValue.loading());
 
+  Future<void> goLoading() async {
+    state = const AsyncValue.loading();
+  }
+
   Future<void> getWeatherForecastWithName(String location) async {
     state = const AsyncValue.loading();
     try {
