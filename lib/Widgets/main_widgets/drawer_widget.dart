@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weather_reader/providers/data_providers/search_history_list_provider.dart';
+
 import 'package:weather_reader/providers/preference_providers/weather_animation_preference_provider.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
@@ -50,43 +50,43 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                       .setAnimationState(value);
                 }),
           ),
-          Consumer(builder: (context, ref, child) {
-            final searchedData = ref.watch(searchListProvider);
-            return searchedData.isEmpty
-                ? ExpansionTile(
-                    initiallyExpanded: true,
-                    iconColor: AppColors.darkBlue,
-                    title: Text(
-                      'History',
-                      style: AppTextStyles.heading1
-                          .copyWith(color: Colors.black87),
-                    ),
-                    children: [
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Center(
-                        child: Text(
-                          'There is no Search data yet!!',
-                          style: AppTextStyles.regular
-                              .copyWith(color: Colors.black),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                    ],
-                  )
-                : ListView.builder(
-                    itemCount: searchedData.length,
-                    itemBuilder: (context, index) {
-                      final singleData = searchedData[index];
-                      return ListTile(
-                        title: Text(singleData.cityName),
-                      );
-                    },
-                  );
-          })
+          // Consumer(builder: (context, ref, child) {
+          //   final searchedData = ref.watch(searchListProvider);
+          //   return searchedData.isEmpty
+          //       ? ExpansionTile(
+          //           initiallyExpanded: true,
+          //           iconColor: AppColors.darkBlue,
+          //           title: Text(
+          //             'History',
+          //             style: AppTextStyles.heading1
+          //                 .copyWith(color: Colors.black87),
+          //           ),
+          //           children: [
+          //             SizedBox(
+          //               height: 30.h,
+          //             ),
+          //             Center(
+          //               child: Text(
+          //                 'There is no Search data yet!!',
+          //                 style: AppTextStyles.regular
+          //                     .copyWith(color: Colors.black),
+          //               ),
+          //             ),
+          //             SizedBox(
+          //               height: 30.h,
+          //             ),
+          //           ],
+          //         )
+          //       : ListView.builder(
+          //           itemCount: searchedData.length,
+          //           itemBuilder: (context, index) {
+          //             final singleData = searchedData[index];
+          //             return ListTile(
+          //               title: Text(singleData.cityName),
+          //             );
+          //           },
+          //         );
+          // })
         ],
       ),
     );
