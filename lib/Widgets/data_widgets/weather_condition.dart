@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/get_weather_icon.dart';
 import 'package:weather_reader/themes/app_colors.dart';
 import 'package:weather_reader/themes/text_styles.dart';
 
-
-class WeatherCondition extends StatelessWidget {
+class WeatherCondition extends ConsumerWidget {
   final String weatherCondition;
   final bool isDayTime;
-  const WeatherCondition({super.key, required this.weatherCondition, required this.isDayTime});
+  const WeatherCondition(
+      {super.key, required this.weatherCondition, required this.isDayTime});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return ListTile(
+      key: ValueKey(weatherCondition),
       tileColor: AppColors.waterBlue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       title: Row(
