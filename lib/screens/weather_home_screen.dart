@@ -51,12 +51,12 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
         ),
         resizeToAvoidBottomInset: true,
         appBar: AppBarWidget(
-          onRefresh: () {
+          onRefresh: () async {
             ref
                 .read(weatherServiceNotifierProvider.notifier)
                 .initializeWeatherStates();
             ref.read(searchQueryProvider.notifier).state = '';
-            ref.invalidate(weatherForecastProvider);
+            ref.read(weatherForecastProvider.notifier).goLoading();
           },
         ),
         drawer: const DrawerWidget(),
