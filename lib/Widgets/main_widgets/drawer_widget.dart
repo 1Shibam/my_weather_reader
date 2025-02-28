@@ -65,29 +65,34 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                           .copyWith(color: Colors.black87),
                     ),
                     children: [
-                      SizedBox(
-                        height: 30.h,
-                      ),
+                      SizedBox(height: 10.h),
                       data.isEmpty
-                          ? Center(
-                              child: Text(
-                                'There is no Search data yet!!',
-                                style: AppTextStyles.regular
-                                    .copyWith(color: Colors.black),
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.h),
+                              child: Center(
+                                child: Text(
+                                  'There is no search data yet!',
+                                  style: AppTextStyles.regular
+                                      .copyWith(color: Colors.black),
+                                ),
                               ),
                             )
-                          : ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (context, index) {
-                                final singleData = data[index];
-                                return ListTile(
-                                  title: Text(singleData.cityName),
-                                );
-                              },
+                          : SizedBox(
+                              height: 200.h, // Set a reasonable height
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics:
+                                    const NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  final singleData = data[index];
+                                  return ListTile(
+                                    title: Text(singleData.cityName),
+                                  );
+                                },
+                              ),
                             ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
+                      SizedBox(height: 10.h),
                     ],
                   );
                 },
