@@ -36,3 +36,24 @@ final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
     },
   );
 });
+
+/*
+'weatherID' : weatherId,
+      'cityName': cityName,
+      'lat': latitude,
+      'lon': longitude,
+      'country': country,
+      'temperature': temperature,
+      'tempMin': minTemperature,
+      'tempMax': maxTemperature,
+      'humidity': humidity,
+      'windSpeed': windSpeed,
+      'windDeg': windDeg,
+      'description': description,
+      'cloudCoverage': cloudCoverage,
+      'pressure': pressure,
+      'sunrise': sunrise,
+      'sunset': sunset,
+      'currentTime': currentTime,
+      'timezone': timezone
+ */
