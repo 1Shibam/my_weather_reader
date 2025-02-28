@@ -16,9 +16,11 @@ class WeatherDatabaseService {
 
   //! get list of searched location
   Future<List<WeatherModel>> getSearchedList() async {
-    final maps = await database.query('weatherTable');
-    // Debugging
-    return maps.map((data) => WeatherModel.fromJson(data)).toList();
+    final List<Map<String, dynamic>> maps = await database.query('weatherTable');
+  
+  print("Database result: $maps"); // 🔍 See what the DB is returning
+
+  return maps.map((json) => WeatherModel.fromDBMap(json)).toList();
   }
 
   //! delete from search list
