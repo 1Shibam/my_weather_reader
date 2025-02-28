@@ -14,6 +14,7 @@ class SearchedListNotifier
     try {
       final service = await ref.read(weatherDatabaseServiceProvider.future);
       final locations = await service.getSearchedList();
+      print('Fetched locations: $locations'); // Add this line to debug
       state = AsyncValue.data(locations);
     } catch (error, stackTrace) {
       print('Initialize Error: $error'); // 👈 NEW
