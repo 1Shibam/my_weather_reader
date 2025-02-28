@@ -42,32 +42,56 @@ class WeatherModel {
       required this.timezone});
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    
     return WeatherModel(
-        weatherId: json['weatherID'] as int,
-        cityName: json['name'],
-        country: json['sys']['country'],
-        latitude: json['coord']['lat'].toDouble(),
-        longitude: json['coord']['lon'].toDouble(),
-        temperature: json['main']['temp'].toDouble(),
-        minTemperature: json['main']['temp_min'].toDouble(),
-        maxTemperature: json['main']['temp_max'].toDouble(),
-        humidity: json['main']['humidity'],
-        windSpeed: json['wind']['speed'].toDouble(),
-        windDeg: json['wind']['deg'],
-        description: json['weather'][0]['description'],
-        cloudCoverage: json['clouds']['all'],
-        pressure: json['main']['pressure'],
-        sunrise: json['sys']['sunrise'],
-        sunset: json['sys']['sunset'],
-        currentTime: json['dt'],
-        timezone: json['timezone']);
+        weatherId: json['weatherID'] as int? ?? 0,
+        cityName: json['name'] ?? 'unkown city',
+        country: json['sys']['country'] ?? 'unknown country',
+        latitude: json['coord']['lat'].toDouble() ?? 0,
+        longitude: json['coord']['lon'].toDouble() ?? 0,
+        temperature: json['main']['temp'].toDouble() ?? 0,
+        minTemperature: json['main']['temp_min'].toDouble() ?? 0,
+        maxTemperature: json['main']['temp_max'].toDouble() ?? 0,
+        humidity: json['main']['humidity'] ?? 0,
+        windSpeed: json['wind']['speed'].toDouble() ?? 0,
+        windDeg: json['wind']['deg'] ?? 0,
+        description: json['weather'][0]['description'] ?? 'unknown',
+        cloudCoverage: json['clouds']['all'] ?? 0,
+        pressure: json['main']['pressure'] ?? 0,
+        sunrise: json['sys']['sunrise'] ?? 0,
+        sunset: json['sys']['sunset'] ?? 0,
+        currentTime: json['dt'] ?? 0,
+        timezone: json['timezone'] ?? 0);
   }
+  factory WeatherModel.fromDBMap(Map<String, dynamic> map) {
+  return WeatherModel(
+    weatherId: map['weatherID'] as int?,
+    cityName: map['cityName'] as String,
+    country: map['country'] as String,
+    latitude: (map['lat'] as num).toDouble(),
+    longitude: (map['lon'] as num).toDouble(),
+    temperature: (map['temperature'] as num).toDouble(),
+    minTemperature: (map['tempMin'] as num).toDouble(),
+    maxTemperature: (map['tempMax'] as num).toDouble(),
+    humidity: map['humidity'] as int,
+    windSpeed: (map['windSpeed'] as num).toDouble(),
+    windDeg: map['windDeg'] as int,
+    description: map['description'] as String,
+    cloudCoverage: map['cloudCoverage'] as int,
+    pressure: map['pressure'] as int,
+    sunrise: map['sunrise'] as int,
+    sunset: map['sunset'] as int,
+    currentTime: map['currentTime'] as int,
+    timezone: map['timezone'] as int,
+  );
+}
   Map<String, dynamic> toJson() {
     return {
+      'weatherID': weatherId,
       'cityName': cityName,
+      'country': country,
       'lat': latitude,
       'lon': longitude,
-      'country': country,
       'temperature': temperature,
       'tempMin': minTemperature,
       'tempMax': maxTemperature,
