@@ -13,6 +13,10 @@ class WeatherForecastNotifier extends StateNotifier<AsyncValue<ForecastModel>> {
     state = const AsyncValue.loading();
   }
 
+  Future<void> showError(error, stackTrace) async {
+    state = AsyncValue.error(error, stackTrace);
+  }
+
   Future<void> getWeatherForecastWithName(String location) async {
     state = const AsyncValue.loading();
     try {
