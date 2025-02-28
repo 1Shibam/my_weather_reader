@@ -54,7 +54,7 @@ class _WeatherHomeScreenState extends ConsumerState<WeatherHomeScreen> {
           onRefresh: () async {
             ref
                 .read(weatherServiceNotifierProvider.notifier)
-                .initializeWeatherStates();
+                .initializeWeatherStates(context);
             ref.read(searchQueryProvider.notifier).state = '';
             ref.read(weatherForecastProvider.notifier).goLoading();
           },
