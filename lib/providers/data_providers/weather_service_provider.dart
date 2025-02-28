@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_reader/Widgets/dialog_widget/show_snackbar.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
@@ -12,15 +14,23 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
   WeatherServiceNotifier(this.service, this.ref)
       : super(const AsyncValue.loading());
 
-  Future<void> initializeWeatherStates() async {
+  Future<void> initializeWeatherStates(BuildContext context) async {
     state = const AsyncValue.loading();
     try {
       final position = await ref
           .read(geoNotifierStateProvider.notifier)
           .fetchCurrentLocation();
       await searchCoordinates(position.latitude, position.longitude);
+      if (context.mounted) {
+        showSnackBar('Got the user location', context, bgColor: Colors.green);
+      }
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
+      ref.read(weatherForecastProvider.notifier).showError(error, stackTrace);
+      if (context.mounted) {
+        showSnackBar('Failed to get user location', context,
+            bgColor: Colors.red);
+      }
     }
   }
 
