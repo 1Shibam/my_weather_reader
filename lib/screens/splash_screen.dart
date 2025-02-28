@@ -16,9 +16,11 @@ class SplashScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     Future.delayed(const Duration(seconds: 2), () async {
       final bool whereToGo = await getOnBoardingPreference();
-      await ref
+      if(context.mounted) {
+        await ref
           .read(weatherServiceNotifierProvider.notifier)
-          .initializeWeatherStates();
+          .initializeWeatherStates(context);
+      }
       if (context.mounted) {
         whereToGo ? context.go('/home') : context.go('/onBoarding');
       }
