@@ -22,38 +22,48 @@ class WeatherDetails extends ConsumerWidget {
                 .read(weatherForecastProvider.notifier)
                 .getWeatherForecastWithCoordinates(
                     data.latitude, data.longitude);
-            return DetailsWidget(
-              locationName: data.cityName,
-              country: data.country,
-              isDayTime: isDayTime(data.sunrise, data.sunset, data.currentTime),
-              weatherCondition: data.description,
-              tempInCelcious: data.temperature,
-              humidity: data.humidity,
-              minTemperature: data.minTemperature,
-              maxTemperature: data.maxTemperature,
-              windSpeed: data.windSpeed,
-              windDeg: data.windDeg,
-              cloudCoverage: data.cloudCoverage,
-              sunrise: data.sunrise,
-              sunset: data.sunset,
-              pressure: data.pressure,
-              timezone: data.timezone,
-              currentTime: data.currentTime,
+            return Material(
+              color: Colors.transparent,
+              child: DetailsWidget(
+                locationName: data.cityName,
+                country: data.country,
+                isDayTime:
+                    isDayTime(data.sunrise, data.sunset, data.currentTime),
+                weatherCondition: data.description,
+                tempInCelcious: data.temperature,
+                humidity: data.humidity,
+                minTemperature: data.minTemperature,
+                maxTemperature: data.maxTemperature,
+                windSpeed: data.windSpeed,
+                windDeg: data.windDeg,
+                cloudCoverage: data.cloudCoverage,
+                sunrise: data.sunrise,
+                sunset: data.sunset,
+                pressure: data.pressure,
+                timezone: data.timezone,
+                currentTime: data.currentTime,
+              ),
             );
           },
-          error: (error, stackTrace) => const Center(
-                child: ErrorStateWidget(),
+          error: (error, stackTrace) => const Material(
+                color: Colors.transparent,
+                child: Center(
+                  child: ErrorStateWidget(),
+                ),
               ),
-          loading: () => Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                        'assets/animations/locationLoadingAnimation.gif'),
-                    Text(
-                      'L O A D I N G ',
-                      style: AppTextStyles.heading1,
-                    )
-                  ],
+          loading: () => Material(
+                color: Colors.transparent,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                          'assets/animations/locationLoadingAnimation.gif'),
+                      Text(
+                        'L O A D I N G ',
+                        style: AppTextStyles.heading1,
+                      )
+                    ],
+                  ),
                 ),
               )),
     );
