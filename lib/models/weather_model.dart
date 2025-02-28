@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class WeatherModel {
+  final int? weatherId;
   final String cityName;
   final String country;
   final double latitude;
@@ -21,7 +22,8 @@ class WeatherModel {
   final int timezone;
 
   const WeatherModel(
-      {required this.cityName,
+      {this.weatherId,
+      required this.cityName,
       required this.country,
       required this.latitude,
       required this.longitude,
@@ -41,6 +43,7 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
+        weatherId: json['weatherID'] as int,
         cityName: json['name'],
         country: json['sys']['country'],
         latitude: json['coord']['lat'].toDouble(),

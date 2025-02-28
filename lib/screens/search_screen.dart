@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_reader/Widgets/dialog_widget/show_snackbar.dart';
 import 'package:weather_reader/Widgets/main_widgets/search_suggestion_tile.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/custom_text_filed.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/popular_locations_text.dart';
@@ -105,21 +106,28 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         size: 28.sp,
                                       )),
                                   IconButton(
-                                      onPressed: () {
-                                        ref
-                                            .read(weatherServiceNotifierProvider
-                                                .notifier)
-                                            .searchLocation(
-                                                searchController.text.trim());
-                                        final data = searchData.value;
-                                        if (data != null) {
-                                          ref
+                                      onPressed: () async {
+                                        try {
+                                          await ref
+                                              .read(
+                                                  weatherServiceNotifierProvider
+                                                      .notifier)
+                                              .searchLocation(
+                                                  searchController.text.trim());
+                                          final data = ref.read(
+                                              weatherServiceNotifierProvider);
+                                          await ref
                                               .read(
                                                   searchLocationNotifierProvider
                                                       .notifier)
-                                              .addSearchToList(data);
-                                          context.pop();
-                                        } else {}
+                                              .addSearchToList(data.value!);
+                                          if (context.mounted) context.pop();
+                                        } catch (e) {
+                                          if (context.mounted) {
+                                            showSnackBar('something went wrong',
+                                                context);
+                                          }
+                                        }
                                       },
                                       icon: Icon(
                                         Icons.search_rounded,

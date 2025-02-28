@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/services/weather_database_service.dart';
@@ -15,13 +16,14 @@ class SearchedListNotifier
       final locations = await service.getSearchedList();
       state = AsyncValue.data(locations);
     } catch (error, stackTrace) {
+      print('Initialize Error: $error'); // 👈 NEW
+      debugPrintStack(stackTrace: stackTrace);
       state = AsyncValue.error(error, stackTrace);
     }
   }
 
   Future<void> addSearchToList(WeatherModel weatherData) async {
     try {
-      
       final service = await ref.read(weatherDatabaseServiceProvider.future);
       await service.addSearchToDB(weatherData);
       final updatedLocations = await service.getSearchedList();
