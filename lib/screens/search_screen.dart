@@ -11,6 +11,7 @@ import 'package:weather_reader/Widgets/reusable_widgets/suggested_location_text.
 import 'package:weather_reader/Widgets/dialog_widget/warning_and_suggestion_switch.dart';
 
 import 'package:weather_reader/providers/data_providers/search_suggestions_provider.dart';
+import 'package:weather_reader/providers/data_providers/searched_location_history_provider.dart';
 
 import 'package:weather_reader/providers/data_providers/weather_service_provider.dart';
 import 'package:weather_reader/providers/preference_providers/show_serach_suggestion_preference.dart';
@@ -56,6 +57,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget build(BuildContext context) {
     final searchQuery = ref.watch(searchQueryProvider);
     final showSuggestions = ref.watch(searchSuggestionEnableProvider);
+    final searchData = ref.watch(weatherServiceNotifierProvider);
 
     return SafeArea(
       child: Scaffold(
@@ -109,8 +111,15 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                                 .notifier)
                                             .searchLocation(
                                                 searchController.text.trim());
-
-                                        context.pop();
+                                        final data = searchData.value;
+                                        if (data != null) {
+                                          ref
+                                              .read(
+                                                  searchLocationNotifierProvider
+                                                      .notifier)
+                                              .addSearchToList(data);
+                                          context.pop();
+                                        } else {}
                                       },
                                       icon: Icon(
                                         Icons.search_rounded,

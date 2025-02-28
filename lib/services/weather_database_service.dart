@@ -9,16 +9,15 @@ class WeatherDatabaseService {
   WeatherDatabaseService(this.database);
 
   //! add search to database
-  Future<int> addSearchToDB(WeatherModel weatherData) async {
-    print('it is called lil nigga');
-    return await database.insert('weatherTable', weatherData.toJson(),
+  Future<void> addSearchToDB(WeatherModel weatherData) async {
+    await database.insert('weatherTable', weatherData.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   //! get list of searched location
   Future<List<WeatherModel>> getSearchedList() async {
-    print('you came here as well');
     final maps = await database.query('weatherTable');
+    // Debugging
     return maps.map((data) => WeatherModel.fromJson(data)).toList();
   }
 
@@ -29,8 +28,8 @@ class WeatherDatabaseService {
   }
 }
 
-final weatherDatabaseServiceProvider = FutureProvider<WeatherDatabaseService>((ref) async {
+final weatherDatabaseServiceProvider =
+    FutureProvider<WeatherDatabaseService>((ref) async {
   final database = await ref.watch(weatherDataBaseProvider.future);
   return WeatherDatabaseService(database);
 });
-
