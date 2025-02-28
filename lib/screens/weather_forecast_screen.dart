@@ -42,7 +42,7 @@ class WeatherForecastScreen extends StatelessWidget {
                     );
                   },
                   error: (error, stackTrace) {
-                    return Text(error.toString());
+                    return Center(child: Text(error.toString()));
                   },
                   loading: () => Center(
                         child: Column(
@@ -63,4 +63,3 @@ class WeatherForecastScreen extends StatelessWidget {
     );
   }
 }
-
