@@ -58,7 +58,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget build(BuildContext context) {
     final searchQuery = ref.watch(searchQueryProvider);
     final showSuggestions = ref.watch(searchSuggestionEnableProvider);
-    final searchData = ref.watch(weatherServiceNotifierProvider);
+
 
     return SafeArea(
       child: Scaffold(
