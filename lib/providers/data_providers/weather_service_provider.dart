@@ -4,6 +4,7 @@ import 'package:weather_reader/Widgets/dialog_widget/show_snackbar.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 import 'package:weather_reader/providers/data_providers/geo_locator_provider.dart';
+import 'package:weather_reader/providers/data_providers/searched_location_history_provider.dart';
 import 'package:weather_reader/providers/data_providers/weather_forecast_provider.dart';
 import 'package:weather_reader/services/weather_service.dart';
 
@@ -24,12 +25,39 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
       if (context.mounted) {
         showSnackBar('Got the user location', context, bgColor: Colors.green);
       }
+    } catch (error) {
+      if (context.mounted) {
+        showSnackBar(
+            'Failed to get user location, fetching last searched - $error',
+            context,
+            bgColor: Colors.red);
+      }
+      if (context.mounted) await tryLastSearch(context);
+    }
+  }
+
+  Future<void> tryLastSearch(BuildContext context) async {
+    try {
+      final lastHistroy = ref.read(searchLocationNotifierProvider).value;
+      if (lastHistroy == null || lastHistroy.isEmpty) {
+        throw Exception('no Search history available');
+      }
+      final lastSearch = lastHistroy.last;
+
+      await searchCoordinates(lastSearch.latitude, lastSearch.longitude);
+      if (context.mounted) {
+        showSnackBar("Loaded the last searched location", context,
+            bgColor: Colors.green);
+      }
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
       ref.read(weatherForecastProvider.notifier).showError(error, stackTrace);
       if (context.mounted) {
-        showSnackBar('Failed to get user location', context,
-            bgColor: Colors.red);
+        showSnackBar(
+          'Failed to load previous location: ${error.toString()}',
+          context,
+          bgColor: Colors.red,
+        );
       }
     }
   }
