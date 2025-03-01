@@ -34,8 +34,8 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String sunriseTime = formatTime(sunrise);
-    String sunsetTime = formatTime(sunset);
+    String sunriseTime = formatTime(sunrise, timezone);
+    String sunsetTime = formatTime(sunset, timezone);
     return ClipRRect(
       borderRadius: BorderRadius.circular(20.r),
       child: ExpansionTile(
@@ -118,7 +118,9 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
 
 //! converting unix time stamp to readable time stamp
 
-String formatTime(int unixTimestamp) {
-  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(unixTimestamp * 1000);
+String formatTime(int unixTimestamp, int unixTimeZone) {
+  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(
+      (unixTimestamp + unixTimeZone) * 1000,
+      isUtc: true);
   return DateFormat('h:mm a').format(dateTime); // Converts to AM/PM format
 }

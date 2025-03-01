@@ -9,12 +9,17 @@ class LocationName extends ConsumerWidget {
   final String locationName;
   final String country;
   final int currentTime;
+  final int timezone;
   const LocationName(
-      {super.key, required this.locationName, required this.currentTime, required this.country});
+      {super.key,
+      required this.locationName,
+      required this.currentTime,
+      required this.timezone,
+      required this.country});
 
   @override
   Widget build(BuildContext context, ref) {
-    String time = formatTime(currentTime);
+    String time = formatTime(currentTime, timezone);
     return ListTile(
       key: ValueKey(locationName),
       title: Row(

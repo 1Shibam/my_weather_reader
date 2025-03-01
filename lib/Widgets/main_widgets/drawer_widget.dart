@@ -96,7 +96,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                                         ListTile(
                                           onTap: () =>
                                               searchLocationDetailWidget(
-                                                  context, singleData.toJson()),
+                                                  context, singleData),
                                           title: Text(
                                             singleData.cityName,
                                             style: AppTextStyles.heading2
@@ -108,7 +108,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                                             children: [
                                               Text(
                                                 // ignore: unnecessary_string_interpolations
-                                                "${formatTime(singleData.currentTime)}",
+                                                "${formatTime(singleData.currentTime, singleData.timezone)}",
                                                 style: AppTextStyles.regular
                                                     .copyWith(
                                                         color: Colors.black),

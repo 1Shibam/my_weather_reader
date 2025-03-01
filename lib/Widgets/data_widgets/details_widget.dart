@@ -56,6 +56,7 @@ class DetailsWidget extends StatelessWidget {
             locationName: locationName,
             currentTime: currentTime,
             country: country,
+            timezone: timezone,
           ),
           SizedBox(
             height: 12.h,
