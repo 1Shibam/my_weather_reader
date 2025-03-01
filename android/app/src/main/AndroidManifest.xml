@@ -6,7 +6,7 @@
 
 
     <application
-        android:label="my_weather_reader"
+        android:label="Weather-Wise"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
