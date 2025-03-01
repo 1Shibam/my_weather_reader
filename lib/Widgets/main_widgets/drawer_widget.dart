@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_reader/Widgets/dialog_widget/search_location_detail_widget.dart';
 import 'package:weather_reader/Widgets/main_widgets/other_weather_details_expansion_tile.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/error_state_widget.dart';
 import 'package:weather_reader/providers/data_providers/searched_location_history_provider.dart';
@@ -93,6 +94,9 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                                     child: Column(
                                       children: [
                                         ListTile(
+                                          onTap: () =>
+                                              searchLocationDetailWidget(
+                                                  context, singleData.toJson()),
                                           title: Text(
                                             singleData.cityName,
                                             style: AppTextStyles.heading2
