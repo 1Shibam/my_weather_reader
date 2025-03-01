@@ -24,7 +24,7 @@ _(Might take a few seconds to load...)_
 - **📊 Weather Forecast & Details** – Displays temperature, humidity, wind speed, and more.  
 - **🔄 Search History** – Saves searched locations in an SQLite database for quick access.  
 - **⚡ Last Known Location** – If the app fails to get the user’s current location, it fetches the last searched one from the database.  
-- **🛠️ Delete Search History** – Users can remove stored searches (either by name or coordinates).  
+- **🛠️ Delete Search History** – Users can remove stored searches. 
 - **🎨 Dynamic Animations & GIFs** – Displays weather-specific animations (even though it makes the app *huge* at **142MB**, but who cares? 😭💀).  
 
 ---
