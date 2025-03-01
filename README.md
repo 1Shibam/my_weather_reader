@@ -44,7 +44,7 @@ _(Might take a few seconds to load...)_
 
 1️⃣ **Clone the repository:**  
 ```bash
-git clone https://github.com/1Shibam/my_weather_reader.git  
+git clone https://github.com/1Shibam/WeatherWise.git  
 cd weather-app  
 ```  
 
