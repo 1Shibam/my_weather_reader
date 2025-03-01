@@ -27,9 +27,7 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
       }
     } catch (error) {
       if (context.mounted) {
-        showSnackBar(
-            'Failed to get user location, fetching last searched - $error',
-            context,
+        showSnackBar('Failed to get user location', context,
             bgColor: Colors.red);
       }
       if (context.mounted) await tryLastSearch(context);
@@ -44,7 +42,7 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
       }
       final lastSearch = lastHistroy.last;
 
-      await searchCoordinates(lastSearch.latitude, lastSearch.longitude);
+      await searchLocation(lastSearch.cityName);
       if (context.mounted) {
         showSnackBar("Loaded the last searched location", context,
             bgColor: Colors.green);

@@ -12,6 +12,7 @@ class SearchedListNotifier
     initializeSearchList();
   }
   Future<void> initializeSearchList() async {
+    print('searchList initialized');
     state = const AsyncValue.loading();
     try {
       final service = await ref.read(weatherDatabaseServiceProvider.future);

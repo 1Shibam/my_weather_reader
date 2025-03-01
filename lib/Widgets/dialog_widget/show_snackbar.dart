@@ -8,6 +8,7 @@ void showSnackBar(String text, BuildContext context,
       text,
       style: AppTextStyles.regular,
     ),
+    duration: const Duration(seconds: 1),
     backgroundColor: bgColor,
   ));
 }
