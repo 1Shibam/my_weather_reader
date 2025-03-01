@@ -32,7 +32,9 @@ class SearchService {
         return [];
       }
     } catch (e) {
+      
       return [];
+      
     }
   }
 }

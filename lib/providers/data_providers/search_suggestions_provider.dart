@@ -32,6 +32,7 @@ class SearchSuggestionsNotifier
       state = AsyncValue.data(popularPlaces);
       return;
     }
+
     state = const AsyncValue.loading();
     try {
       final suggestions = await searchService.placeSuggestion(query);
@@ -45,6 +46,6 @@ class SearchSuggestionsNotifier
 //providers
 final searchServiceProvider = Provider<SearchService>((ref) => SearchService());
 
-final searchSuggestionsProvider = StateNotifierProvider.autoDispose<
+final searchSuggestionsProvider = StateNotifierProvider<
         SearchSuggestionsNotifier, AsyncValue<List<SearchSuggestions>>>(
     (ref) => SearchSuggestionsNotifier(ref.read(searchServiceProvider)));

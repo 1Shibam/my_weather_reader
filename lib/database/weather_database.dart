@@ -38,22 +38,27 @@ final weatherDataBaseProvider = FutureProvider<Database>((ref) async {
 });
 
 /*
-'weatherID' : weatherId,
-      'cityName': cityName,
-      'lat': latitude,
-      'lon': longitude,
-      'country': country,
-      'temperature': temperature,
-      'tempMin': minTemperature,
-      'tempMax': maxTemperature,
-      'humidity': humidity,
-      'windSpeed': windSpeed,
-      'windDeg': windDeg,
-      'description': description,
-      'cloudCoverage': cloudCoverage,
-      'pressure': pressure,
-      'sunrise': sunrise,
-      'sunset': sunset,
-      'currentTime': currentTime,
-      'timezone': timezone
+factory WeatherModel.fromDBMap(Map<String, dynamic> map) {
+  return WeatherModel(
+    weatherId: map['weatherID'] as int?,
+    cityName: map['cityName'] as String,
+    country: map['country'] as String,
+    latitude: (map['lat'] as num).toDouble(),
+    longitude: (map['lon'] as num).toDouble(),
+    temperature: (map['temperature'] as num).toDouble(),
+    minTemperature: (map['tempMin'] as num).toDouble(),
+    maxTemperature: (map['tempMax'] as num).toDouble(),
+    humidity: map['humidity'] as int,
+    windSpeed: (map['windSpeed'] as num).toDouble(),
+    windDeg: map['windDeg'] as int,
+    description: map['description'] as String,
+    cloudCoverage: map['cloudCoverage'] as int,
+    pressure: map['pressure'] as int,
+    sunrise: map['sunrise'] as int,
+    sunset: map['sunset'] as int,
+    currentTime: map['currentTime'] as int,
+    timezone: map['timezone'] as int,
+  );
+}
+  Map<String, dynamic> to
  */

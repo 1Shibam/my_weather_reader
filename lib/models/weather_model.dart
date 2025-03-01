@@ -44,7 +44,7 @@ class WeatherModel {
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     
     return WeatherModel(
-        weatherId: json['weatherID'] as int? ,
+
         cityName: json['name'] ?? 'unkown city',
         country: json['sys']['country'] ?? 'unknown country',
         latitude: json['coord']['lat'].toDouble() ?? 0,
@@ -87,7 +87,7 @@ class WeatherModel {
 }
   Map<String, dynamic> toJson() {
     return {
-      'weatherID': weatherId,
+
       'cityName': cityName,
       'country': country,
       'lat': latitude,

@@ -78,11 +78,12 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                               ),
                             )
                           : SizedBox(
-                              height: 200.h, // Set a reasonable height
+                              height:
+                                  400.h, // Set a reasonable height
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics:
-                                    const NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
+                                // Prevents nested scrolling issues
+                                physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
                                   final singleData = data[index];

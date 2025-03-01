@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_reader/api_key.dart';
 import 'package:weather_reader/models/forecast_model/forecast_model.dart';
 
 import 'package:weather_reader/models/weather_model.dart';
 
 class WeatherService {
-
   final String api = dotenv.env['WEATHER_API_KEY']!;
 
   final Dio dio = Dio(BaseOptions(
@@ -14,15 +12,10 @@ class WeatherService {
       sendTimeout: const Duration(seconds: 7),
       receiveTimeout: const Duration(seconds: 4)));
 
-  
-
   Future<WeatherModel> searchByLocationName(String location) async {
     try {
-      final response = await dio.get('/weather', queryParameters: {
-        'q': location,
-        'appid': weatherApiKey,
-        'units': 'metric'
-      });
+      final response = await dio.get('/weather',
+          queryParameters: {'q': location, 'appid': api, 'units': 'metric'});
       if (response.statusCode == 200) {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(response.data);
@@ -43,7 +36,7 @@ class WeatherService {
       final response = await dio.get('/weather', queryParameters: {
         'lat': latitude,
         'lon': longitude,
-        'appid': weatherApiKey,
+        'appid': api,
         'units': 'metric'
       });
 
@@ -67,7 +60,7 @@ class WeatherService {
       final response = await dio.get('/forecast', queryParameters: {
         'lat': latitude,
         'lon': longitude,
-        'appid': weatherApiKey,
+        'appid': api,
         'units': 'metric'
       });
 
@@ -87,11 +80,8 @@ class WeatherService {
 
   Future<ForecastModel> getWeatherForecastWithName(String location) async {
     try {
-      final response = await dio.get('/forecast', queryParameters: {
-        'q': location,
-        'appid': weatherApiKey,
-        'units': 'metric'
-      });
+      final response = await dio.get('/forecast',
+          queryParameters: {'q': location, 'appid': api, 'units': 'metric'});
       if (response.statusCode == 200) {
         final Map<String, dynamic> forecastData =
             Map<String, dynamic>.from(response.data);

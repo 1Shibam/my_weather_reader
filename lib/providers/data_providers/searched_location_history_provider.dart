@@ -24,6 +24,7 @@ class SearchedListNotifier
   }
 
   Future<void> addSearchToList(WeatherModel weatherData) async {
+    print('add to search list is working');
     try {
       final service = await ref.read(weatherDatabaseServiceProvider.future);
       await service.addSearchToDB(weatherData);

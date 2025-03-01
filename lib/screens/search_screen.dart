@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_reader/Widgets/dialog_widget/show_snackbar.dart';
 import 'package:weather_reader/Widgets/main_widgets/search_suggestion_tile.dart';
@@ -59,7 +60,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final searchQuery = ref.watch(searchQueryProvider);
     final showSuggestions = ref.watch(searchSuggestionEnableProvider);
 
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.darkBlue,
@@ -116,16 +116,24 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                                   searchController.text.trim());
                                           final data = ref.read(
                                               weatherServiceNotifierProvider);
-                                          await ref
-                                              .read(
-                                                  searchLocationNotifierProvider
-                                                      .notifier)
-                                              .addSearchToList(data.value!);
-                                          if (context.mounted) context.pop();
+                                          print(
+                                              " this is exactly what i am getting --- ${data.value}");
+                                          if (data.hasError) {
+                                            if (context.mounted) context.pop();
+                                          } else {
+                                            await ref
+                                                .read(
+                                                    searchLocationNotifierProvider
+                                                        .notifier)
+                                                .addSearchToList(data.value!);
+                                            if (context.mounted) context.pop();
+                                          }
                                         } catch (e) {
                                           if (context.mounted) {
-                                            showSnackBar('something went wrong',
-                                                context);
+                                            showSnackBar(
+                                                'location not found', context,
+                                                bgColor: Colors.red);
+                                            context.pop();
                                           }
                                         }
                                       },
@@ -190,10 +198,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                       return locations.isEmpty
                                           ? Align(
                                               alignment: Alignment.topCenter,
-                                              child: Text(
-                                                'Opps no matches! please be more specific!',
-                                                style: AppTextStyles.heading1,
-                                                textAlign: TextAlign.center,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                  SvgPicture.asset(
+                                                    'assets/new/location-not-found-svgrepo-com.svg',
+                                                    width: 100.w,
+                                                    height: 100.h,
+                                                    color: Colors.red,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                  Text(
+                                                    'Opps no matches! please be more specific!',
+                                                    style:
+                                                        AppTextStyles.heading1,
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
                                               ),
                                             )
                                           : SearchSuggestionTiles(
@@ -202,8 +227,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                     },
                                     error: (err, stackTrace) {
                                       return Center(
-                                          child: Image.asset(
-                                              'assets/animations/ERROR-OCCURED.png'));
+                                          child: SvgPicture.asset(
+                                              'assets/new/location-not-found-svgrepo-com.svg'));
                                     },
                                     loading: () => const ShimmerLoading());
                               },
