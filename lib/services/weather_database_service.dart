@@ -11,13 +11,10 @@ class WeatherDatabaseService {
 
   //! add search to database
   Future<void> addSearchToDB(WeatherModel weatherData) async {
-    print('add search to DB is called');
     try {
-      print('inserting data - ${weatherData.toJson()}');
       await database.insert('weatherTable', weatherData.toJson(),
           conflictAlgorithm: ConflictAlgorithm.replace);
     } catch (e, stackTrace) {
-      print('insertion failer - $e');
       debugPrintStack(stackTrace: stackTrace);
       rethrow;
      
@@ -29,7 +26,7 @@ class WeatherDatabaseService {
     final List<Map<String, dynamic>> maps =
         await database.query('weatherTable');
 
-    print("Database result: $maps"); // 🔍 See what the DB is returning
+    // 🔍 See what the DB is returning
 
     return maps.map((json) => WeatherModel.fromDBMap(json)).toList();
   }

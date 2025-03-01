@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weather_reader/Widgets/main_widgets/other_weather_details_expansion_tile.dart';
 import 'package:weather_reader/Widgets/reusable_widgets/error_state_widget.dart';
 import 'package:weather_reader/providers/data_providers/searched_location_history_provider.dart';
 
@@ -78,8 +79,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                               ),
                             )
                           : SizedBox(
-                              height:
-                                  400.h, // Set a reasonable height
+                              height: 400.h, // Set a reasonable height
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 // Prevents nested scrolling issues
@@ -87,8 +87,107 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
                                   final singleData = data[index];
-                                  return ListTile(
-                                    title: Text(singleData.cityName),
+                                  return Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.w),
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                          title: Text(
+                                            singleData.cityName,
+                                            style: AppTextStyles.heading2
+                                                .copyWith(
+                                                    color: Colors.black87),
+                                          ),
+                                          trailing: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                // ignore: unnecessary_string_interpolations
+                                                "${formatTime(singleData.currentTime)}",
+                                                style: AppTextStyles.regular
+                                                    .copyWith(
+                                                        color: Colors.black),
+                                              ),
+                                              IconButton(
+                                                  onPressed: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return AlertDialog(
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .waterBlue,
+                                                          title: Text(
+                                                            'Delete search',
+                                                            style: AppTextStyles
+                                                                .heading1,
+                                                          ),
+                                                          content: Text(
+                                                            'Are you sure you want to delete this search ?',
+                                                            style: AppTextStyles
+                                                                .heading2,
+                                                          ),
+                                                          actions: [
+                                                            TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        context),
+                                                                child: Text(
+                                                                  'Cancel',
+                                                                  style: AppTextStyles
+                                                                      .heading2,
+                                                                )),
+                                                            GestureDetector(
+                                                              onTap: () async {
+                                                                await ref
+                                                                    .read(searchLocationNotifierProvider
+                                                                        .notifier)
+                                                                    .deleteFromSearchList(
+                                                                        singleData
+                                                                            .weatherId!);
+                                                                if (context
+                                                                    .mounted) {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                }
+                                                              },
+                                                              child: Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .red,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.r)),
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal: 10
+                                                                            .r,
+                                                                        vertical:
+                                                                            8.r),
+                                                                child: Text(
+                                                                  'Delete',
+                                                                  style:
+                                                                      AppTextStyles
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  icon: const Icon(Icons.clear))
+                                            ],
+                                          ),
+                                        ),
+                                        Divider(
+                                            height: 1.h,
+                                            thickness: 2.sp,
+                                            color: AppColors.waterBlue),
+                                      ],
+                                    ),
                                   );
                                 },
                               ),
