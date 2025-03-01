@@ -118,9 +118,9 @@ class OtherWeatherDetailsExpansionTile extends StatelessWidget {
 
 //! converting unix time stamp to readable time stamp
 
-String formatTime(int unixTimestamp, int unixTimeZone) {
+String formatTime(int unixTimestamp, int unixTimeZone, {bool isUtc = true}) {
   DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(
       (unixTimestamp + unixTimeZone) * 1000,
-      isUtc: true);
+      isUtc: isUtc);
   return DateFormat('h:mm a').format(dateTime); // Converts to AM/PM format
 }

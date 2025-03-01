@@ -108,7 +108,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                                             children: [
                                               Text(
                                                 // ignore: unnecessary_string_interpolations
-                                                "${formatTime(singleData.currentTime, singleData.timezone)}",
+                                                "${formatTime(singleData.currentTime, 0, isUtc: false)}",
                                                 style: AppTextStyles.regular
                                                     .copyWith(
                                                         color: Colors.black),
