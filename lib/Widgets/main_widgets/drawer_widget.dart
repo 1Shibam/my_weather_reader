@@ -200,7 +200,7 @@ class _DrawerWidgetState extends ConsumerState<DrawerWidget> {
                     ],
                   );
                 },
-                error: (error, stackTrace) => const ErrorStateWidget(),
+                error: (error, stackTrace) => const ErrorStateWidget(errorMessage: 'Lmao this error wont run ',),
                 loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ));

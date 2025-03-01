@@ -118,8 +118,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                                   searchController.text.trim());
                                           final data = ref.read(
                                               weatherServiceNotifierProvider);
-                                          print(
-                                              " this is exactly what i am getting --- ${data.value}");
+                                         
                                           if (data.hasError) {
                                             if (context.mounted) context.pop();
                                           } else {

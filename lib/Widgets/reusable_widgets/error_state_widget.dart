@@ -1,85 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:weather_reader/themes/fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_reader/themes/app_colors.dart';
+import 'package:weather_reader/themes/text_styles.dart';
 
 class ErrorStateWidget extends StatelessWidget {
-  const ErrorStateWidget({super.key});
+  final String errorMessage;
+
+  const ErrorStateWidget({
+    super.key,
+    required this.errorMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Image.asset(
-              'assets/animations/ERROR-OCCURED.png',
-              fit: BoxFit.fitWidth,
-              width: 400,
-              height: 400,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/animations/ERROR-OCCURED.png',
+                fit: BoxFit.fitWidth,
+                width: 400,
+                height: 400,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 16), // Add spacing between sections
-        Text(
-          'The reason for this might be - ',
-          style: TextStyle(
-            fontFamily: Fonts.fontRegular,
-            color: Colors.white,
-            fontSize: 28,
-          ),
-        ),
-        const SizedBox(height: 8),
-        _buildRowWithText(
-          icon: Icons.wifi_off,
-          text: 'Your internet connection might be off.',
-        ),
-        const SizedBox(height: 8),
-        _buildRowWithText(
-          icon: Icons.location_off,
-          text:
-              'Check location-service (if you are looking for your own location).',
-        ),
-        const SizedBox(height: 8),
-        _buildRowWithText(
-          icon: Icons.spellcheck,
-          text: 'Make sure there are no spelling mistakes.',
-        ),
-        const SizedBox(height: 28),
-      ],
+          const SizedBox(height: 20),
+          Text('Possible Fixes:', style: AppTextStyles.heading1),
+          const SizedBox(height: 8),
+          _buildFixRow("If you're looking for your location, turn it on."),
+          _buildFixRow(
+              "If not, make sure the location you searched is correctly typed."),
+          _buildFixRow("There was no search history available."),
+        ],
+      ),
     );
   }
+}
 
-  // Helper method to build rows
-  Widget _buildRowWithText({required IconData icon, required String text}) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.white,
-          size: 16,
-        ),
-        const SizedBox(width: 8),
-        Icon(
-          icon,
-          color: Colors.red,
-        ),
-        const SizedBox(width: 8),
-        Flexible(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontFamily: Fonts.fontRegular,
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+Widget _buildFixRow(String text) {
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: 4.h),
+    child: ListTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      contentPadding: EdgeInsets.all(8.sp),
+      tileColor: AppColors.waterBlue,
+      leading: Icon(
+        Icons.arrow_forward_ios,
+        color: Colors.white,
+        size: 20.sp,
+      ),
+      title: Text(
+        text,
+        style: AppTextStyles.bold,
+      ),
+    ),
+  );
 }

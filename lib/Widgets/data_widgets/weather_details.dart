@@ -48,7 +48,7 @@ class WeatherDetails extends ConsumerWidget {
           error: (error, stackTrace) => const Material(
                 color: Colors.transparent,
                 child: Center(
-                  child: ErrorStateWidget(),
+                  child: ErrorStateWidget(errorMessage: 'Couldn\'t find the location',),
                 ),
               ),
           loading: () => Material(
