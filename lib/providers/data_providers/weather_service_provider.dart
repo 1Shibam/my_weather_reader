@@ -30,6 +30,7 @@ class WeatherServiceNotifier extends StateNotifier<AsyncValue<WeatherModel>> {
         showSnackBar('Failed to get user location', context,
             bgColor: Colors.red);
       }
+      await Future.delayed(const Duration(seconds: 1));
       if (context.mounted) await tryLastSearch(context);
     }
   }
