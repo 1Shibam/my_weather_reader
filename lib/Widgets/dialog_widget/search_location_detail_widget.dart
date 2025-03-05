@@ -82,7 +82,8 @@ void searchLocationDetailWidget(
                   onPressed: () async {
                     await ref
                         .read(weatherServiceNotifierProvider.notifier)
-                        .searchLocation(weatherData.cityName);
+                        .searchCoordinates(
+                            weatherData.latitude, weatherData.longitude);
                     if (context.mounted) {
                       Navigator.pop(context);
                       Navigator.pop(context);

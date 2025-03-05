@@ -14,10 +14,10 @@ class WeatherDatabaseService {
     try {
       await database.insert('weatherTable', weatherData.toJson(),
           conflictAlgorithm: ConflictAlgorithm.replace);
-    } catch (e, stackTrace) {
+    } catch (error, stackTrace) {
+
       debugPrintStack(stackTrace: stackTrace);
       rethrow;
-     
     }
   }
 
