@@ -85,7 +85,7 @@ class DetailsWidget extends StatelessWidget {
               return showAnimation
                   ? Column(
                       children: [
-                        getWeatherAnimation('mist', false),
+                        getWeatherAnimation(weatherCondition, isDayTime),
                         SizedBox(
                           height: 16.h,
                         ),
