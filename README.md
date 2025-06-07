@@ -5,7 +5,6 @@
 ---
 
 ## 📸 Sample Screenshots  
-_(Might take a few seconds to load ...)_  
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="https://github.com/user-attachments/assets/8993da44-ce48-4a88-8dc6-88c852e7380b" alt="Weather App - Home Screen" height="300" />
