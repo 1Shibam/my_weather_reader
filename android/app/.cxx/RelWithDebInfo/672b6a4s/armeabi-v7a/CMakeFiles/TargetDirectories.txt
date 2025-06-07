@@ -1,0 +1,2 @@
+E:/projects/flutter projects/my_weather_reader/android/app/.cxx/RelWithDebInfo/672b6a4s/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/projects/flutter projects/my_weather_reader/android/app/.cxx/RelWithDebInfo/672b6a4s/armeabi-v7a/CMakeFiles/rebuild_cache.dir
